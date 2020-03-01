@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20DA4AE240C10FA004EBB52 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */; };
+		D218EEE1240ACFF5002C14A2 /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
 		FADA3BB72409E3F100E0DB2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = Events/CoreDataStack.swift; sourceTree = SOURCE_ROOT; };
+		D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 		FADA3BC62409E43B00E0DB2D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -76,6 +81,7 @@
 		FADA3BC72409E44700E0DB2D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20DA4AE240C10FA004EBB52 /* CoreDataStack.swift in Sources */,
+				D218EEE1240ACFF5002C14A2 /* Events.xcdatamodeld in Sources */,
 				FADA3BB72409E3F100E0DB2D /* ViewController.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
@@ -386,6 +394,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */,
+			);
+			currentVersion = D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */;
+			path = Events.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FADA3BA72409E3F100E0DB2D /* Project object */;
 }
