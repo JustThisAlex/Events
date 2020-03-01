@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D20DA4AE240C10FA004EBB52 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */; };
+		D20DA4B2240C1D91004EBB52 /* Event+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B1240C1D91004EBB52 /* Event+Convenience.swift */; };
+		D20DA4B4240C1F5F004EBB52 /* EventRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B3240C1F5F004EBB52 /* EventRepresentation.swift */; };
+		D20DA4B7240C2048004EBB52 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B6240C2048004EBB52 /* ApiController.swift */; };
+		D20DA4B9240C24B3004EBB52 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B8240C24B3004EBB52 /* EventController.swift */; };
 		D218EEE1240ACFF5002C14A2 /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
@@ -19,6 +23,10 @@
 
 /* Begin PBXFileReference section */
 		D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = Events/CoreDataStack.swift; sourceTree = SOURCE_ROOT; };
+		D20DA4B1240C1D91004EBB52 /* Event+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Convenience.swift"; sourceTree = "<group>"; };
+		D20DA4B3240C1F5F004EBB52 /* EventRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepresentation.swift; sourceTree = "<group>"; };
+		D20DA4B6240C2048004EBB52 /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
+		D20DA4B8240C24B3004EBB52 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = Events/Api/EventController.swift; sourceTree = SOURCE_ROOT; };
 		D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D20DA4B5240C2039004EBB52 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				D20DA4B6240C2048004EBB52 /* ApiController.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		FADA3BA62409E3F100E0DB2D = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +76,7 @@
 		FADA3BB12409E3F100E0DB2D /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				D20DA4B5240C2039004EBB52 /* Api */,
 				FADA3BCA2409E45E00E0DB2D /* Views */,
 				FADA3BC92409E45400E0DB2D /* View Controllers */,
 				FADA3BC82409E44C00E0DB2D /* Model Controllers */,
@@ -82,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */,
+				D20DA4B1240C1D91004EBB52 /* Event+Convenience.swift */,
+				D20DA4B3240C1F5F004EBB52 /* EventRepresentation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -89,6 +108,7 @@
 		FADA3BC82409E44C00E0DB2D /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D20DA4B8240C24B3004EBB52 /* EventController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -192,8 +212,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20DA4B2240C1D91004EBB52 /* Event+Convenience.swift in Sources */,
 				D20DA4AE240C10FA004EBB52 /* CoreDataStack.swift in Sources */,
+				D20DA4B9240C24B3004EBB52 /* EventController.swift in Sources */,
 				D218EEE1240ACFF5002C14A2 /* Events.xcdatamodeld in Sources */,
+				D20DA4B4240C1F5F004EBB52 /* EventRepresentation.swift in Sources */,
+				D20DA4B7240C2048004EBB52 /* ApiController.swift in Sources */,
 				FADA3BB72409E3F100E0DB2D /* ViewController.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
