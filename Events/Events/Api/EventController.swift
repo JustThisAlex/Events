@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class EventController {
     
@@ -48,6 +49,27 @@ class EventController {
             }
         }
         
+    }
+    
+    func fetchEvents() {
+        apiController.fetchEvents { (error) in
+            if let error = error {
+                NSLog("Error fetching events from server: \(error)")
+            }
+            
+            DispatchQueue.main.async {
+                let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+                do {
+                    let events = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+                    for event in events {
+                        print(event.eventRepresentation)
+                    }
+                } catch {
+                    NSLog("Error fetching events: \(error)")
+                }
+            }
+            
+        }
     }
     
 }

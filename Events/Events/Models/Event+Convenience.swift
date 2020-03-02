@@ -41,11 +41,12 @@ extension Event {
     convenience init?(eventRepresentation: EventRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         
-        if let id = eventRepresentation.identifier {
-           self.identifier = id
+        guard let id = eventRepresentation.identifier else {
+           return nil
         }
-        
+        self.identifier = id
         self.eventTitle = eventRepresentation.eventTitle
+        self.eventAddress = eventRepresentation.eventAddress
         self.eventDescription = eventRepresentation.eventDescription
         self.eventStart = eventRepresentation.eventStart
         self.eventEnd = eventRepresentation.eventEnd

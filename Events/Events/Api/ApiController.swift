@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum HTTPMethod: String {
     case get = "GET"
@@ -49,8 +50,9 @@ class ApiController {
         }
         
         do {
-            
-            let json = try JSONEncoder().encode(representation)
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            let json = try encoder.encode(representation)
             request.httpBody = json
         } catch {
             NSLog("Error Encoding event Representation: \(error)")
@@ -92,6 +94,89 @@ class ApiController {
             completion(nil)
             
         }.resume()
+        
+    }
+    
+    func fetchEvents(completion: @escaping CompletionHandler = { _ in }) {
+        let eventsURL = baseURL.appendingPathExtension("json")
+        
+        var request = URLRequest(url: eventsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error fetching events from server: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from server")
+                completion(NSError())
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let eventRepresentations = Array(try decoder.decode([String: EventRepresentation].self, from: data).values)
+                try self.updateEvents(with: eventRepresentations)
+                completion(nil)
+            } catch {
+                NSLog("Error decoding events from server: \(error)")
+                completion(error)
+                return
+            }
+            
+        }.resume()
+ 
+    }
+    
+    private func updateEvents(with representations: [EventRepresentation]) throws {
+        let eventsWithID = representations.filter { $0.identifier != nil }
+        let identifiersToFetch = eventsWithID.compactMap { $0.identifier }
+        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, eventsWithID))
+        var eventsToCreate = representationsByID
+        
+        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
+        
+        let context = CoreDataStack.shared.container.newBackgroundContext()
+        
+        context.performAndWait {
+            do {
+                let existingEvents = try context.fetch(fetchRequest)
+                
+                // match with existing managed events
+                for event in existingEvents {
+                    guard let id = event.identifier, let representation = representationsByID[id] else { continue }
+                    self.update(event: event, with: representation)
+                    eventsToCreate.removeValue(forKey: id)
+                }
+                
+                // for non matched events, create managed objects
+                for representation in eventsToCreate.values {
+                    Event(eventRepresentation: representation, context: context)
+                }
+                
+            } catch {
+                NSLog("Error fetching events for id's: \(error)")
+                
+            }
+        }
+        
+        try CoreDataStack.shared.save(context: context)
+        
+    }
+    
+    private func update(event: Event, with representation: EventRepresentation) {
+        event.eventTitle = representation.eventTitle
+        event.eventDescription = representation.eventDescription
+        event.eventAddress = representation.eventAddress
+        event.eventGeolocation = representation.eventGeolocation
+        event.eventStart = representation.eventStart
+        event.eventEnd = representation.eventEnd
+        event.externalLink = representation.externalLink
         
     }
     
