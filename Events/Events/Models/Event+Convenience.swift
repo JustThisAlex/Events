@@ -14,17 +14,20 @@ extension Event {
     var eventRepresentation: EventRepresentation? {
         guard let eventStart = self.eventStart,
             let eventTitle = self.eventTitle,
+            let eventAddress = self.eventAddress,
             let eventEnd = self.eventEnd,
             let description = self.eventDescription,
             let geolocation = self.eventGeolocation
             else {  return nil }
         
-        return EventRepresentation(identifier: self.identifier, eventTitle: eventTitle, eventGeolocation: geolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink)
+        return EventRepresentation(identifier: self.identifier, eventAddress: eventAddress, eventTitle: eventTitle, eventGeolocation: geolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink)
     }
     
-    convenience init(title: String, address: String, location: String, description: String, start: Date, end: Date, externalLink: String?, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init(title: String, address: String, location: String, description: String, start: Date, end: Date, externalLink: String?, identifier: Int32?, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         
         self.init(context: context)
+        
+        self.identifier = identifier ?? 1
         
         self.eventTitle = title
         self.eventAddress = address

@@ -13,7 +13,8 @@ class EventController {
     let apiController = ApiController()
     
     func createEvent(title: String, description: String, address: String, location: String, eventStart: Date, eventEnd: Date, externalLink: String?) {
-        let event = Event(title: title, address: address, location: location, description: description, start: eventStart, end: eventEnd, externalLink: externalLink)
+        
+        let event = Event(title: title, address: address, location: location, description: description, start: eventStart, end: eventEnd, externalLink: externalLink, identifier: nil)
         do {
             try CoreDataStack.shared.save()
         } catch {
@@ -48,3 +49,16 @@ class EventController {
     }
     
 }
+
+
+//let title = "the title"
+//let description = "the descritpion of the event"
+//let address = "555 thomas ave"
+//let location = "3398474.99, 49483737.77"
+//let start = Date()
+//let end = Date()
+//let externalLink: String? = nil
+//let id: Int32 = 1
+//let event = Event(title: title, address: address, location: location, description: description, start: start, end: end, externalLink: externalLink, identifier: id)
+//
+//eventController.delete(event: event)
