@@ -3,36 +3,56 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D20DA4AE240C10FA004EBB52 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */; };
-		D20DA4B2240C1D91004EBB52 /* Event+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B1240C1D91004EBB52 /* Event+Convenience.swift */; };
-		D20DA4B4240C1F5F004EBB52 /* EventRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B3240C1F5F004EBB52 /* EventRepresentation.swift */; };
-		D20DA4B7240C2048004EBB52 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B6240C2048004EBB52 /* ApiController.swift */; };
-		D20DA4B9240C24B3004EBB52 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B8240C24B3004EBB52 /* EventController.swift */; };
-		D218EEE1240ACFF5002C14A2 /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */; };
+		AC524A50A377FB4B5F9ADDF2 /* Pods_Events.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E440A4C56FECC80C6A1AB56 /* Pods_Events.framework */; };
+		FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */; };
+		FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */; };
+		FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD4240BF802005DFA5C /* CustomElements.swift */; };
+		FA50CDD7240BF803005DFA5C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA50CDD5240BF803005DFA5C /* Login.storyboard */; };
+		FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */; };
+		FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DAC240DCF770037769D /* ApiController.swift */; };
+		FA5A2DAF240DCF770037769D /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DAD240DCF770037769D /* EventController.swift */; };
+		FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */; };
+		FA5A2DB7240DCFA80037769D /* Event+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB2240DCFA70037769D /* Event+Convenience.swift */; };
+		FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */; };
+		FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */; };
+		FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC66E240D320200B23F8C /* MapsViewController.swift */; };
+		FA7DC671240D335A00B23F8C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC670240D335A00B23F8C /* Keys.swift */; };
+		FA7DC673240D415300B23F8C /* MapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7DC672240D415300B23F8C /* MapStyle.json */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
-		FADA3BB72409E3F100E0DB2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* ViewController.swift */; };
+		FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */; };
 		FADA3BBA2409E3F100E0DB2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BB82409E3F100E0DB2D /* Main.storyboard */; };
 		FADA3BBC2409E3F300E0DB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */; };
 		FADA3BBF2409E3F300E0DB2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBD2409E3F300E0DB2D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = Events/CoreDataStack.swift; sourceTree = SOURCE_ROOT; };
-		D20DA4B1240C1D91004EBB52 /* Event+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Convenience.swift"; sourceTree = "<group>"; };
-		D20DA4B3240C1F5F004EBB52 /* EventRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepresentation.swift; sourceTree = "<group>"; };
-		D20DA4B6240C2048004EBB52 /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
-		D20DA4B8240C24B3004EBB52 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = Events/Api/EventController.swift; sourceTree = SOURCE_ROOT; };
-		D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
-		D26D48FD240D83B200028AF7 /* Events 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 2.xcdatamodel"; sourceTree = "<group>"; };
+		1C604D5A7CF843EF745745F4 /* Pods-Events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.debug.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.debug.xcconfig"; sourceTree = "<group>"; };
+		8E440A4C56FECC80C6A1AB56 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		906C7BA86A4F82B021A02867 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
+		FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
+		FA50CDD5240BF803005DFA5C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
+		FA5A2DAC240DCF770037769D /* ApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
+		FA5A2DAD240DCF770037769D /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
+		FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FA5A2DB2240DCFA70037769D /* Event+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+Convenience.swift"; sourceTree = "<group>"; };
+		FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRepresentation.swift; sourceTree = "<group>"; };
+		FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 2.xcdatamodel"; sourceTree = "<group>"; };
+		FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
+		FA7DC66E240D320200B23F8C /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		FA7DC670240D335A00B23F8C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		FA7DC672240D415300B23F8C /* MapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MapStyle.json; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FADA3BB62409E3F100E0DB2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FADA3BB92409E3F100E0DB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADA3BBE2409E3F300E0DB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,16 +64,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC524A50A377FB4B5F9ADDF2 /* Pods_Events.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D20DA4B5240C2039004EBB52 /* Api */ = {
+		CF3DDED483C34C26A587E205 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D20DA4B6240C2048004EBB52 /* ApiController.swift */,
+				8E440A4C56FECC80C6A1AB56 /* Pods_Events.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E0923ACFF81D51CFE168C905 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C604D5A7CF843EF745745F4 /* Pods-Events.debug.xcconfig */,
+				906C7BA86A4F82B021A02867 /* Pods-Events.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FA5A2DAB240DCF770037769D /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				FA5A2DAC240DCF770037769D /* ApiController.swift */,
+				FA5A2DAD240DCF770037769D /* EventController.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -63,6 +102,8 @@
 			children = (
 				FADA3BB12409E3F100E0DB2D /* Events */,
 				FADA3BB02409E3F100E0DB2D /* Products */,
+				E0923ACFF81D51CFE168C905 /* Pods */,
+				CF3DDED483C34C26A587E205 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,7 +118,8 @@
 		FADA3BB12409E3F100E0DB2D /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				D20DA4B5240C2039004EBB52 /* Api */,
+				FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */,
+				FA5A2DAB240DCF770037769D /* Api */,
 				FADA3BCA2409E45E00E0DB2D /* Views */,
 				FADA3BC92409E45400E0DB2D /* View Controllers */,
 				FADA3BC82409E44C00E0DB2D /* Model Controllers */,
@@ -91,7 +133,6 @@
 		FADA3BC62409E43B00E0DB2D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				D20DA4AD240C10FA004EBB52 /* CoreDataStack.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -99,9 +140,9 @@
 		FADA3BC72409E44700E0DB2D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */,
-				D20DA4B1240C1D91004EBB52 /* Event+Convenience.swift */,
-				D20DA4B3240C1F5F004EBB52 /* EventRepresentation.swift */,
+				FA5A2DB2240DCFA70037769D /* Event+Convenience.swift */,
+				FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */,
+				FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -109,7 +150,6 @@
 		FADA3BC82409E44C00E0DB2D /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D20DA4B8240C24B3004EBB52 /* EventController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -117,7 +157,10 @@
 		FADA3BC92409E45400E0DB2D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FADA3BB62409E3F100E0DB2D /* ViewController.swift */,
+				FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */,
+				FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */,
+				FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */,
+				FA7DC66E240D320200B23F8C /* MapsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -125,6 +168,8 @@
 		FADA3BCA2409E45E00E0DB2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA50CDD4240BF802005DFA5C /* CustomElements.swift */,
+				FA50CDD5240BF803005DFA5C /* Login.storyboard */,
 				FADA3BB82409E3F100E0DB2D /* Main.storyboard */,
 			);
 			path = Views;
@@ -133,11 +178,14 @@
 		FADA3BCB2409E47500E0DB2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */,
 				FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */,
 				FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */,
 				FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */,
 				FADA3BBD2409E3F300E0DB2D /* LaunchScreen.storyboard */,
 				FADA3BC02409E3F300E0DB2D /* Info.plist */,
+				FA7DC670240D335A00B23F8C /* Keys.swift */,
+				FA7DC672240D415300B23F8C /* MapStyle.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -149,9 +197,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADA3BC32409E3F300E0DB2D /* Build configuration list for PBXNativeTarget "Events" */;
 			buildPhases = (
+				A1366845C4C8A4FE6A5524A1 /* [CP] Check Pods Manifest.lock */,
 				FADA3BAB2409E3F100E0DB2D /* Sources */,
 				FADA3BAC2409E3F100E0DB2D /* Frameworks */,
 				FADA3BAD2409E3F100E0DB2D /* Resources */,
+				9607567DA1EABEAE6B82D5A4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,6 +250,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA50CDD7240BF803005DFA5C /* Login.storyboard in Resources */,
+				FA7DC673240D415300B23F8C /* MapStyle.json in Resources */,
 				FADA3BBF2409E3F300E0DB2D /* LaunchScreen.storyboard in Resources */,
 				FADA3BBC2409E3F300E0DB2D /* Assets.xcassets in Resources */,
 				FADA3BBA2409E3F100E0DB2D /* Main.storyboard in Resources */,
@@ -208,20 +260,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9607567DA1EABEAE6B82D5A4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Events/Pods-Events-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Events/Pods-Events-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Events/Pods-Events-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1366845C4C8A4FE6A5524A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Events-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FADA3BAB2409E3F100E0DB2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D20DA4B2240C1D91004EBB52 /* Event+Convenience.swift in Sources */,
-				D20DA4AE240C10FA004EBB52 /* CoreDataStack.swift in Sources */,
-				D20DA4B9240C24B3004EBB52 /* EventController.swift in Sources */,
-				D218EEE1240ACFF5002C14A2 /* Events.xcdatamodeld in Sources */,
-				D20DA4B4240C1F5F004EBB52 /* EventRepresentation.swift in Sources */,
-				D20DA4B7240C2048004EBB52 /* ApiController.swift in Sources */,
-				FADA3BB72409E3F100E0DB2D /* ViewController.swift in Sources */,
+				FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */,
+				FA5A2DAF240DCF770037769D /* EventController.swift in Sources */,
+				FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */,
+				FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */,
+				FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */,
+				FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
+				FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
+				FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */,
+				FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */,
+				FA5A2DB7240DCFA80037769D /* Event+Convenience.swift in Sources */,
+				FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */,
+				FA7DC671240D335A00B23F8C /* Keys.swift in Sources */,
+				FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +463,7 @@
 		};
 		FADA3BC42409E3F300E0DB2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C604D5A7CF843EF745745F4 /* Pods-Events.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -381,6 +482,7 @@
 		};
 		FADA3BC52409E3F300E0DB2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 906C7BA86A4F82B021A02867 /* Pods-Events.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -421,13 +523,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */ = {
+		FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D26D48FD240D83B200028AF7 /* Events 2.xcdatamodel */,
-				D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */,
+				FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */,
+				FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */,
 			);
-			currentVersion = D26D48FD240D83B200028AF7 /* Events 2.xcdatamodel */;
+			currentVersion = FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */;
 			path = Events.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
