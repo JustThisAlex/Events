@@ -60,8 +60,12 @@ class ApiController {
         
     }
     
-    func deleteEvent(event: Event, completion: @escaping CompletionHandler = { _ in }) {
-        let id = event.identifier
+    func deleteEvent(event: EventRepresentation, completion: @escaping CompletionHandler = { _ in }) {
+        guard let id = event.identifier else {
+            NSLog("No id for event to delete")
+            completion(NSError())
+            return
+        }
         let requestURL = baseURL.appendingPathComponent(String(id)).appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
