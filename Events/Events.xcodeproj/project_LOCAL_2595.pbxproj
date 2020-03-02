@@ -13,14 +13,9 @@
 		D20DA4B7240C2048004EBB52 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B6240C2048004EBB52 /* ApiController.swift */; };
 		D20DA4B9240C24B3004EBB52 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DA4B8240C24B3004EBB52 /* EventController.swift */; };
 		D218EEE1240ACFF5002C14A2 /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */; };
-		FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */; };
-		FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */; };
-		FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD4240BF802005DFA5C /* CustomElements.swift */; };
-		FA50CDD7240BF803005DFA5C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA50CDD5240BF803005DFA5C /* Login.storyboard */; };
-		FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
-		FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */; };
+		FADA3BB72409E3F100E0DB2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* ViewController.swift */; };
 		FADA3BBA2409E3F100E0DB2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BB82409E3F100E0DB2D /* Main.storyboard */; };
 		FADA3BBC2409E3F300E0DB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */; };
 		FADA3BBF2409E3F300E0DB2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBD2409E3F300E0DB2D /* LaunchScreen.storyboard */; };
@@ -34,15 +29,10 @@
 		D20DA4B8240C24B3004EBB52 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = Events/Api/EventController.swift; sourceTree = SOURCE_ROOT; };
 		D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
 		D26D48FD240D83B200028AF7 /* Events 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 2.xcdatamodel"; sourceTree = "<group>"; };
-		FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
-		FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
-		FA50CDD5240BF803005DFA5C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FADA3BB62409E3F100E0DB2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FADA3BB92409E3F100E0DB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADA3BBE2409E3F300E0DB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,9 +117,7 @@
 		FADA3BC92409E45400E0DB2D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */,
-				FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */,
-				FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */,
+				FADA3BB62409E3F100E0DB2D /* ViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -137,8 +125,6 @@
 		FADA3BCA2409E45E00E0DB2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA50CDD4240BF802005DFA5C /* CustomElements.swift */,
-				FA50CDD5240BF803005DFA5C /* Login.storyboard */,
 				FADA3BB82409E3F100E0DB2D /* Main.storyboard */,
 			);
 			path = Views;
@@ -147,7 +133,6 @@
 		FADA3BCB2409E47500E0DB2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */,
 				FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */,
 				FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */,
 				FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */,
@@ -215,7 +200,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA50CDD7240BF803005DFA5C /* Login.storyboard in Resources */,
 				FADA3BBF2409E3F300E0DB2D /* LaunchScreen.storyboard in Resources */,
 				FADA3BBC2409E3F300E0DB2D /* Assets.xcassets in Resources */,
 				FADA3BBA2409E3F100E0DB2D /* Main.storyboard in Resources */,
@@ -236,13 +220,8 @@
 				D20DA4B4240C1F5F004EBB52 /* EventRepresentation.swift in Sources */,
 				D20DA4B7240C2048004EBB52 /* ApiController.swift in Sources */,
 				FADA3BB72409E3F100E0DB2D /* ViewController.swift in Sources */,
-				FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */,
-				FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
-				FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */,
-				FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */,
-				FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
