@@ -28,6 +28,7 @@
 		D20DA4B6240C2048004EBB52 /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
 		D20DA4B8240C24B3004EBB52 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = Events/Api/EventController.swift; sourceTree = SOURCE_ROOT; };
 		D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
+		D26D48FD240D83B200028AF7 /* Events 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 2.xcdatamodel"; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -423,9 +424,10 @@
 		D218EEDF240ACFF5002C14A2 /* Events.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D26D48FD240D83B200028AF7 /* Events 2.xcdatamodel */,
 				D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */,
 			);
-			currentVersion = D218EEE0240ACFF5002C14A2 /* Events.xcdatamodel */;
+			currentVersion = D26D48FD240D83B200028AF7 /* Events 2.xcdatamodel */;
 			path = Events.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

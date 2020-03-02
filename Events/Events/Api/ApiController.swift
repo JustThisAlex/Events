@@ -28,8 +28,8 @@ class ApiController {
     let baseURL = URL(string: "https://events-f87ab.firebaseio.com/")!
     
     func putEvent(event: Event, completion: @escaping CompletionHandler = { _ in }) {
-        let id = event.identifier
-        let requestURL = baseURL.appendingPathComponent(String(id)).appendingPathExtension("json")
+        let id = event.identifier ?? UUID().uuidString
+        let requestURL = baseURL.appendingPathComponent(id).appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.put.rawValue
@@ -39,7 +39,17 @@ class ApiController {
             return
         }
         
+        event.identifier = id
+        
         do {
+            try CoreDataStack.shared.save()
+        } catch {
+            NSLog("Error saving event id: \(error)")
+            return
+        }
+        
+        do {
+            
             let json = try JSONEncoder().encode(representation)
             request.httpBody = json
         } catch {

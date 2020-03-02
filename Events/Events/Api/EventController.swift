@@ -14,7 +14,9 @@ class EventController {
     
     func createEvent(title: String, description: String, address: String, location: String, eventStart: Date, eventEnd: Date, externalLink: String?) {
         
-        let event = Event(title: title, address: address, location: location, description: description, start: eventStart, end: eventEnd, externalLink: externalLink, identifier: nil)
+        let id = UUID().uuidString
+        
+        let event = Event(title: title, address: address, location: location, description: description, start: eventStart, end: eventEnd, externalLink: externalLink, identifier: id)
         do {
             try CoreDataStack.shared.save()
         } catch {

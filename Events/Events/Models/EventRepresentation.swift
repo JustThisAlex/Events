@@ -9,7 +9,7 @@
 import Foundation
 
 struct EventRepresentation: Codable {
-    let identifier: Int32?
+    let identifier: String?
     let eventAddress: String
     let eventTitle: String
     let eventGeolocation: String?

@@ -23,12 +23,11 @@ extension Event {
         return EventRepresentation(identifier: self.identifier, eventAddress: eventAddress, eventTitle: eventTitle, eventGeolocation: geolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink)
     }
     
-    convenience init(title: String, address: String, location: String, description: String, start: Date, end: Date, externalLink: String?, identifier: Int32?, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init(title: String, address: String, location: String, description: String, start: Date, end: Date, externalLink: String?, identifier: String?, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         
         self.init(context: context)
         
-        self.identifier = identifier ?? 1
-        
+        self.identifier = identifier
         self.eventTitle = title
         self.eventAddress = address
         self.eventGeolocation = location
@@ -36,6 +35,7 @@ extension Event {
         self.eventStart = start
         self.eventEnd = end
         self.externalLink = externalLink
+        
     }
     
     convenience init?(eventRepresentation: EventRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
