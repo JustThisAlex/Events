@@ -13,6 +13,12 @@
 		FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD4240BF802005DFA5C /* CustomElements.swift */; };
 		FA50CDD7240BF803005DFA5C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA50CDD5240BF803005DFA5C /* Login.storyboard */; };
 		FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */; };
+		FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DAC240DCF770037769D /* ApiController.swift */; };
+		FA5A2DAF240DCF770037769D /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DAD240DCF770037769D /* EventController.swift */; };
+		FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */; };
+		FA5A2DB7240DCFA80037769D /* Event+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB2240DCFA70037769D /* Event+Convenience.swift */; };
+		FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */; };
+		FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */; };
 		FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC66E240D320200B23F8C /* MapsViewController.swift */; };
 		FA7DC671240D335A00B23F8C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC670240D335A00B23F8C /* Keys.swift */; };
 		FA7DC673240D415300B23F8C /* MapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7DC672240D415300B23F8C /* MapStyle.json */; };
@@ -33,6 +39,13 @@
 		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
 		FA50CDD5240BF803005DFA5C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
+		FA5A2DAC240DCF770037769D /* ApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
+		FA5A2DAD240DCF770037769D /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
+		FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FA5A2DB2240DCFA70037769D /* Event+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+Convenience.swift"; sourceTree = "<group>"; };
+		FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRepresentation.swift; sourceTree = "<group>"; };
+		FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 2.xcdatamodel"; sourceTree = "<group>"; };
+		FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
 		FA7DC66E240D320200B23F8C /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		FA7DC670240D335A00B23F8C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		FA7DC672240D415300B23F8C /* MapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MapStyle.json; sourceTree = "<group>"; };
@@ -75,6 +88,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FA5A2DAB240DCF770037769D /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				FA5A2DAC240DCF770037769D /* ApiController.swift */,
+				FA5A2DAD240DCF770037769D /* EventController.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		FADA3BA62409E3F100E0DB2D = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +118,8 @@
 		FADA3BB12409E3F100E0DB2D /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */,
+				FA5A2DAB240DCF770037769D /* Api */,
 				FADA3BCA2409E45E00E0DB2D /* Views */,
 				FADA3BC92409E45400E0DB2D /* View Controllers */,
 				FADA3BC82409E44C00E0DB2D /* Model Controllers */,
@@ -116,6 +140,9 @@
 		FADA3BC72409E44700E0DB2D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA5A2DB2240DCFA70037769D /* Event+Convenience.swift */,
+				FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */,
+				FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,11 +308,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */,
+				FA5A2DAF240DCF770037769D /* EventController.swift in Sources */,
 				FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */,
+				FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */,
+				FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */,
+				FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
 				FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
+				FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */,
 				FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */,
+				FA5A2DB7240DCFA80037769D /* Event+Convenience.swift in Sources */,
 				FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */,
 				FA7DC671240D335A00B23F8C /* Keys.swift in Sources */,
 				FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */,
@@ -488,6 +521,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */,
+				FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */,
+			);
+			currentVersion = FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */;
+			path = Events.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FADA3BA72409E3F100E0DB2D /* Project object */;
 }
