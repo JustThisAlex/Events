@@ -18,15 +18,15 @@ import UIKit
     }
     func commoninit() {
         self.borderStyle = .none
-        self.heightAnchor.constraint(equalToConstant: 40).isActive = true
         self.layer.cornerRadius = self.cornerRadius
         self.clipsToBounds = true
-        self.backgroundColor = .secondarySystemBackground
+        self.backgroundColor = color
     }
     @IBInspectable var cornerRadius: CGFloat = 10
     @IBInspectable var verticalInset: CGFloat = 10
-    override func textRect(forBounds bounds: CGRect) -> CGRect {return bounds.insetBy(dx: verticalInset, dy: 0)}
-    override func editingRect(forBounds bounds: CGRect) -> CGRect { return bounds.insetBy(dx: verticalInset, dy: 0)}
+    @IBInspectable var color: UIColor? = .secondarySystemBackground { didSet { self.backgroundColor = color}}
+    override func textRect(forBounds bounds: CGRect) -> CGRect { return bounds.insetBy(dx: verticalInset, dy: 0) }
+    override func editingRect(forBounds bounds: CGRect) -> CGRect { return bounds.insetBy(dx: verticalInset, dy: 0) }
 }
 
 @IBDesignable class CustomButton: UIButton {
@@ -39,7 +39,6 @@ import UIKit
         commoninit()
     }
     func commoninit() {
-        self.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.layer.cornerRadius = self.cornerRadius
         self.clipsToBounds = true
         self.backgroundColor = isPrimary ? color : .lightGray
@@ -48,7 +47,8 @@ import UIKit
     }
     @IBInspectable var cornerRadius: CGFloat = 10
     @IBInspectable var isPrimary: Bool = true
-    @IBInspectable var color: UIColor = .systemBlue
+    @IBInspectable var color: UIColor? = .systemBlue { didSet { self.backgroundColor = isPrimary ? color : .lightGray;
+    self.setTitleColor(isPrimary ? .white : color, for: .normal)}}
 }
 
 @IBDesignable class CustomSegmentedControl: UIView {
@@ -128,6 +128,10 @@ import UIKit
 @IBDesignable class RoundedView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.layer.cornerRadius = self.cornerRadius
+    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.layer.cornerRadius = self.cornerRadius
     }
     @IBInspectable var cornerRadius: CGFloat = 10 { didSet { self.layer.cornerRadius = self.cornerRadius } }

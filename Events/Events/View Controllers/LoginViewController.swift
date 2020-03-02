@@ -11,9 +11,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var username: StylizedTextField!
+    @IBOutlet weak var email: StylizedTextField!
     @IBOutlet weak var password: StylizedTextField!
-    @IBOutlet weak var phoneNumber: StylizedTextField!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var continueButton: CustomButton!
     @IBOutlet weak var skipButton: UIButton!
@@ -21,20 +20,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        username.delegate = self
+        email.delegate = self
         password.delegate = self
-        phoneNumber.delegate = self
         continueButton.titleLabel?.leadingAnchor.constraint(equalTo: continueButton.leadingAnchor, constant: 20).isActive = true
         continueButton.titleLabel?.trailingAnchor.constraint(equalTo: continueButton.trailingAnchor, constant: -20).isActive = true
         continueButton.titleLabel?.textAlignment = .center
-//        UserController.keychain.set("not set yet", forKey: "Date")
     }
     
     // MARK: - IBActions
     @IBAction func login(_ sender: Any) {
+        guard let email = email.text, let password = password.text else { return }
         if segment.selectedSegmentIndex == 0 {
-            guard let username = username.text, let password = password.text else { return }
-//            UserController.shared.logIn(with: UserRepresentation(username: username, password: password)) { (error) in
+            
+//            UserController.shared.logIn(with: UserRepresentation(email: email, password: password)) { (error) in
 //                DispatchQueue.main.async {
 //                    if !self.isError(error) {
 //                        DispatchQueue.main.async {
@@ -45,8 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //                }
 //            }
         } else {
-            guard let username = username.text, let password = password.text, let phoneNumber = phoneNumber.text else { return }
-//            UserController.shared.signUp(with: UserRepresentation(username: username, password: password, phoneNumber: phoneNumber)) { (error) in
+//            UserController.shared.signUp(with: UserRepresentation(email: email, password: password, phoneNumber: phoneNumber)) { (error) in
 //                DispatchQueue.main.async {
 //                    if !self.isError(error) {
 //                        HomeViewController.authenticated = true
@@ -65,11 +62,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func segmentChanged(_ sender: Any) {
         if segment.selectedSegmentIndex == 0 {
             titleLabel.text = "Login"
-            phoneNumber.isHidden = true
             continueButton.titleLabel?.text = "Login"
         } else {
             titleLabel.text = "Sign Up"
-            phoneNumber.isHidden = false
             continueButton.titleLabel?.text = "Sign Up"
         }
     }
