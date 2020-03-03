@@ -24,6 +24,7 @@
 		FA7DC673240D415300B23F8C /* MapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7DC672240D415300B23F8C /* MapStyle.json */; };
 		FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AB240E7449000B0BC1 /* MainViewController.swift */; };
 		FAAE07AE240EBD81000B0BC1 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */; };
+		FAAE07B0240EC609000B0BC1 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AF240EC609000B0BC1 /* EventDetailViewController.swift */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
 		FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */; };
@@ -53,6 +54,7 @@
 		FA7DC672240D415300B23F8C /* MapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MapStyle.json; sourceTree = "<group>"; };
 		FAAE07AB240E7449000B0BC1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		FAAE07AF240EC609000B0BC1 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		FADA3BC92409E45400E0DB2D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE07AF240EC609000B0BC1 /* EventDetailViewController.swift */,
 				FAAE07AB240E7449000B0BC1 /* MainViewController.swift */,
 				FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */,
 				FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */,
@@ -318,6 +321,7 @@
 				FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */,
 				FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */,
 				FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */,
+				FAAE07B0240EC609000B0BC1 /* EventDetailViewController.swift in Sources */,
 				FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
 				FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */,
