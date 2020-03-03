@@ -97,6 +97,70 @@ class ApiController {
         
     }
     
+    func signIn(user: User, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        let signUpURL = backendBaseURL.appendingPathComponent("api/users/login")
+        
+        var request = URLRequest(url: signUpURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+        
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try encoder.encode(user)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding user object: \(error)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Network error Registering user: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                NSLog("Repsonse code was: \(response.statusCode)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                NSLog("Repsonse code was: \(response.statusCode)")
+                
+                guard let data = data else {
+                    NSLog("Bad or no data recieved from api")
+                    completion(.failure(.badData))
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                do {
+                    let userLogin = try decoder.decode([String: String].self, from: data)
+                    if let token = userLogin["token"] {
+//                        KeychainSwift
+//                        KeychainSwift.shared.set(value: token, forKey: "AuthToken")
+                       completion(.success(token))
+                        return
+                    }
+                    
+                    
+                    
+                } catch {
+                    NSLog("Error decoding User Registration: \(error)")
+                    completion(.failure(.noDecode))
+                    return
+                }
+                
+            }
+        }.resume()
+        
+    }
+    
+    
+    
     func putEvent(event: Event, completion: @escaping CompletionHandler = { _ in }) {
         let id = event.identifier ?? UUID().uuidString
         let requestURL = baseURL.appendingPathComponent(id).appendingPathExtension("json")
