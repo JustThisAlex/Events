@@ -13,6 +13,7 @@ enum HTTPMethod: String {
     case get = "GET"
     case put = "PUT"
     case delete = "DELETE"
+    case post = "POST"
 }
 
 enum HTTPHeaderKey: String {
@@ -23,10 +24,78 @@ enum HTTPHeaderValue: String {
     case json = "application/json"
 }
 
+enum NetworkError: Error {
+    case badUrl
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+    case noEncode
+}
+
 class ApiController {
     typealias CompletionHandler = (Error?) -> Void
     
     let baseURL = URL(string: "https://events-f87ab.firebaseio.com/")!
+    let backendBaseURL = URL(string: "https://evening-wildwood-75186.herokuapp.com/")!
+    
+    
+    func signUp(user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        let signUpURL = backendBaseURL.appendingPathComponent("api/users/register")
+        
+        var request = URLRequest(url: signUpURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+        
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try encoder.encode(user)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding user object: \(error)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Network error Registering user: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode != 201 {
+                NSLog("Repsonse code was: \(response.statusCode)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 201 {
+                NSLog("Repsonse code was: \(response.statusCode)")
+                
+                guard let data = data else {
+                    NSLog("Bad or no data recieved from api")
+                    completion(.failure(.badData))
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                do {
+                    let userRegistration = try decoder.decode(UserRegistration.self, from: data)
+                    let newUser = User(id: userRegistration.id, user: user)
+                    completion(.success(newUser))
+                    
+                } catch {
+                   NSLog("Error decoding User Registration: \(error)")
+                    completion(.failure(.noDecode))
+                    return
+                }
+                
+            }
+        }.resume()
+        
+    }
     
     func putEvent(event: Event, completion: @escaping CompletionHandler = { _ in }) {
         let id = event.identifier ?? UUID().uuidString
