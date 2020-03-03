@@ -37,7 +37,7 @@ class MapsViewController: UIViewController {
                 self.textField.text = response.firstResult()?.lines?[0] ?? ""
             }
         }
-        let inset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        let inset = (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0)
         let camera = GMSCameraPosition.camera(withLatitude: currentLocation?.coordinate.latitude ?? defaultLocation[0],
                                               longitude: currentLocation?.coordinate.longitude ?? defaultLocation[1],
                                               zoom: 15)
@@ -103,6 +103,7 @@ class MapsViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
+                print(self.view.frame.origin.y)
                 self.view.frame.origin.y -= keyboardSize.height
             }
         }
