@@ -140,8 +140,7 @@ class ApiController {
                 do {
                     let userLogin = try decoder.decode([String: String].self, from: data)
                     if let token = userLogin["token"] {
-//                        KeychainSwift
-//                        KeychainSwift.shared.set(value: token, forKey: "AuthToken")
+                        KeychainSwift.shared.set(token, forKey: "AuthToken")
                        completion(.success(token))
                         return
                     }
