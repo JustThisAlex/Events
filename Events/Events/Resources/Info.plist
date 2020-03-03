@@ -26,9 +26,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Test</string>
+	<string>We need your permission to use your current location to show you relevant information</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your permission to use your current location</string>
+	<string>We need your permission to use your current location to show you relevant information</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
