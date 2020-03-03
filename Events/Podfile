@@ -7,5 +7,4 @@ target 'Events' do
 
   # Pods for Events
   pod 'GoogleMaps'
-  pod 'GooglePlaces'
 end

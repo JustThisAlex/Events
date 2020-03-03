@@ -37,6 +37,8 @@ enum NetworkError: Error {
 class ApiController {
     typealias CompletionHandler = (Error?) -> Void
     
+    static let shared = ApiController()
+    
     let baseURL = URL(string: "https://events-f87ab.firebaseio.com/")!
     let backendBaseURL = URL(string: "https://evening-wildwood-75186.herokuapp.com/")!
     

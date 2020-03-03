@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var continueButton: CustomButton!
     @IBOutlet weak var skipButton: UIButton!
     
+//    let controller = Api
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
