@@ -18,6 +18,7 @@ class EventsTableViewController: UITableViewController {
     @objc func segmentChanged(_ notification: Notification) {
         guard let index = notification.userInfo?[1] as? Int else { return }
         print(index)
+        //Change displayed data
     }
 
     // MARK: - Table view data source
@@ -31,16 +32,11 @@ class EventsTableViewController: UITableViewController {
         // Configure the cell...
         return cell
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+class EventsTableViewCell: UITableViewCell {
+    @IBOutlet weak var eventImageView: CustomImage!
+    @IBOutlet weak var eventTitle: UILabel!
+    @IBOutlet weak var eventTime: UILabel!
+    @IBOutlet weak var eventAddress: UILabel!
 }

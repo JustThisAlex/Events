@@ -23,6 +23,7 @@
 		FA7DC671240D335A00B23F8C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC670240D335A00B23F8C /* Keys.swift */; };
 		FA7DC673240D415300B23F8C /* MapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7DC672240D415300B23F8C /* MapStyle.json */; };
 		FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AB240E7449000B0BC1 /* MainViewController.swift */; };
+		FAAE07AE240EBD81000B0BC1 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
 		FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */; };
@@ -51,6 +52,7 @@
 		FA7DC670240D335A00B23F8C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		FA7DC672240D415300B23F8C /* MapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MapStyle.json; sourceTree = "<group>"; };
 		FAAE07AB240E7449000B0BC1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */,
 				FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */,
 				FA7DC66E240D320200B23F8C /* MapsViewController.swift */,
+				FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */,
 				FA5A2DB7240DCFA80037769D /* Event+Convenience.swift in Sources */,
 				FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */,
+				FAAE07AE240EBD81000B0BC1 /* PrivacyViewController.swift in Sources */,
 				FA7DC671240D335A00B23F8C /* Keys.swift in Sources */,
 				FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */,
 			);

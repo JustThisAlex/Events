@@ -176,6 +176,7 @@
                         <outlet property="segment" destination="JN4-xP-h8W" id="hZ4-9v-bMH"/>
                         <outlet property="skipButton" destination="gOO-er-JBw" id="Asy-Ua-Kl5"/>
                         <outlet property="titleLabel" destination="XfX-Bo-sy4" id="vcm-A6-V76"/>
+                        <outlet property="usernameField" destination="FD1-90-ouc" id="oRb-oC-wVU"/>
                         <outlet property="view" destination="cWZ-Ck-E73" id="ari-0l-jHz"/>
                         <segue destination="qQc-MW-KI5" kind="presentation" identifier="FinishSegue" animates="NO" modalPresentationStyle="fullScreen" id="FbQ-eJ-GtL"/>
                     </connections>
@@ -186,7 +187,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LVk-cl-vKb">
-                            <rect key="frame" x="40" y="164" width="334" height="38.333333333333343"/>
+                            <rect key="frame" x="40" y="120.33333333333333" width="334" height="38.333333333333329"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XfX-Bo-sy4">
                                     <rect key="frame" x="0.0" y="0.0" width="334" height="38.333333333333336"/>
@@ -197,7 +198,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOO-er-JBw">
-                            <rect key="frame" x="127.66666666666669" y="529" width="159" height="30"/>
+                            <rect key="frame" x="127.66666666666669" y="497.66666666666669" width="159" height="61.333333333333314"/>
                             <state key="normal" title="Continue without Login">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -232,6 +233,20 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
+                                <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FD1-90-ouc" customClass="StylizedTextField" customModule="Events" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="101.00000000000003" width="334" height="40"/>
+                                    <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="xlo-2A-clW"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" textContentType="username"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="d4R-8g-VFe" customClass="StylizedTextField" customModule="Events" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="111.00000000000003" width="334" height="40"/>
                                     <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -249,7 +264,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igx-x4-vUw" customClass="CustomButton" customModule="Events" customModuleProvider="target">
-                            <rect key="frame" x="40" y="461" width="334" height="50"/>
+                            <rect key="frame" x="40" y="429.66666666666669" width="334" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="I4A-Ck-HwW"/>
@@ -273,11 +288,12 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstItem="qph-o8-JpT" firstAttribute="top" secondItem="LVk-cl-vKb" secondAttribute="bottom" constant="75" id="8Po-LN-cTY"/>
+                        <constraint firstItem="Igx-x4-vUw" firstAttribute="top" secondItem="qph-o8-JpT" secondAttribute="bottom" constant="45" id="DeE-mJ-iGA"/>
                         <constraint firstItem="gOO-er-JBw" firstAttribute="centerX" secondItem="cWZ-Ck-E73" secondAttribute="centerX" id="DjH-Bc-n9U"/>
                         <constraint firstItem="qph-o8-JpT" firstAttribute="centerY" secondItem="cWZ-Ck-E73" secondAttribute="centerY" id="Hbg-wI-hoz"/>
                         <constraint firstItem="6s4-53-Zfy" firstAttribute="trailing" secondItem="qph-o8-JpT" secondAttribute="trailing" constant="40" id="NZi-WT-8we"/>
                         <constraint firstItem="gOO-er-JBw" firstAttribute="top" secondItem="Igx-x4-vUw" secondAttribute="bottom" constant="18" id="Vg5-O4-VJ8"/>
-                        <constraint firstItem="LVk-cl-vKb" firstAttribute="top" secondItem="6s4-53-Zfy" secondAttribute="top" constant="120" id="WLM-Je-8eG"/>
                         <constraint firstItem="Igx-x4-vUw" firstAttribute="leading" secondItem="6s4-53-Zfy" secondAttribute="leading" constant="40" id="azM-TW-9OH"/>
                         <constraint firstItem="6s4-53-Zfy" firstAttribute="trailing" secondItem="LVk-cl-vKb" secondAttribute="trailing" constant="40" id="cx7-5y-awg"/>
                         <constraint firstItem="qph-o8-JpT" firstAttribute="leading" secondItem="6s4-53-Zfy" secondAttribute="leading" constant="40" id="fzB-Rc-R4c"/>

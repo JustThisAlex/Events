@@ -12,6 +12,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var email: StylizedTextField!
+    @IBOutlet weak var usernameField: StylizedTextField!
     @IBOutlet weak var password: StylizedTextField!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var continueButton: CustomButton!
@@ -64,9 +65,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if segment.selectedSegmentIndex == 0 {
             titleLabel.text = "Login"
             continueButton.titleLabel?.text = "Login"
+            usernameField.isHidden = true
         } else {
             titleLabel.text = "Sign Up"
             continueButton.titleLabel?.text = "Sign Up"
+            usernameField.isHidden = false
         }
     }
     

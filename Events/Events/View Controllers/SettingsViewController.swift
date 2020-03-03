@@ -12,8 +12,12 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userImage: CustomImage!
     
-    @IBAction func locationTapped(_ sender: Any) {
-        print("loc")
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        usernameLabel.text = KeychainSwift.shared.get("username") ?? ""
+        emailLabel.text = KeychainSwift.shared.get("email") ?? ""
+        if let imageData = KeychainSwift.shared.getData("userImage") {
+            userImage.image = UIImage(data: imageData)
+        }
     }
-    
 }
