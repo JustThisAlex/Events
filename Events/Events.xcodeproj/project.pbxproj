@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AC524A50A377FB4B5F9ADDF2 /* Pods_Events.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E440A4C56FECC80C6A1AB56 /* Pods_Events.framework */; };
+		D229A179240EB02E0094E88A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A178240EB02E0094E88A /* Keys.swift */; };
+		D229A17D240EB8550094E88A /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A17C240EB8550094E88A /* AuthToken.swift */; };
+		D229A17F240EBA150094E88A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A17E240EBA150094E88A /* User.swift */; };
+		D229A181240EBED30094E88A /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A180240EBED30094E88A /* UserRegistration.swift */; };
 		FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */; };
 		FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */; };
 		FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD4240BF802005DFA5C /* CustomElements.swift */; };
@@ -20,7 +24,6 @@
 		FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */; };
 		FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */; };
 		FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC66E240D320200B23F8C /* MapsViewController.swift */; };
-		FA7DC671240D335A00B23F8C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC670240D335A00B23F8C /* Keys.swift */; };
 		FA7DC673240D415300B23F8C /* MapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7DC672240D415300B23F8C /* MapStyle.json */; };
 		FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AB240E7449000B0BC1 /* MainViewController.swift */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
@@ -35,6 +38,10 @@
 		1C604D5A7CF843EF745745F4 /* Pods-Events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.debug.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.debug.xcconfig"; sourceTree = "<group>"; };
 		8E440A4C56FECC80C6A1AB56 /* Pods_Events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		906C7BA86A4F82B021A02867 /* Pods-Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.release.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.release.xcconfig"; sourceTree = "<group>"; };
+		D229A178240EB02E0094E88A /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		D229A17C240EB8550094E88A /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		D229A17E240EBA150094E88A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D229A180240EBED30094E88A /* UserRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistration.swift; sourceTree = "<group>"; };
 		FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
@@ -48,7 +55,6 @@
 		FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 2.xcdatamodel"; sourceTree = "<group>"; };
 		FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
 		FA7DC66E240D320200B23F8C /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
-		FA7DC670240D335A00B23F8C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		FA7DC672240D415300B23F8C /* MapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MapStyle.json; sourceTree = "<group>"; };
 		FAAE07AB240E7449000B0BC1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				FA5A2DAC240DCF770037769D /* ApiController.swift */,
-				FA5A2DAD240DCF770037769D /* EventController.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -120,7 +125,6 @@
 		FADA3BB12409E3F100E0DB2D /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */,
 				FA5A2DAB240DCF770037769D /* Api */,
 				FADA3BCA2409E45E00E0DB2D /* Views */,
 				FADA3BC92409E45400E0DB2D /* View Controllers */,
@@ -135,6 +139,7 @@
 		FADA3BC62409E43B00E0DB2D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -145,6 +150,9 @@
 				FA5A2DB2240DCFA70037769D /* Event+Convenience.swift */,
 				FA5A2DB3240DCFA80037769D /* EventRepresentation.swift */,
 				FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */,
+				D229A17C240EB8550094E88A /* AuthToken.swift */,
+				D229A17E240EBA150094E88A /* User.swift */,
+				D229A180240EBED30094E88A /* UserRegistration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -152,6 +160,7 @@
 		FADA3BC82409E44C00E0DB2D /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA5A2DAD240DCF770037769D /* EventController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -187,7 +196,7 @@
 				FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */,
 				FADA3BBD2409E3F300E0DB2D /* LaunchScreen.storyboard */,
 				FADA3BC02409E3F300E0DB2D /* Info.plist */,
-				FA7DC670240D335A00B23F8C /* Keys.swift */,
+				D229A178240EB02E0094E88A /* Keys.swift */,
 				FA7DC672240D415300B23F8C /* MapStyle.json */,
 			);
 			path = Resources;
@@ -314,17 +323,20 @@
 				FA5A2DAF240DCF770037769D /* EventController.swift in Sources */,
 				FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */,
 				FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */,
+				D229A179240EB02E0094E88A /* Keys.swift in Sources */,
 				FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */,
 				FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */,
+				D229A17F240EBA150094E88A /* User.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
+				D229A17D240EB8550094E88A /* AuthToken.swift in Sources */,
 				FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */,
 				FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
 				FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */,
 				FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */,
 				FA5A2DB7240DCFA80037769D /* Event+Convenience.swift in Sources */,
+				D229A181240EBED30094E88A /* UserRegistration.swift in Sources */,
 				FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */,
-				FA7DC671240D335A00B23F8C /* Keys.swift in Sources */,
 				FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
