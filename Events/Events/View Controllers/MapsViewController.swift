@@ -17,9 +17,6 @@ class MapsViewController: UIViewController {
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var defaultLocation = [48.1351, 11.5820]
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +67,9 @@ class MapsViewController: UIViewController {
     @IBAction func dragOutside(_ sender: Any) {
         textField.resignFirstResponder()
     }
+    @IBAction func buttonClicked(_ sender: Any) {
+        addressEnded()
+    }
     
     
     func addressEnded() {
@@ -77,7 +77,6 @@ class MapsViewController: UIViewController {
         geocoder.geocodeAddressString(textField.text ?? "") { (address, error) in
             guard error == nil, let address = address else {
                 //Replace with red text below text entry
-                print(error)
                 return
             }
             
@@ -87,7 +86,16 @@ class MapsViewController: UIViewController {
             }))
             for addr in address {
                 alert.addAction(UIAlertAction(title: "\(addr.name ?? ""), \(addr.locality ?? "")", style: .default, handler: { _ in
-                    
+                    KeychainSwift.shared.set(addr.name ?? "", forKey: "Address")
+                    KeychainSwift.shared.set(addr.locality ?? "", forKey: "City")
+                    KeychainSwift.shared.set(addr.country ?? "", forKey: "Country")
+                    KeychainSwift.shared.set(addr.location?.coordinate.latitude.binade.description ?? "", forKey: "Latitude")
+                    KeychainSwift.shared.set(addr.location?.coordinate.longitude.binade.description ?? "", forKey: "Longitude")
+                    if self.restorationIdentifier == "mainMapView" {
+                    self.navigationController?.dismiss(animated: true, completion: nil)
+                    } else {
+                    self.performSegue(withIdentifier: "locationPicked", sender: nil)
+                    }
                 }))
             }
             self.present(alert, animated: true, completion: nil)
