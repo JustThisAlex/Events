@@ -32,6 +32,7 @@ enum NetworkError: Error {
     case badData
     case noDecode
     case noEncode
+    case userNotFound
 }
 
 class ApiController {
@@ -120,6 +121,12 @@ class ApiController {
             if let error = error {
                 NSLog("Network error Registering user: \(error)")
                 completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 404 {
+                NSLog("User not found")
+                completion(.failure(.userNotFound))
                 return
             }
             

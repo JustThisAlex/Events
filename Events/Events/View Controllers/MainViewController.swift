@@ -11,12 +11,17 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
+    static var authenticated = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = KeychainSwift.shared.get("City")
         navigationController?.navigationBar.barStyle = .black
         // TODO: Get weather and call appropriate setting func
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        title = KeychainSwift.shared.get("City")
     }
     
     func changeWeather(temperature: String, condition: WeatherConditions) {

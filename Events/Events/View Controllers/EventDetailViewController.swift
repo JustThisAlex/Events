@@ -147,6 +147,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+        if titleField.isFirstResponder || addressField.isFirstResponder || descriptionField.isFirstResponder { return }
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 { self.view.frame.origin.y -= keyboardSize.height }
         }

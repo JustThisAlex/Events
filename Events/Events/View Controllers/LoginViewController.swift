@@ -18,12 +18,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var continueButton: CustomButton!
     @IBOutlet weak var skipButton: UIButton!
     
-//    let controller = Api
+    let controller = ApiController.shared
+    let chain = KeychainSwift.shared
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         email.delegate = self
         password.delegate = self
+        usernameField.delegate = self
         continueButton.titleLabel?.leadingAnchor.constraint(equalTo: continueButton.leadingAnchor, constant: 20).isActive = true
         continueButton.titleLabel?.trailingAnchor.constraint(equalTo: continueButton.trailingAnchor, constant: -20).isActive = true
         continueButton.titleLabel?.textAlignment = .center
@@ -32,34 +34,48 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     @IBAction func login(_ sender: Any) {
         guard let email = email.text, let password = password.text else { return }
+        chain.set(email, forKey: "email")
+        let street = chain.get("Address")
+        let city = chain.get("City")
+        let zipcode = chain.get("Zipcode")
+        let latitude = chain.get("Latitude")
+        let longitude = chain.get("Longitude")
         if segment.selectedSegmentIndex == 0 {
-            
-//            UserController.shared.logIn(with: UserRepresentation(email: email, password: password)) { (error) in
-//                DispatchQueue.main.async {
-//                    if !self.isError(error) {
-//                        DispatchQueue.main.async {
-//                            HomeViewController.authenticated = true
-//                            self.performSegue(withIdentifier: "FinishSegue", sender: nil)
-//                        }
-//                    }
-//                }
-//            }
+            controller.signIn(user: User(id: nil, email: email, username: nil, password: password, streetAddress: nil, city: nil, zipcode: nil, businessName: nil, latitude: nil, longitude: nil)) { result in
+                DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    if error == .userNotFound {
+                        self.alert("Your email address or password is wrong", "If you want to sign up choose that option above")
+                    } else {
+                        self.isError(nil)
+                    }
+                case .success:
+                    MainViewController.authenticated = true;
+                    self.performSegue(withIdentifier: "FinishSegue", sender: nil)
+                }
+                }
+            }
         } else {
-            
-//            UserController.shared.signUp(with: UserRepresentation(email: email, password: password, phoneNumber: phoneNumber)) { (error) in
-//                DispatchQueue.main.async {
-//                    if !self.isError(error) {
-//                        HomeViewController.authenticated = true
-//                        self.performSegue(withIdentifier: "FinishSegue", sender: nil)
-//                    }
-//                }
-//            }
+            guard let username = usernameField.text else { return }
+            chain.set(username, forKey: "username")
+            controller.signUp(user: User(id: nil, email: email, username: username, password: password, streetAddress: street, city: city, zipcode: zipcode, businessName: nil, latitude: latitude, longitude: longitude)) { (result) in
+                DispatchQueue.main.async {
+                switch result {
+                case .failure: return
+                case .success(let user):
+                    self.chain.set(user.id ?? "", forKey: "UserID")
+                    MainViewController.authenticated = true
+                    self.performSegue(withIdentifier: "FinishSegue", sender: nil)
+                }
+            }
+            }
         }
     }
     
     @IBAction func ckLogin(_ sender: Any) {
         self.performSegue(withIdentifier: "FinishSegue", sender: nil)
-//        HomeViewController.authenticated = true
+        MainViewController.authenticated = true
     }
     
     @IBAction func segmentChanged(_ sender: Any) {
@@ -81,15 +97,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Helper Methods
-    private func isError(_ error: Error?) -> Bool {
+    @discardableResult private func isError(_ error: Error?) -> Bool {
         if error != nil {
             print(error.debugDescription)
-            let popup = UIAlertController(title: "An error occured", message: "Please try again later", preferredStyle: .alert)
-            popup.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
-            self.present(popup, animated: true)
+            alert("An error occured", "Please try again later")
             return true
         }
         return false
+    }
+    
+    private func alert(_ title: String, _ message: String) {
+        let popup = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        popup.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+        self.present(popup, animated: true)
     }
     
 }
