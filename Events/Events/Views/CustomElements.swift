@@ -136,3 +136,7 @@ import UIKit
     }
     @IBInspectable var cornerRadius: CGFloat = 10 { didSet { self.layer.cornerRadius = self.cornerRadius } }
 }
+
+extension KeychainSwift {
+    static let shared = KeychainSwift()
+}

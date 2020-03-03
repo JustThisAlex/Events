@@ -25,6 +25,7 @@
 		FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */; };
 		FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7DC66E240D320200B23F8C /* MapsViewController.swift */; };
 		FA7DC673240D415300B23F8C /* MapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7DC672240D415300B23F8C /* MapStyle.json */; };
+		FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AB240E7449000B0BC1 /* MainViewController.swift */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
 		FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */; };
@@ -55,6 +56,7 @@
 		FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
 		FA7DC66E240D320200B23F8C /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		FA7DC672240D415300B23F8C /* MapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MapStyle.json; sourceTree = "<group>"; };
+		FAAE07AB240E7449000B0BC1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,9 +168,10 @@
 		FADA3BC92409E45400E0DB2D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE07AB240E7449000B0BC1 /* MainViewController.swift */,
 				FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */,
-				FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */,
 				FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */,
+				FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */,
 				FA7DC66E240D320200B23F8C /* MapsViewController.swift */,
 			);
 			path = "View Controllers";
@@ -326,6 +329,7 @@
 				D229A17F240EBA150094E88A /* User.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
 				D229A17D240EB8550094E88A /* AuthToken.swift in Sources */,
+				FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */,
 				FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
 				FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */,
