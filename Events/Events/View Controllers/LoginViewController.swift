@@ -43,6 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //                }
 //            }
         } else {
+            
 //            UserController.shared.signUp(with: UserRepresentation(email: email, password: password, phoneNumber: phoneNumber)) { (error) in
 //                DispatchQueue.main.async {
 //                    if !self.isError(error) {
