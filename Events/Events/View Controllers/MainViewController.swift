@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        title = KeychainSwift.shared.get("City")
+        title = KeychainSwift.shared.get("city")
     }
     
     func changeWeather(temperature: String, condition: WeatherConditions) {

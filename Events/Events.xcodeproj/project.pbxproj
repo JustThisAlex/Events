@@ -16,6 +16,7 @@
 		FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD4240BF802005DFA5C /* CustomElements.swift */; };
 		FA50CDD7240BF803005DFA5C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA50CDD5240BF803005DFA5C /* Login.storyboard */; };
 		FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */; };
+		FA51D8D4240FCF5A00AECE5D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51D8D3240FCF5A00AECE5D /* Location.swift */; };
 		FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DAC240DCF770037769D /* ApiController.swift */; };
 		FA5A2DAF240DCF770037769D /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DAD240DCF770037769D /* EventController.swift */; };
 		FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */; };
@@ -50,6 +51,7 @@
 		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
 		FA50CDD5240BF803005DFA5C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FA50CDD8240BF91B005DFA5C /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
+		FA51D8D3240FCF5A00AECE5D /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FA5A2DAC240DCF770037769D /* ApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
 		FA5A2DAD240DCF770037769D /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		FA5A2DB0240DCF9A0037769D /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				D229A17C240EB8550094E88A /* AuthToken.swift */,
 				D229A17E240EBA150094E88A /* User.swift */,
 				D229A180240EBED30094E88A /* UserRegistration.swift */,
+				FA51D8D3240FCF5A00AECE5D /* Location.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
 				D229A17D240EB8550094E88A /* AuthToken.swift in Sources */,
 				FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */,
+				FA51D8D4240FCF5A00AECE5D /* Location.swift in Sources */,
 				FA7DC66F240D320200B23F8C /* MapsViewController.swift in Sources */,
 				FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */,
 				FA5A2DB9240DCFA80037769D /* Events.xcdatamodeld in Sources */,

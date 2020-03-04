@@ -37,6 +37,7 @@ enum NetworkError: Error {
 
 class ApiController {
     typealias CompletionHandler = (Error?) -> Void
+    static let shared = ApiController()
     
 //    let baseURL = URL(string: "https://events-f87ab.firebaseio.com/")!
     let baseURL = URL(string: "https://evening-wildwood-75186.herokuapp.com/")!
@@ -146,7 +147,9 @@ class ApiController {
                 let decoder = JSONDecoder()
                 do {
                     let userLogin = try decoder.decode(AuthToken.self, from: data)
-                    KeychainSwift.shared.set(userLogin.token, forKey: "AuthToken")
+                    KeychainSwift.shared.set(userLogin.token, forKey: "token")
+                    KeychainSwift.shared.set(userLogin.user.username ?? "", forKey: "username")
+                    KeychainSwift.shared.set(userLogin.user.id ?? "", forKey: "userID")
                     completion(.success(userLogin.token))
                     return
 
