@@ -46,8 +46,6 @@ class MainViewController: UIViewController {
                 self.weatherIcon.image = nil
             case .success(let value):
                 let json = JSON(value)
-                print(json["currently"]["temperature"].doubleValue)
-                print(json["currently"]["icon"].stringValue)
                 self.weatherLabel.text = "\(Int(json["currently"]["temperature"].doubleValue))°"
                 let icon = json["currently"]["icon"].stringValue
                 if icon == "clear-day" || icon ==  "clear-night" || icon ==  "wind" || icon == "fog" {

@@ -83,11 +83,9 @@ class EventsTableViewController: UITableViewController {
                     if self.sortingMode == .alphabetical {
                         return first.eventTitle ?? "" < second.eventTitle ?? ""
                     } else {
-                        print(self.events)
                         return self.date(from: first.eventStart ?? "") ?? Date() < self.date(from: second.eventStart ?? "") ?? Date()
                     }
                 })
-                print(self.events)
                 self.tableView.reloadData()
             }
         }
