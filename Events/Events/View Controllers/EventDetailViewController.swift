@@ -154,7 +154,16 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         currentlyEditing = false
         viewMode()
         if creating{
-            eventController.createEvent(title: title, description: desc, address: address, location: "", eventStart: DateFormatter().string(from: Date()), eventEnd: DateFormatter().string(from: Date()), externalLink: urlField.text ?? "", creator: "", city: "", country: "")
+            eventController.createEvent(title: title,
+                                        description: desc,
+                                        address: address,
+                                        location: pickedLocation?.latitude ?? "'",
+                                        eventStart: pickedFromDate ?? "'",
+                                        eventEnd: pickedToDate ?? "'",
+                                        externalLink: urlField.text ?? "",
+                                        creator: (KeychainSwift.shared.get("userID") ?? "'").isEmpty ? KeychainSwift.shared.get("userID")! : "'",
+                                        city: pickedLocation?.city ?? "'",
+                                        country: pickedLocation?.country ?? "'")
             navigationController?.popViewController(animated: true)
             } else {
 //            newPlantController.update(newPlant!, nickname: name, location: loc, wateredDate: newPlant?.wateredDate, image: imageView?.image?.pngData() ?? Data(), h2oFrequency: Double(freq) ?? 7)
@@ -181,9 +190,9 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             dateformatter.doesRelativeDateFormatting = true
             textfield.text = dateformatter.string(from: datePicker.date)
             if from {
-                pickedFromDate = dateformatter.string(from: datePicker.date)
+                pickedFromDate = ISO8601DateFormatter().string(from: datePicker.date)
             } else {
-                pickedToDate = dateformatter.string(from: datePicker.date)
+                pickedToDate = ISO8601DateFormatter().string(from: datePicker.date)
             }
         }
         textfield.resignFirstResponder()

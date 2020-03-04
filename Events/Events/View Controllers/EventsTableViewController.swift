@@ -59,9 +59,16 @@ class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EventsTableViewCell
         let event = events[indexPath.row]
         cell.eventTitle.text = event.eventTitle
-        cell.eventTime.text = event.eventStart
         cell.eventAddress.text = event.eventAddress
-//        cell.eventImageView.image = UIImage(data: event.)
+        cell.eventImageView.image = nil
+        cell.button.accessibilityIdentifier = "\(indexPath.row)"
+        if let date = date(from: event.eventStart ?? "") {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            formatter.doesRelativeDateFormatting = true
+            cell.eventTime.text = formatter.string(from: date)
+        }
         return cell
     }
     
@@ -85,7 +92,7 @@ class EventsTableViewController: UITableViewController {
     }
     
     private func date(from string: String) -> Date? {
-        let formatter = DateFormatter()
+        let formatter = ISO8601DateFormatter()
         return formatter.date(from: string)
     }
     
@@ -113,8 +120,10 @@ class EventsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowSegue", let destination = segue.destination as? EventDetailViewController, let indexPath = tableView.indexPathForSelectedRow {
-            destination.event = events[indexPath.row]
+        if segue.identifier == "ShowSegue", let destination = segue.destination as? EventDetailViewController {
+            let sender = sender as! UIButton
+            let indexPath = Int(sender.accessibilityIdentifier ?? "")
+            destination.event = events[indexPath ?? 0]
         }
     }
 }
@@ -124,6 +133,7 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventAddress: UILabel!
+    @IBOutlet weak var button: UIButton!
 }
 
 enum SortingMode: String {
