@@ -80,7 +80,7 @@ class EventController {
     func fetchEvents(completion: @escaping (Result<[Event], NetworkError>) -> Void) {
         apiController.fetchEvents { (error) in
             if let error = error {
-                NSLog("Error fetching events from server: \(error)")
+//                NSLog("Error fetching events from server: \(error)")
             }
             
             DispatchQueue.main.async {

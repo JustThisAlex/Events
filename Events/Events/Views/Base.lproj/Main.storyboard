@@ -61,8 +61,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztz-Tp-bQc" customClass="RoundedView" customModule="Events" customModuleProvider="target">
                                             <rect key="frame" x="16" y="11" width="343" height="145"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="VQx-2g-gOe" customClass="CustomImage" customModule="Events" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="17.333333333333336" width="80" height="77.333333333333329"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VQx-2g-gOe" customClass="CustomImage" customModule="Events" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="16" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="a4k-ZG-omq"/>
                                                         <constraint firstAttribute="width" constant="80" id="mPx-MY-10n"/>
@@ -136,6 +136,7 @@ Title</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="button" destination="IkJ-4J-kgs" id="sC4-ak-afW"/>
                                     <outlet property="eventAddress" destination="4F5-1Q-abm" id="pm0-Mz-iTT"/>
                                     <outlet property="eventImageView" destination="VQx-2g-gOe" id="yHv-7Q-xkT"/>
                                     <outlet property="eventTime" destination="2Rd-dL-Wih" id="jJr-Jn-b5p"/>
@@ -10294,7 +10295,6 @@ Licensed under the zlib license.
         <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="cloud.fill" catalog="system" width="64" height="42"/>
         <image name="ellipsis" catalog="system" width="64" height="18"/>
-        <image name="folder.fill" catalog="system" width="64" height="46"/>
         <image name="gear" catalog="system" width="64" height="58"/>
         <image name="house.fill" catalog="system" width="64" height="52"/>
         <image name="line.horizontal.3.decrease.circle" catalog="system" width="64" height="60"/>
@@ -10305,6 +10305,6 @@ Licensed under the zlib license.
         <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uiP-B2-Tr2"/>
+        <segue reference="760-yV-lZ5"/>
     </inferredMetricsTieBreakers>
 </document>
