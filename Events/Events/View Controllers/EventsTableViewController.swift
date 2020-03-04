@@ -129,11 +129,22 @@ class EventsTableViewController: UITableViewController {
 }
 
 class EventsTableViewCell: UITableViewCell {
+    //Basic
     @IBOutlet weak var eventImageView: CustomImage!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventAddress: UILabel!
     @IBOutlet weak var button: UIButton!
+    
+    //Extended
+    @IBOutlet weak var endTime: UILabel!
+    @IBOutlet weak var eventDescription: UILabel!
+    @IBOutlet weak var link: UILabel!
+    
+    @IBAction func rsvpTapped(_ sender: Any) {
+    }
+    @IBAction func participantsTapped(_ sender: Any) {
+    }
 }
 
 enum SortingMode: String {
