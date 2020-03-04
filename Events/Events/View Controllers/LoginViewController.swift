@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let latitude = chain.get("latitude")
         let longitude = chain.get("longitude")
         if segment.selectedSegmentIndex == 0 {
-            controller.signIn(user: User(id: nil, email: email, username: nil, password: password, streetAddress: nil, city: nil, zipcode: nil, businessName: nil, latitude: nil, longitude: nil)) { result in
+            controller.signIn(user: User(id: nil, email: email, username: nil, password: password, streetAddress: nil, city: nil, zipcode: nil, businessName: nil, latitude: nil, longitude: nil, country: nil)) { result in
                 DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
@@ -59,7 +59,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         } else {
             guard let username = usernameField.text else { return }
             chain.set(username, forKey: "username")
-            controller.signUp(user: User(id: nil, email: email, username: username, password: password, streetAddress: street, city: city, zipcode: zipcode, businessName: nil, latitude: latitude, longitude: longitude)) { (result) in
+            controller.signUp(user: User(id: nil, email: email, username: username, password: password, streetAddress: street, city: city, zipcode: zipcode, businessName: nil, latitude: latitude, longitude: longitude, country: nil)) { (result) in
                 DispatchQueue.main.async {
                 switch result {
                 case .failure: return

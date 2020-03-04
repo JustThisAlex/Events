@@ -15,12 +15,13 @@ struct User: Codable {
     let password: String
     let streetAddress: String?
     let city: String?
+    let country: String?
     let zipcode: String?
     let businessName: String?
     let latitude: String?
     let longitude: String?
     
-    init(id: String?, email: String, username: String?, password: String, streetAddress: String?, city: String?, zipcode: String?, businessName: String?, latitude: String?, longitude: String?) {
+    init(id: String?, email: String, username: String?, password: String, streetAddress: String?, city: String?, zipcode: String?, businessName: String?, latitude: String?, longitude: String?, country: String?) {
         self.id = id
         self.email = email
         self.username = username
@@ -31,6 +32,7 @@ struct User: Codable {
         self.businessName = businessName
         self.latitude = latitude
         self.longitude = longitude
+        self.country = country
     }
     
     init(id: String, user: User) {
@@ -44,6 +46,21 @@ struct User: Codable {
         self.businessName = user.businessName
         self.latitude = user.latitude
         self.longitude = user.longitude
+        self.country = user.country
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case email
+        case username
+        case password
+        case streetAddress
+        case city
+        case zipcode
+        case businessName
+        case latitude
+        case longitude
+        case country
     }
     
 }
