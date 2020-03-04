@@ -31,6 +31,11 @@ class EventsTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadEvents(index: 0)
+    }
+    
     @IBAction func filterAction(_ sender: Any) {
         let alert = UIAlertController(title: "Sort mode", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
