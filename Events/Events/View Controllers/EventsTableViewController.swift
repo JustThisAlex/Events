@@ -81,9 +81,9 @@ class EventsTableViewController: UITableViewController {
                 events = events.compactMap({ self.checkforDate(event: $0, index: index) })
                 self.events = events.sorted(by: { first, second in
                     if self.sortingMode == .alphabetical {
-                        return first.eventTitle ?? "" > second.eventTitle ?? ""
+                        return first.eventTitle ?? "" < second.eventTitle ?? ""
                     } else {
-                        return self.date(from: first.eventStart ?? "") ?? Date() > self.date(from: second.eventStart ?? "") ?? Date()
+                        return self.date(from: first.eventStart ?? "") ?? Date() < self.date(from: second.eventStart ?? "") ?? Date()
                     }
                 })
                 self.tableView.reloadData()
