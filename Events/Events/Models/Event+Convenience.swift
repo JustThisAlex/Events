@@ -17,13 +17,16 @@ extension Event {
             let eventAddress = self.eventAddress,
             let eventEnd = self.eventEnd,
             let description = self.eventDescription,
-            let geolocation = self.eventGeolocation
+            let creator = self.eventCreator,
+            let city = self.eventCity,
+            let country = self.eventCountry
             else {  return nil }
         
-        return EventRepresentation(identifier: self.identifier, eventAddress: eventAddress, eventTitle: eventTitle, eventGeolocation: geolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink)
+
+        return EventRepresentation(identifier: self.identifier, eventAddress: eventAddress, eventTitle: eventTitle, eventGeolocation: self.eventGeolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink, eventCreator: creator, eventCity: city, eventCountry: country)
     }
     
-    convenience init(title: String, address: String, location: String, description: String, start: Date, end: Date, externalLink: String?, identifier: String?, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init(title: String, address: String, location: String, description: String, start: String, end: String, externalLink: String?, identifier: String?, creator: String, city: String, country: String, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         
         self.init(context: context)
         
@@ -35,6 +38,10 @@ extension Event {
         self.eventStart = start
         self.eventEnd = end
         self.externalLink = externalLink
+        self.eventCreator = creator
+        self.eventCity = city
+        self.eventCountry = country
+        
         
     }
     
@@ -52,6 +59,9 @@ extension Event {
         self.eventEnd = eventRepresentation.eventEnd
         self.eventGeolocation = eventRepresentation.eventGeolocation
         self.externalLink = eventRepresentation.externalLink
+        self.eventCreator = eventRepresentation.eventCreator
+        self.eventCity = eventRepresentation.eventCity
+        self.eventCountry = eventRepresentation.eventCountry
     }
     
 }

@@ -10,5 +10,7 @@ import Foundation
 
 struct AuthToken: Codable {
     let token: String
+    let user: User
+    
     
 }
