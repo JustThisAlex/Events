@@ -224,45 +224,59 @@ class ApiController {
     }
     
     
-    func putEvent(event: Event, completion: @escaping CompletionHandler = { _ in }) {
-        let id = event.identifier ?? UUID().uuidString
-        let requestURL = baseURL.appendingPathComponent(id).appendingPathExtension("json")
-        
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = HTTPMethod.put.rawValue
-        
-        guard let representation = event.eventRepresentation else {
-            NSLog("Event Representation was nil")
+    func putEvent(event: EventRepresentation, completion: @escaping (Result<EventRepresentation, NetworkError>) -> Void) {
+        guard let id = event.identifier else {
+            NSLog("Tried to update an event without an id")
+            completion(.failure(.badData))
             return
         }
         
-        event.identifier = id
+        let requestURL = baseURL.appendingPathComponent("api/rest/events").appendingPathComponent(id)
         
-        do {
-            try CoreDataStack.shared.save()
-        } catch {
-            NSLog("Error saving event id: \(error)")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.put.rawValue
+        request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+        if let token = KeychainSwift.shared.get("token") {
+            request.addValue(token, forHTTPHeaderField: "Authorization")
+        } else {
+            NSLog("No token in keychain")
+            completion(.failure(.noAuth))
             return
         }
         
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
-            let json = try encoder.encode(representation)
+            let json = try encoder.encode(event)
             request.httpBody = json
         } catch {
             NSLog("Error Encoding event Representation: \(error)")
+            completion(.failure(.noEncode))
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (data, repsonse, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 NSLog("Network error PUTting event to server: \(error)")
-                completion(error)
+                completion(.failure(.otherError))
                 return
             }
             
-            completion(nil)
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                print("Response from put event was: \(response.statusCode)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let _ = data else {
+                NSLog("No data returned from server after putting")
+                completion(.failure(.badData))
+                return
+            }
+            
+            completion(.success(event))
+            
+            
             
         }.resume()
         
