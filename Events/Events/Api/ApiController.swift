@@ -84,9 +84,11 @@ class ApiController {
                 
                 let decoder = JSONDecoder()
                 do {
-                    let userRegistration = try decoder.decode(UserRegistration.self, from: data)
-                    let newUser = User(id: userRegistration.id, user: user)
-                    completion(.success(newUser))
+                    let user = try decoder.decode(User.self, from: data)
+                    self.signIn(user: user) { (result) in
+                        completion(.success(user))
+                    }
+                    
                     
                 } catch {
                    NSLog("Error decoding User Registration: \(error)")
@@ -149,6 +151,7 @@ class ApiController {
                     let userLogin = try decoder.decode(AuthToken.self, from: data)
                     KeychainSwift.shared.set(userLogin.token, forKey: "token")
                     KeychainSwift.shared.set(userLogin.user.username ?? "", forKey: "username")
+                    KeychainSwift.shared.set(userLogin.user.email, forKey: "email")
                     KeychainSwift.shared.set(userLogin.user.id ?? "", forKey: "userID")
                     completion(.success(userLogin.token))
                     return
