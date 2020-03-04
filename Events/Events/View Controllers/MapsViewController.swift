@@ -76,7 +76,7 @@ class MapsViewController: UIViewController {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(textField.text ?? "") { (address, error) in
             guard error == nil, let address = address else {
-                //Replace with red text below text entry
+                self.alert("Sorry, we weren't able to find that address", "Please try being more precise")
                 return
             }
             
@@ -91,6 +91,7 @@ class MapsViewController: UIViewController {
                     KeychainSwift.shared.set(addr.country ?? "", forKey: "Country")
                     KeychainSwift.shared.set(addr.location?.coordinate.latitude.binade.description ?? "", forKey: "Latitude")
                     KeychainSwift.shared.set(addr.location?.coordinate.longitude.binade.description ?? "", forKey: "Longitude")
+                        KeychainSwift.shared.set(addr.postalCode ?? "", forKey: "Zipcode")
                     if self.restorationIdentifier == "mainMapView" {
                     self.navigationController?.dismiss(animated: true, completion: nil)
                     } else {
@@ -108,10 +109,15 @@ class MapsViewController: UIViewController {
         marker.map = mapView
     }
     
+    private func alert(_ title: String, _ message: String) {
+        let popup = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        popup.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+        self.present(popup, animated: true)
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                print(self.view.frame.origin.y)
                 self.view.frame.origin.y -= keyboardSize.height
             }
         }

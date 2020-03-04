@@ -9835,10 +9835,11 @@ Licensed under the zlib license.
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRk-PN-iyR" customClass="RoundedView" customModule="Events" customModuleProvider="target">
                                 <rect key="frame" x="16" y="207.33333333333334" width="343" height="343.66666666666663"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P4q-Xi-Cbv" customClass="CustomImage" customModule="Events" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4q-Xi-Cbv" customClass="CustomImage" customModule="Events" customModuleProvider="target">
                                         <rect key="frame" x="16.000000000000004" y="16.000000000000004" width="50.333333333333343" height="50.333333333333343"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="P4q-Xi-Cbv" secondAttribute="height" multiplier="1:1" id="OKA-Qy-SCx"/>
+                                            <constraint firstAttribute="height" constant="50.329999999999998" id="hjJ-ek-gPM"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -9881,6 +9882,9 @@ Licensed under the zlib license.
                                                             <userDefinedRuntimeAttribute type="number" keyPath="verticalInset">
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jrf-Bd-WTP">
@@ -9918,6 +9922,9 @@ Licensed under the zlib license.
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="verticalInset">
                                                                 <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
@@ -9960,6 +9967,9 @@ Licensed under the zlib license.
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="verticalInset">
                                                                         <real key="value" value="10"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9g-Di-lq4">
@@ -9997,6 +10007,9 @@ Licensed under the zlib license.
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="verticalInset">
                                                                         <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
@@ -10038,6 +10051,9 @@ Licensed under the zlib license.
                                                             <userDefinedRuntimeAttribute type="number" keyPath="verticalInset">
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ihw-Om-Ofr">
@@ -10077,6 +10093,9 @@ Licensed under the zlib license.
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="verticalInset">
                                                         <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -10127,7 +10146,7 @@ Licensed under the zlib license.
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yWF-An-l8u"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Event" largeTitleDisplayMode="always" id="eCT-1B-Rgn">
+                    <navigationItem key="navigationItem" title="Create Event" largeTitleDisplayMode="never" id="eCT-1B-Rgn">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="U8m-ur-uYY">
                             <connections>
                                 <action selector="edit:" destination="7qh-tF-lsd" id="Jud-Gf-J0A"/>
@@ -10150,7 +10169,6 @@ Licensed under the zlib license.
                         <outlet property="titleLabel" destination="9Ja-Hy-yEG" id="fde-53-aoO"/>
                         <outlet property="titleSeperator" destination="GsZ-k4-ssJ" id="hfm-76-U7D"/>
                         <outlet property="urlField" destination="Pfs-wS-ukZ" id="s21-9M-bOM"/>
-                        <outlet property="waterFreqLine" destination="4zf-4z-Xaj" id="j0v-UH-row"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YTH-4a-lqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
