@@ -37,14 +37,12 @@ enum NetworkError: Error {
 class ApiController {
     typealias CompletionHandler = (Error?) -> Void
     
-    static let shared = ApiController()
-    
-    let baseURL = URL(string: "https://events-f87ab.firebaseio.com/")!
-    let backendBaseURL = URL(string: "https://evening-wildwood-75186.herokuapp.com/")!
+//    let baseURL = URL(string: "https://events-f87ab.firebaseio.com/")!
+    let baseURL = URL(string: "https://evening-wildwood-75186.herokuapp.com/")!
     
     
     func signUp(user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
-        let signUpURL = backendBaseURL.appendingPathComponent("api/users/register")
+        let signUpURL = baseURL.appendingPathComponent("api/users/register")
         
         var request = URLRequest(url: signUpURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -100,7 +98,7 @@ class ApiController {
     }
     
     func signIn(user: User, completion: @escaping (Result<String, NetworkError>) -> Void) {
-        let signUpURL = backendBaseURL.appendingPathComponent("api/users/login")
+        let signUpURL = baseURL.appendingPathComponent("api/users/login")
         
         var request = URLRequest(url: signUpURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -140,17 +138,13 @@ class ApiController {
                 
                 let decoder = JSONDecoder()
                 do {
-                    let userLogin = try decoder.decode([String: String].self, from: data)
-                    if let token = userLogin["token"] {
-                        KeychainSwift.shared.set(token, forKey: "AuthToken")
-                       completion(.success(token))
-                        return
-                    }
-                    
-                    
-                    
+                    let userLogin = try decoder.decode(AuthToken.self, from: data)
+                    KeychainSwift.shared.set(userLogin.token, forKey: "AuthToken")
+                    completion(.success(userLogin.token))
+                    return
+
                 } catch {
-                    NSLog("Error decoding User Registration: \(error)")
+                    NSLog("Error decoding User login: \(error)")
                     completion(.failure(.noDecode))
                     return
                 }
@@ -160,6 +154,64 @@ class ApiController {
         
     }
     
+    func post(event: EventRepresentation, completion: @escaping (Result<EventRepresentation, NetworkError>) -> Void) {
+        let requestURL = baseURL.appendingPathComponent("api/rest/events")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+        if let token = KeychainSwift.shared.get("AuthToken") {
+            request.addValue(token, forHTTPHeaderField: "Authorization")
+        } else {
+            NSLog("No token in keychain")
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            let json = try encoder.encode(event)
+            let jsonString = String(data: json, encoding: .utf8)
+            print(jsonString!)
+            request.httpBody = json
+            print(request)
+        } catch {
+            NSLog("Error Encoding event Representation: \(error)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Network error PUTting event to server: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            if let response = response as? HTTPURLResponse, response.statusCode != 201 {
+                print(response.statusCode)
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from server after posting")
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let representation = try decoder.decode(EventRepresentation.self, from: data)
+                completion(.success(representation))
+                return
+            } catch {
+                NSLog("Error decoding event representation: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+            
+        }.resume()
+        
+    }
     
     
     func putEvent(event: Event, completion: @escaping CompletionHandler = { _ in }) {
@@ -232,10 +284,18 @@ class ApiController {
     }
     
     func fetchEvents(completion: @escaping CompletionHandler = { _ in }) {
-        let eventsURL = baseURL.appendingPathExtension("json")
+        let eventsURL = baseURL.appendingPathComponent("api/rest/events")
         
         var request = URLRequest(url: eventsURL)
         request.httpMethod = HTTPMethod.get.rawValue
+        if let token = KeychainSwift.shared.get("AuthToken") {
+            request.addValue(token, forHTTPHeaderField: "Authorization")
+        } else {
+            NSLog("No token in keychain")
+            completion(NSError())
+            return
+        }
+        
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -253,7 +313,7 @@ class ApiController {
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
-                let eventRepresentations = Array(try decoder.decode([String: EventRepresentation].self, from: data).values)
+                let eventRepresentations = try decoder.decode([EventRepresentation].self, from: data)
                 try self.updateEvents(with: eventRepresentations)
                 completion(nil)
             } catch {

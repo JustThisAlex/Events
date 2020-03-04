@@ -14,8 +14,25 @@ struct EventRepresentation: Codable {
     let eventTitle: String
     let eventGeolocation: String?
     let eventDescription: String
-    let eventStart: Date
-    let eventEnd: Date
+    let eventStart: String
+    let eventEnd: String
     let externalLink: String?
+    let eventCreator: String
+    let eventCity: String
+    let eventCountry: String
+    
+    enum CodingKeys: String, CodingKey {
+        case identifier = "_id"
+        case eventEnd = "eventEnd"
+        case eventStart = "eventStart"
+        case eventAddress = "eventAddress"
+        case eventTitle = "eventTitle"
+        case eventDescription = "eventDescription"
+        case eventGeolocation = "eventGeolocation"
+        case externalLink = "externalLink"
+        case eventCreator = "eventCreator"
+        case eventCity = "eventCity"
+        case eventCountry = "eventCountry"
+    }
     
 }

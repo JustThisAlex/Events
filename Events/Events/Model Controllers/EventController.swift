@@ -13,19 +13,42 @@ class EventController {
     
     let apiController = ApiController()
     
-    func createEvent(title: String, description: String, address: String, location: String, eventStart: Date, eventEnd: Date, externalLink: String?) {
+    func createEvent(title: String, description: String, address: String, location: String, eventStart: String, eventEnd: String, externalLink: String?, creator: String, city: String, country: String) {
         
-        let id = UUID().uuidString
+        let eventRepresentation = EventRepresentation(identifier: nil, eventAddress: address, eventTitle: title, eventGeolocation: nil, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: externalLink, eventCreator: creator, eventCity: city, eventCountry: country)
         
-        let event = Event(title: title, address: address, location: location, description: description, start: eventStart, end: eventEnd, externalLink: externalLink, identifier: id)
-        do {
-            try CoreDataStack.shared.save()
-        } catch {
-            NSLog("Error saving managed object context: \(error)")
-            return
+        apiController.post(event: eventRepresentation) { (result) in
+            do {
+                let representation = try result.get()
+                DispatchQueue.main.async {
+                    let _ = Event(eventRepresentation: representation)
+                    do {
+                        try CoreDataStack.shared.save()
+                    } catch {
+                        NSLog("Error saving managed object Context: \(error)")
+                    }
+                }
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                        case .badUrl:
+                            NSLog("Bad url: \(error)")
+                        case .noAuth:
+                            NSLog("No auth token: \(error)")
+                        case .badAuth:
+                            NSLog("Bad auth token: \(error)")
+                        case .otherError:
+                            NSLog("other network error: \(error)")
+                        case .badData:
+                            NSLog("Bad data: \(error)")
+                        case .noDecode:
+                            NSLog("couldnt decode event representation: \(error)")
+                        case .noEncode:
+                            NSLog("couldnt encode event representation: \(error)")
+                    }
+                }
+            }
         }
-        
-        apiController.putEvent(event: event)
         
     }
     
@@ -51,7 +74,7 @@ class EventController {
         
     }
     
-    func fetchEvents() {
+    func fetchEvents(completion: @escaping (Result<[Event], NetworkError>) -> Void) {
         apiController.fetchEvents { (error) in
             if let error = error {
                 NSLog("Error fetching events from server: \(error)")
@@ -61,11 +84,10 @@ class EventController {
                 let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
                 do {
                     let events = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
-                    for event in events {
-                        print(event.eventRepresentation)
-                    }
+                    completion(.success(events))
                 } catch {
                     NSLog("Error fetching events: \(error)")
+                    completion(.failure(.otherError))
                 }
             }
             
