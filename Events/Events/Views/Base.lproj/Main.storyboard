@@ -15,7 +15,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mqk-hw-fBR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1473" y="-222"/>
+            <point key="canvasLocation" x="1524" y="-260"/>
         </scene>
         <!--Events-->
         <scene sceneID="0JL-1O-Zcx">
@@ -153,7 +153,7 @@ Title</string>
                     <navigationItem key="navigationItem" title="Events" largeTitleDisplayMode="always" id="eK6-2a-iOn">
                         <barButtonItem key="leftBarButtonItem" title="Test Login" id="z3a-1g-jfy">
                             <connections>
-                                <segue destination="i6E-HM-2Nw" kind="presentation" modalPresentationStyle="fullScreen" id="etG-f9-3dl"/>
+                                <segue destination="i6E-HM-2Nw" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="etG-f9-3dl"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -684,6 +684,7 @@ Title</string>
                     <connections>
                         <outlet property="weatherIcon" destination="4W7-aG-mgR" id="bIB-9M-fXF"/>
                         <outlet property="weatherLabel" destination="Xo9-ES-Ibh" id="AWh-le-Qt6"/>
+                        <segue destination="i6E-HM-2Nw" kind="presentation" identifier="LoginSegue" animates="NO" modalPresentationStyle="fullScreen" id="boS-Hf-GAY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eho-uH-Xf8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -10306,5 +10307,6 @@ Licensed under the zlib license.
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="760-yV-lZ5"/>
+        <segue reference="boS-Hf-GAY"/>
     </inferredMetricsTieBreakers>
 </document>

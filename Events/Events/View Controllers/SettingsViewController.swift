@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController {
             temp.setTitle("°F", for: .normal)
             KeychainSwift.shared.set("°F", forKey: "tempPref")
         }
+        NotificationCenter.default.post(name: NSNotification.Name("TempUpdated"), object: nil)
     }
     
 }

@@ -157,13 +157,13 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             eventController.createEvent(title: title,
                                         description: desc,
                                         address: address,
-                                        location: pickedLocation?.latitude ?? "'",
-                                        eventStart: pickedFromDate ?? "'",
-                                        eventEnd: pickedToDate ?? "'",
+                                        location: pickedLocation?.latitude ?? ".",
+                                        eventStart: pickedFromDate ?? ".",
+                                        eventEnd: pickedToDate ?? ".",
                                         externalLink: urlField.text ?? "",
-                                        creator: (KeychainSwift.shared.get("userID") ?? "'").isEmpty ? KeychainSwift.shared.get("userID")! : "'",
-                                        city: pickedLocation?.city ?? "'",
-                                        country: pickedLocation?.country ?? "'")
+                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty ? KeychainSwift.shared.get("userID")! : ".",
+                                        city: pickedLocation?.city ?? ".",
+                                        country: pickedLocation?.country ?? ".")
             navigationController?.popViewController(animated: true)
             } else {
 //            newPlantController.update(newPlant!, nickname: name, location: loc, wateredDate: newPlant?.wateredDate, image: imageView?.image?.pngData() ?? Data(), h2oFrequency: Double(freq) ?? 7)

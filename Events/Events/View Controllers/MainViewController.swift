@@ -13,11 +13,22 @@ import SwiftyJSON
 class MainViewController: UIViewController {
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
-    static var authenticated = true
+    static var authenticated = false
+    var firstStart: Bool { KeychainSwift.shared.getBool("firstStart") ?? true }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tempDidChange), name: NSNotification.Name("TempUpdated"), object: nil)
+        if firstStart {
+            KeychainSwift.shared.set(false, forKey: "firstStart")
+            performSegue(withIdentifier: "LoginSegue", sender: nil)
+        } else {
+            getWeather()
+        }
+    }
+    
+    @objc private func tempDidChange() {
         getWeather()
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class MapsViewController: UIViewController {
+class MapsViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var textField: UITextField!
     
@@ -21,10 +21,28 @@ class MapsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        style()
+        addMap()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            sleep(1)
+            addMap()
+        }
+    }
+    
+    private func style() {
         textField.attributedPlaceholder = NSAttributedString(string: "enter address", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
-        locationManager.requestAlwaysAuthorization()
+    }
+    
+    private func addMap() {
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == .authorizedAlways) {
             currentLocation = locationManager.location
@@ -47,8 +65,6 @@ class MapsViewController: UIViewController {
         mapView.isMyLocationEnabled = true
         
         view.addSubview(mapView)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
