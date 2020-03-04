@@ -29,6 +29,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCJ-j3-DlE">
+                                    <rect key="frame" x="255" y="5" width="97" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-Ot-lCP" customClass="CustomSegmentedControl" customModule="Events" customModuleProvider="target">
                                     <rect key="frame" x="8" y="9" width="359" height="30"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -158,9 +164,15 @@ Title</string>
                             </barButtonItem>
                             <barButtonItem title="Item" image="line.horizontal.3.decrease.circle" catalog="system" id="Bi5-KE-y1K">
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="filterAction:" destination="74r-ht-6Cj" id="So4-UF-ZjD"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="dCJ-j3-DlE" id="JMy-Q2-shd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V85-cT-n9U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,9 +324,23 @@ Title</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JVY-2z-8sW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="e8A-H7-fYM"/>
+                    <navigationItem key="navigationItem" title="Settings" id="e8A-H7-fYM">
+                        <barButtonItem key="rightBarButtonItem" id="Fp0-o5-fFD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="quc-Oj-wDF">
+                                <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeTemp:" destination="yyu-yS-2ih" eventType="touchUpInside" id="pDS-Ye-SSo"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="changeTemp:" destination="yyu-yS-2ih" id="Doq-a3-IP7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailLabel" destination="Ugz-NZ-hLk" id="7qW-O1-LXl"/>
+                        <outlet property="temp" destination="quc-Oj-wDF" id="UhI-fQ-8le"/>
                         <outlet property="userImage" destination="Kgt-u3-c5U" id="j7p-U1-oaS"/>
                         <outlet property="usernameLabel" destination="E8C-7j-rxX" id="Sgb-GB-3Ep"/>
                     </connections>
@@ -337,6 +363,71 @@ Title</string>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="931.88405797101461" y="814.95535714285711"/>
+        </scene>
+        <!--Maps View Controller-->
+        <scene sceneID="YvQ-Mo-Uxd">
+            <objects>
+                <viewController restorationIdentifier="mainMapView" id="5im-Cf-zev" customClass="MapsViewController" customModule="Events" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bsv-2Z-fCf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t2L-nk-dcx">
+                                <rect key="frame" x="0.0" y="674" width="325" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0w3-Jd-f82"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="dragOutside:" destination="5im-Cf-zev" eventType="touchDragOutside" id="RVk-Pf-8hA"/>
+                                    <action selector="editingEnd:" destination="5im-Cf-zev" eventType="primaryActionTriggered" id="vKX-rB-5aA"/>
+                                    <action selector="tapOutside:" destination="5im-Cf-zev" eventType="touchUpOutside" id="HBv-hJ-7sp"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKw-Y0-Sjq" customClass="CustomButton" customModule="Events" customModuleProvider="target">
+                                <rect key="frame" x="325" y="674" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="16f-Lt-VSZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="q7g-2E-8ph"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.right" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="5im-Cf-zev" eventType="touchUpInside" id="uS9-MG-jdM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="t2L-nk-dcx" firstAttribute="leading" secondItem="cmB-nc-Poh" secondAttribute="leading" id="ErV-sl-mTE"/>
+                            <constraint firstItem="KKw-Y0-Sjq" firstAttribute="trailing" secondItem="cmB-nc-Poh" secondAttribute="trailing" id="LvO-U5-jxD"/>
+                            <constraint firstItem="cmB-nc-Poh" firstAttribute="trailing" secondItem="t2L-nk-dcx" secondAttribute="trailing" constant="50" id="nHX-Nt-xxM"/>
+                            <constraint firstItem="cmB-nc-Poh" firstAttribute="bottom" secondItem="t2L-nk-dcx" secondAttribute="bottom" id="nQD-I6-8zB"/>
+                            <constraint firstItem="KKw-Y0-Sjq" firstAttribute="bottom" secondItem="t2L-nk-dcx" secondAttribute="bottom" id="zaP-WH-kme"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cmB-nc-Poh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="48H-VD-vk5">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="t2L-nk-dcx" id="pVF-ZF-GKm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WvD-4i-Yqj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2630" y="129"/>
         </scene>
         <!--Maps View Controller-->
         <scene sceneID="r8Z-j8-1n5">
@@ -401,7 +492,7 @@ Title</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ha8-EK-Vni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249" y="2886"/>
+            <point key="canvasLocation" x="249" y="2908"/>
         </scene>
         <!--Pick your location-->
         <scene sceneID="DLO-0u-pds">
@@ -590,6 +681,7 @@ Title</string>
                     </view>
                     <navigationItem key="navigationItem" title="City" id="1Ln-sl-42Y"/>
                     <connections>
+                        <outlet property="weatherIcon" destination="4W7-aG-mgR" id="bIB-9M-fXF"/>
                         <outlet property="weatherLabel" destination="Xo9-ES-Ibh" id="AWh-le-Qt6"/>
                     </connections>
                 </viewController>
@@ -9870,9 +9962,13 @@ Licensed under the zlib license.
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zpj-zS-ifk" customClass="StylizedTextField" customModule="Events" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="13.333333333333314" width="311" height="40"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                        </accessibility>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="3z9-he-COl"/>
                                                         </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -9895,10 +9991,14 @@ Licensed under the zlib license.
                                                         </constraints>
                                                     </view>
                                                 </subviews>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="zpj-zS-ifk" secondAttribute="trailing" id="ebm-y2-RUe"/>
                                                     <constraint firstAttribute="trailing" secondItem="Jrf-Bd-WTP" secondAttribute="trailing" id="er1-Po-riY"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="stl-Xu-iYx" appends="YES" id="jgr-Ed-heG"/>
+                                                </connections>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VcY-s2-N2J">
                                                 <rect key="frame" x="0.0" y="65.333333333333314" width="311" height="55.333333333333343"/>
@@ -9914,6 +10014,7 @@ Licensed under the zlib license.
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="GTY-N2-Srd"/>
                                                         </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -9958,6 +10059,7 @@ Licensed under the zlib license.
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="Eui-vV-Li1"/>
                                                                 </constraints>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -9999,6 +10101,7 @@ Licensed under the zlib license.
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="DVb-Pu-2cD"/>
                                                                 </constraints>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -10042,6 +10145,7 @@ Licensed under the zlib license.
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="IWr-LA-EBX"/>
                                                         </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -10085,6 +10189,7 @@ Licensed under the zlib license.
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="woa-dl-DEz"/>
                                                 </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -10154,7 +10259,7 @@ Licensed under the zlib license.
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addressField" destination="zpj-zS-ifk" id="9mE-yy-YIv"/>
+                        <outlet property="addressField" destination="zpj-zS-ifk" id="1dz-Mi-3oa"/>
                         <outlet property="addressLabel" destination="Hpr-ld-tMr" id="uLE-YQ-3dY"/>
                         <outlet property="addressSeperator" destination="Jrf-Bd-WTP" id="Hnu-zp-Gb4"/>
                         <outlet property="deleteButton" destination="Zmm-qr-oKV" id="PEj-5g-8v8"/>
@@ -10164,14 +10269,21 @@ Licensed under the zlib license.
                         <outlet property="editButton" destination="U8m-ur-uYY" id="Rv0-7t-hd7"/>
                         <outlet property="eventImageButton" destination="cJZ-A4-bb2" id="y5o-qy-3hS"/>
                         <outlet property="eventImageView" destination="P4q-Xi-Cbv" id="JoN-Iy-Wwx"/>
+                        <outlet property="fromTime" destination="RCv-kR-t9H" id="5AL-hK-41O"/>
                         <outlet property="saveButton" destination="WUO-Zd-Ru1" id="kO6-D0-7aE"/>
                         <outlet property="titleField" destination="w98-Wp-wV9" id="fUS-U1-lNz"/>
                         <outlet property="titleLabel" destination="9Ja-Hy-yEG" id="fde-53-aoO"/>
                         <outlet property="titleSeperator" destination="GsZ-k4-ssJ" id="hfm-76-U7D"/>
+                        <outlet property="toTime" destination="TOF-Ay-7Ni" id="RAe-fk-QUb"/>
                         <outlet property="urlField" destination="Pfs-wS-ukZ" id="s21-9M-bOM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YTH-4a-lqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="stl-Xu-iYx">
+                    <connections>
+                        <segue destination="5im-Cf-zev" kind="presentation" id="Gcf-Qk-5TV"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1840.8" y="128.57142857142858"/>
         </scene>

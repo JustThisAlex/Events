@@ -22,6 +22,8 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionField: StylizedTextField!
     @IBOutlet weak var descriptionSeperator: UIView!
+    @IBOutlet weak var fromTime: StylizedTextField!
+    @IBOutlet weak var toTime: StylizedTextField!
     @IBOutlet weak var urlField: StylizedTextField!
     
     // BUTTONS
@@ -31,30 +33,43 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     // MARK: - Properies
     var event: Event?
-//    var eventController = EventController.shared
+    var eventController = EventController.shared
     var creating = true
     var currentlyEditing = false
     let imagePC = UIImagePickerController()
     
+    var pickedFromDate: String?
+    var pickedToDate: String?
+    var pickedLocation: Location? {
+        didSet {
+            addressField.text = pickedLocation?.street ?? ""
+        }
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         titleField.delegate = self
-        addressField.delegate = self
         descriptionField.delegate = self
         urlField.delegate = self
         imagePC.delegate = self
+        addressField.isEnabled = false
+        
+        fromTime.setInputViewDatePicker(target: self, selector: #selector(fromPicked))
+        toTime.setInputViewDatePicker(target: self, selector: #selector(toPicked))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setLocation),
+                                               name: NSNotification.Name(rawValue: "location"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
         if let event = event {
-//            titleField.text = event.name
-//            addressField.text = event.address
-//            descriptionField.text = event.description
+            titleField.text = event.eventTitle ?? ""
+            addressField.text = event.eventAddress ?? ""
+            descriptionField.text = event.eventDescription
             //set dates
-//            urlField.text = event.url
+            urlField.text = event.externalLink
 //            if let image = event.image { imageView.image = UIImage(data: image) }
             creating = false
         }
@@ -97,7 +112,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     @IBAction func deletePressed(_ sender: Any) {
         if let event = event {
-//            eventController.delete(event)
+            eventController.delete(event: event)
             navigationController?.popViewController(animated: true)
         }
     }
@@ -139,15 +154,15 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         currentlyEditing = false
         viewMode()
         if creating{
-//            newPlantController.create(newPlant: NewPlant(nickname: name, id: UUID(), wateredDate: Date(), image: imageView?.image?.pngData() ?? Data(), location: loc, h2oFrequency: Double(freq) ?? 7)) {_ in
-//                self.navigationController?.popViewController(animated: true)
-//            }} else {
+            eventController.createEvent(title: title, description: desc, address: address, location: "", eventStart: DateFormatter().string(from: Date()), eventEnd: DateFormatter().string(from: Date()), externalLink: urlField.text ?? "", creator: "", city: "", country: "")
+            navigationController?.popViewController(animated: true)
+            } else {
 //            newPlantController.update(newPlant!, nickname: name, location: loc, wateredDate: newPlant?.wateredDate, image: imageView?.image?.pngData() ?? Data(), h2oFrequency: Double(freq) ?? 7)
         }
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if titleField.isFirstResponder || addressField.isFirstResponder || descriptionField.isFirstResponder { return }
+        if titleField.isFirstResponder || descriptionField.isFirstResponder { return }
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 { self.view.frame.origin.y -= keyboardSize.height }
         }
@@ -155,6 +170,27 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
 
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 { self.view.frame.origin.y = 0 }
+    }
+    @objc func fromPicked() { datePicked(true, in: fromTime) }
+    @objc func toPicked() { datePicked(false, in: toTime) }
+    @objc func datePicked(_ from: Bool, in textfield: UITextField) {
+        if let datePicker = textfield.inputView as? UIDatePicker {
+            let dateformatter = DateFormatter()
+            dateformatter.dateStyle = .short
+            dateformatter.timeStyle = .short
+            dateformatter.doesRelativeDateFormatting = true
+            textfield.text = dateformatter.string(from: datePicker.date)
+            if from {
+                pickedFromDate = dateformatter.string(from: datePicker.date)
+            } else {
+                pickedToDate = dateformatter.string(from: datePicker.date)
+            }
+        }
+        textfield.resignFirstResponder()
+    }
+    
+    @objc func setLocation(_ notification: NSNotification) {
+        pickedLocation = notification.userInfo?["loc"] as? Location
     }
     
     // MARK: - TextFieldDelegate
@@ -167,6 +203,33 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MapsViewController {
+            destination.isSelecting = true
+        }
+    }
+    
+}
+
+extension UITextField {
+    func setInputViewDatePicker(target: Any, selector: Selector) {
+        let screenWidth = UIScreen.main.bounds.width
+        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))
+        datePicker.datePickerMode = .dateAndTime
+        self.inputView = datePicker
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: screenWidth, height: 44.0))
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: #selector(tapCancel))
+        let barButton = UIBarButtonItem(title: "Done", style: .done, target: target, action: selector)
+        toolbar.setItems([cancel, flexible, barButton], animated: false)
+        self.inputAccessoryView = toolbar
+    }
+    
+    @objc func tapCancel() {
+        self.resignFirstResponder()
     }
     
 }

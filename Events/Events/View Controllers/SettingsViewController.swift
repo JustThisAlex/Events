@@ -11,6 +11,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userImage: CustomImage!
+    @IBOutlet weak var temp: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,5 +20,17 @@ class SettingsViewController: UIViewController {
         if let imageData = KeychainSwift.shared.getData("userImage") {
             userImage.image = UIImage(data: imageData)
         }
+        temp.setTitle(KeychainSwift.shared.get("tempPref") ?? "°F", for: .normal)
     }
+    
+    @IBAction func changeTemp(_ sender: Any) {
+        if temp.title(for: .normal) == "°F" {
+            temp.setTitle("°C", for: .normal)
+            KeychainSwift.shared.set("°C", forKey: "tempPref")
+        } else {
+            temp.setTitle("°F", for: .normal)
+            KeychainSwift.shared.set("°F", forKey: "tempPref")
+        }
+    }
+    
 }

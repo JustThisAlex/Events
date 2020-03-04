@@ -17,6 +17,7 @@ class MapsViewController: UIViewController {
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var defaultLocation = [48.1351, 11.5820]
+    var isSelecting: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,12 +87,17 @@ class MapsViewController: UIViewController {
             }))
             for addr in address {
                 alert.addAction(UIAlertAction(title: "\(addr.name ?? ""), \(addr.locality ?? "")", style: .default, handler: { _ in
-                    KeychainSwift.shared.set(addr.name ?? "", forKey: "Address")
-                    KeychainSwift.shared.set(addr.locality ?? "", forKey: "City")
-                    KeychainSwift.shared.set(addr.country ?? "", forKey: "Country")
-                    KeychainSwift.shared.set(addr.location?.coordinate.latitude.binade.description ?? "", forKey: "Latitude")
-                    KeychainSwift.shared.set(addr.location?.coordinate.longitude.binade.description ?? "", forKey: "Longitude")
-                        KeychainSwift.shared.set(addr.postalCode ?? "", forKey: "Zipcode")
+                    KeychainSwift.shared.set(addr.name ?? "", forKey: "address")
+                    KeychainSwift.shared.set(addr.locality ?? "", forKey: "city")
+                    KeychainSwift.shared.set(addr.country ?? "", forKey: "country")
+                    KeychainSwift.shared.set(addr.location?.coordinate.latitude.binade.description ?? "", forKey: "latitude")
+                    KeychainSwift.shared.set(addr.location?.coordinate.longitude.binade.description ?? "", forKey: "longitude")
+                    KeychainSwift.shared.set(addr.postalCode ?? "", forKey: "zipcode")
+                    if self.isSelecting ?? false {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "location"), object: nil, userInfo: ["loc" : Location(street: addr.name, city: addr.locality, country: addr.country, latitude: addr.location?.coordinate.latitude.description, longitude: addr.location?.coordinate.longitude.description, zipcode: addr.postalCode)])
+                        self.isSelecting = false
+                        self.dismiss(animated: true, completion: nil)
+                    }
                     if self.restorationIdentifier == "mainMapView" {
                     self.navigationController?.dismiss(animated: true, completion: nil)
                     } else {

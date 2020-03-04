@@ -35,11 +35,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func login(_ sender: Any) {
         guard let email = email.text, let password = password.text else { return }
         chain.set(email, forKey: "email")
-        let street = chain.get("Address")
-        let city = chain.get("City")
-        let zipcode = chain.get("Zipcode")
-        let latitude = chain.get("Latitude")
-        let longitude = chain.get("Longitude")
+        let street = chain.get("address")
+        let city = chain.get("city")
+        let zipcode = chain.get("zipcode")
+        let latitude = chain.get("latitude")
+        let longitude = chain.get("longitude")
         if segment.selectedSegmentIndex == 0 {
             controller.signIn(user: User(id: nil, email: email, username: nil, password: password, streetAddress: nil, city: nil, zipcode: nil, businessName: nil, latitude: nil, longitude: nil)) { result in
                 DispatchQueue.main.async {
@@ -64,7 +64,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 switch result {
                 case .failure: return
                 case .success(let user):
-                    self.chain.set(user.id ?? "", forKey: "UserID")
+                    self.chain.set(user.id ?? "", forKey: "userID")
                     MainViewController.authenticated = true
                     self.performSegue(withIdentifier: "FinishSegue", sender: nil)
                 }
@@ -75,6 +75,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func ckLogin(_ sender: Any) {
         self.performSegue(withIdentifier: "FinishSegue", sender: nil)
+        chain.set("", forKey: "userID")
+        chain.set("", forKey: "username")
+        chain.set("", forKey: "email")
+        chain.set("", forKey: "token")
         MainViewController.authenticated = true
     }
     

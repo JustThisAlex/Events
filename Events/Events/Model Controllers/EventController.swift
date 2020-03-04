@@ -12,6 +12,7 @@ import CoreData
 class EventController {
     
     let apiController = ApiController()
+    static let shared = EventController()
     
     func createEvent(title: String, description: String, address: String, location: String, eventStart: String, eventEnd: String, externalLink: String?, creator: String, city: String, country: String) {
         
@@ -45,6 +46,8 @@ class EventController {
                             NSLog("couldnt decode event representation: \(error)")
                         case .noEncode:
                             NSLog("couldnt encode event representation: \(error)")
+                    case .userNotFound:
+                            NSLog("Couldn't find this user")
                     }
                 }
             }

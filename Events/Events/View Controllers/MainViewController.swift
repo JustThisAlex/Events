@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class MainViewController: UIViewController {
     @IBOutlet weak var weatherLabel: UILabel!
@@ -16,17 +18,40 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
-        // TODO: Get weather and call appropriate setting func
+        getWeather()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        title = KeychainSwift.shared.get("City")
+        title = KeychainSwift.shared.get("city")
     }
     
-    func changeWeather(temperature: String, condition: WeatherConditions) {
-        weatherLabel.text = "\(temperature)°"
-        weatherIcon.image = UIImage(imageLiteralResourceName: condition.rawValue)
+    func getWeather() {
+        var temp: String { if (KeychainSwift.shared.get("tempPref") ?? "") == "°C" { return "si" } else { return "us"} }
+        AF.request("https://api.darksky.net/forecast/\(Keys.weatherKey)/\(KeychainSwift.shared.get("latitude") ?? ""),\(KeychainSwift.shared.get("longitude") ?? "")?units=\(temp)").validate().responseJSON { response in
+            switch response.result {
+            case .failure:
+                self.weatherLabel.text = ""
+                self.weatherIcon.image = nil
+            case .success(let value):
+                let json = JSON(value)
+                print(json["currently"]["temperature"].doubleValue)
+                print(json["currently"]["icon"].stringValue)
+                self.weatherLabel.text = "\(Int(json["currently"]["temperature"].doubleValue))°"
+                let icon = json["currently"]["icon"].stringValue
+                if icon == "clear-day" || icon ==  "clear-night" || icon ==  "wind" || icon == "fog" {
+                    self.weatherIcon.image = UIImage(systemName: "sun.max.fill")
+                } else if icon == "sleet" || icon ==  "rain" {
+                    self.weatherIcon.image = UIImage(systemName: "cloud.rain.fill")
+                } else if icon == "snow" {
+                    self.weatherIcon.image = UIImage(systemName: "cloud.snow.fill")
+                } else if icon == "cloudy" || icon ==  "partly-cloudy-day" || icon ==  "partly-cloudy-night" {
+                    self.weatherIcon.image = UIImage(systemName: "cloud.fill")
+                } else {
+                    self.weatherIcon.image = UIImage(systemName: "cloud.fill")
+                }
+            }
+        }
     }
 }
 
