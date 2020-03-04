@@ -12,6 +12,7 @@ class EventsTableViewController: UITableViewController {
     var sortingMode: SortingMode = .alphabetical
     var events = [Event]()
     var index = 0
+    @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.segmentChanged(_:)), name: NSNotification.Name("SegmentChanged"), object: nil)
@@ -21,7 +22,13 @@ class EventsTableViewController: UITableViewController {
     @objc func segmentChanged(_ notification: Notification) {
         guard let index = notification.userInfo?[1] as? Int else { return }
         self.index = index
-        loadEvents(index: index)
+        if index < 2 {
+            loadEvents(index: index)
+        } else {
+            
+            
+            
+        }
     }
     
     @IBAction func filterAction(_ sender: Any) {

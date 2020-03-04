@@ -29,6 +29,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCJ-j3-DlE">
+                                    <rect key="frame" x="255" y="5" width="97" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-Ot-lCP" customClass="CustomSegmentedControl" customModule="Events" customModuleProvider="target">
                                     <rect key="frame" x="8" y="9" width="359" height="30"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -164,6 +170,9 @@ Title</string>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="dCJ-j3-DlE" id="JMy-Q2-shd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V85-cT-n9U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -315,9 +324,23 @@ Title</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JVY-2z-8sW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="e8A-H7-fYM"/>
+                    <navigationItem key="navigationItem" title="Settings" id="e8A-H7-fYM">
+                        <barButtonItem key="rightBarButtonItem" id="Fp0-o5-fFD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="quc-Oj-wDF">
+                                <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeTemp:" destination="yyu-yS-2ih" eventType="touchUpInside" id="pDS-Ye-SSo"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="changeTemp:" destination="yyu-yS-2ih" id="Doq-a3-IP7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailLabel" destination="Ugz-NZ-hLk" id="7qW-O1-LXl"/>
+                        <outlet property="temp" destination="quc-Oj-wDF" id="UhI-fQ-8le"/>
                         <outlet property="userImage" destination="Kgt-u3-c5U" id="j7p-U1-oaS"/>
                         <outlet property="usernameLabel" destination="E8C-7j-rxX" id="Sgb-GB-3Ep"/>
                     </connections>
@@ -658,6 +681,7 @@ Title</string>
                     </view>
                     <navigationItem key="navigationItem" title="City" id="1Ln-sl-42Y"/>
                     <connections>
+                        <outlet property="weatherIcon" destination="4W7-aG-mgR" id="bIB-9M-fXF"/>
                         <outlet property="weatherLabel" destination="Xo9-ES-Ibh" id="AWh-le-Qt6"/>
                     </connections>
                 </viewController>
