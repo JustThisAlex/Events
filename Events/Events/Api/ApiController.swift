@@ -426,10 +426,17 @@ class ApiController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+        if let token = KeychainSwift.shared.get("token") {
+            request.addValue(token, forHTTPHeaderField: "Authorization")
+        } else {
+            NSLog("No token in keychain")
+            completion(NSError(domain: "token", code: 1, userInfo: nil))
+            return
+        }
        
         do {
             let encoder = JSONEncoder()
-            let dictionary = ["_id", userId]
+            let dictionary = ["_id": userId]
             let json = try encoder.encode(dictionary)
             request.httpBody = json
         } catch {
