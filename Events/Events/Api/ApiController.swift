@@ -430,12 +430,13 @@ class ApiController {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")
+            completion(NSError(domain: "token", code: 1, userInfo: nil))
             return
         }
        
         do {
             let encoder = JSONEncoder()
-            let dictionary = ["_id", userId]
+            let dictionary = ["_id": userId]
             let json = try encoder.encode(dictionary)
             request.httpBody = json
         } catch {
