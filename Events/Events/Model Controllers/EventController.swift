@@ -14,15 +14,16 @@ class EventController {
     let apiController = ApiController()
     static let shared = EventController()
     
-    func createEvent(title: String, description: String, address: String, location: String, eventStart: String, eventEnd: String, externalLink: String?, creator: String, city: String, country: String) {
+    func createEvent(title: String, description: String, address: String, location: String, eventStart: String, eventEnd: String, externalLink: String?, creator: String, city: String, country: String, photo: Data? = nil, rsvpd: [String]? = nil) {
         
-        let eventRepresentation = EventRepresentation(identifier: nil, eventAddress: address, eventTitle: title, eventGeolocation: nil, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: externalLink, eventCreator: creator, eventCity: city, eventCountry: country)
+        let eventRepresentation = EventRepresentation(identifier: nil, eventAddress: address, eventTitle: title, eventGeolocation: nil, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: externalLink, eventCreator: creator, eventCity: city, eventCountry: country, rsvpd: nil)
         
         apiController.post(event: eventRepresentation) { (result) in
             do {
                 let representation = try result.get()
                 DispatchQueue.main.async {
-                    let _ = Event(eventRepresentation: representation)
+                    let event = Event(eventRepresentation: representation)
+                    event?.photo = photo
                     do {
                         try CoreDataStack.shared.save()
                     } catch {

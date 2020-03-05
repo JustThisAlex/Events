@@ -50,6 +50,7 @@
 		D23270CC240EF3210032B50A /* Events 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 3.xcdatamodel"; sourceTree = "<group>"; };
 		D23270CD240F0C900032B50A /* Events 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 4.xcdatamodel"; sourceTree = "<group>"; };
 		D2FB2D1724107D32003C1C75 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		D2FB2D1924108B12003C1C75 /* Events 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 5.xcdatamodel"; sourceTree = "<group>"; };
 		FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
@@ -614,12 +615,13 @@
 		FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D2FB2D1924108B12003C1C75 /* Events 5.xcdatamodel */,
 				D23270CD240F0C900032B50A /* Events 4.xcdatamodel */,
 				D23270CC240EF3210032B50A /* Events 3.xcdatamodel */,
 				FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */,
 				FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */,
 			);
-			currentVersion = D23270CD240F0C900032B50A /* Events 4.xcdatamodel */;
+			currentVersion = D2FB2D1924108B12003C1C75 /* Events 5.xcdatamodel */;
 			path = Events.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
