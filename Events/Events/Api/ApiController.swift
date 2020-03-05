@@ -167,6 +167,56 @@ class ApiController {
         
     }
     
+    func update(user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        guard let id = user.id else {
+            completion(.failure(.userNotFound))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("api/rest/user").appendingPathComponent(id)
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.put.rawValue
+        request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+        if let token = KeychainSwift.shared.get("token") {
+            request.addValue(token, forHTTPHeaderField: "Authorization")
+        } else {
+            NSLog("No token in keychain")
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        do {
+            let encoder = JSONEncoder()
+            let json = try encoder.encode(user)
+            request.httpBody = json
+        } catch {
+            NSLog("Error encoding user: \(error)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("error recieved from server while PUTting user: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                NSLog("Response code was not 200 when PUTting user, instead was: \(response.statusCode)")
+                completion(.failure(.badData))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                completion(.success(user))
+                return
+            }
+            
+        }.resume()
+        
+        
+    }
+    
     func post(event: EventRepresentation, completion: @escaping (Result<EventRepresentation, NetworkError>) -> Void) {
         let requestURL = baseURL.appendingPathComponent("api/rest/events")
         
@@ -285,26 +335,42 @@ class ApiController {
         
     }
     
-    func deleteEvent(event: EventRepresentation, completion: @escaping CompletionHandler = { _ in }) {
+    func deleteEvent(event: EventRepresentation, completion: @escaping (Result<EventRepresentation, NetworkError>) -> Void) {
         guard let id = event.identifier else {
             NSLog("No id for event to delete")
-            completion(NSError())
+            completion(.failure(.badData))
             return
         }
-        let requestURL = baseURL.appendingPathComponent(String(id)).appendingPathExtension("json")
+        let requestURL = baseURL.appendingPathComponent("api/rest/events").appendingPathComponent(id)
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
+        if let token = KeychainSwift.shared.get("token") {
+            request.addValue(token, forHTTPHeaderField: "Authorization")
+        } else {
+            NSLog("No token in keychain")
+            completion(.failure(.noAuth))
+            return
+        }
         
         
-        URLSession.shared.dataTask(with: request) { (data, repsonse, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 NSLog("Network error PUTting event to server: \(error)")
-                completion(error)
+                completion(.failure(.otherError))
                 return
             }
             
-            completion(nil)
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                NSLog("Error deleting response, reponse code was: \(response.statusCode)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                completion(.success(event))
+                return
+            }
             
         }.resume()
         
@@ -319,7 +385,7 @@ class ApiController {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")
-            completion(NSError())
+            completion(NSError(domain: "token", code: 1, userInfo: nil))
             return
         }
         
@@ -333,7 +399,7 @@ class ApiController {
             
             guard let data = data else {
                 NSLog("No data returned from server")
-                completion(NSError())
+                completion(NSError(domain: "bad data", code: 1, userInfo: nil))
                 return
             }
             

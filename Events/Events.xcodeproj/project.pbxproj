@@ -11,6 +11,7 @@
 		D229A17D240EB8550094E88A /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A17C240EB8550094E88A /* AuthToken.swift */; };
 		D229A17F240EBA150094E88A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A17E240EBA150094E88A /* User.swift */; };
 		D229A181240EBED30094E88A /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A180240EBED30094E88A /* UserRegistration.swift */; };
+		D2FB2D1824107D32003C1C75 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB2D1724107D32003C1C75 /* UserController.swift */; };
 		FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */; };
 		FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */; };
 		FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD4240BF802005DFA5C /* CustomElements.swift */; };
@@ -50,6 +51,8 @@
 		D229A180240EBED30094E88A /* UserRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistration.swift; sourceTree = "<group>"; };
 		D23270CC240EF3210032B50A /* Events 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 3.xcdatamodel"; sourceTree = "<group>"; };
 		D23270CD240F0C900032B50A /* Events 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 4.xcdatamodel"; sourceTree = "<group>"; };
+		D2FB2D1724107D32003C1C75 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		D2FB2D1924108B12003C1C75 /* Events 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 5.xcdatamodel"; sourceTree = "<group>"; };
 		FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				FA5A2DAD240DCF770037769D /* EventController.swift */,
+				D2FB2D1724107D32003C1C75 /* UserController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -362,6 +366,7 @@
 				FA5A2DAF240DCF770037769D /* EventController.swift in Sources */,
 				FA50CDD9240BF91B005DFA5C /* EventsTableViewController.swift in Sources */,
 				FA5A2DB8240DCFA80037769D /* EventRepresentation.swift in Sources */,
+				D2FB2D1824107D32003C1C75 /* UserController.swift in Sources */,
 				FA7C20EB240EDAA4007C61F0 /* Keys.swift in Sources */,
 				FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */,
 				FAAE07B0240EC609000B0BC1 /* EventDetailViewController.swift in Sources */,
@@ -618,12 +623,13 @@
 		FA5A2DB4240DCFA80037769D /* Events.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D2FB2D1924108B12003C1C75 /* Events 5.xcdatamodel */,
 				D23270CD240F0C900032B50A /* Events 4.xcdatamodel */,
 				D23270CC240EF3210032B50A /* Events 3.xcdatamodel */,
 				FA5A2DB5240DCFA80037769D /* Events 2.xcdatamodel */,
 				FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */,
 			);
-			currentVersion = D23270CD240F0C900032B50A /* Events 4.xcdatamodel */;
+			currentVersion = D2FB2D1924108B12003C1C75 /* Events 5.xcdatamodel */;
 			path = Events.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

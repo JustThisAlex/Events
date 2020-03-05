@@ -26,9 +26,12 @@ class EventsTableViewController: UITableViewController {
             loadEvents(index: index)
         } else {
             
-            
-            
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadEvents(index: 0)
     }
     
     @IBAction func filterAction(_ sender: Any) {
