@@ -419,6 +419,46 @@ class ApiController {
  
     }
     
+    func rsvp(eventId: String, userId: String, completion: @escaping (Error?) -> Void) {
+        
+        let requestURL = baseURL.appendingPathComponent("api/rest/events/attend").appendingPathComponent(eventId)
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+       
+        do {
+            let encoder = JSONEncoder()
+            let dictionary = ["_id", userId]
+            let json = try encoder.encode(dictionary)
+            request.httpBody = json
+        } catch {
+            NSLog("Error Encoding userID: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Network error PUTting event to server: \(error)")
+                completion(error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                print("Response from put event was: \(response.statusCode)")
+                completion(NSError(domain: "response code failure", code: response.statusCode, userInfo: nil))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                completion(nil)
+                return
+            }
+        
+        }.resume()
+    }
+    
     private func updateEvents(with representations: [EventRepresentation]) throws {
         let eventsWithID = representations.filter { $0.identifier != nil }
         let identifiersToFetch = eventsWithID.compactMap { $0.identifier }

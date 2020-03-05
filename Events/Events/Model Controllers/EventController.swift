@@ -159,6 +159,43 @@ class EventController {
         }
     }
     
+    func rsvpToEvent(event: Event, completion: @escaping (Error?) -> Void = { _ in }) {
+        guard let id = event.identifier else {
+            NSLog("No id for event trying to rsvp to")
+            completion(NSError(domain: "no id for event", code: 1, userInfo: nil))
+            return
+        }
+        
+        guard let userID = KeychainSwift.shared.get("userID") else {
+            NSLog("No id for user in keychain")
+            completion(NSError(domain: "no id for user in keychain", code: 1, userInfo: nil))
+            return
+        }
+        
+        apiController.rsvp(eventId: id, userId: userID) { (error) in
+            if let error = error {
+                NSLog("Error rspving to event: \(error)")
+            }
+            
+            DispatchQueue.main.async {
+                let username = KeychainSwift.shared.get("username") ?? userID
+                event.rsvpd?.append(username)
+                do {
+                    try CoreDataStack.shared.save()
+                    completion(nil)
+                    return
+                } catch {
+                    NSLog("Error saving managed object context: \(error)")
+                    completion(error)
+                    return
+                }
+            }
+            
+        }
+        
+        
+    }
+    
 }
 
 
