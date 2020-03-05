@@ -13,9 +13,9 @@ import SwiftyJSON
 class MainViewController: UIViewController {
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
-    static var authenticated = false
+    static var authenticated: Bool { KeychainSwift.shared.getBool("authenticated") ?? false }
     var firstStart: Bool { KeychainSwift.shared.getBool("firstStart") ?? true }
-    
+    let chain = KeychainSwift.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
             performSegue(withIdentifier: "LoginSegue", sender: nil)
         } else {
             getWeather()
+            //login(chain.get("email"), chain.get("password"))
         }
     }
     

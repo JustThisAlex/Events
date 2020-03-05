@@ -105,6 +105,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     // MARK: - IBActions
     @IBAction func edit(_ sender: Any) {
+        guard event?.eventCreator == KeychainSwift.shared.get("userID") else { return }
         currentlyEditing = true
         editMode()
     }
@@ -164,7 +165,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
                                         eventStart: pickedFromDate ?? ".",
                                         eventEnd: pickedToDate ?? ".",
                                         externalLink: urlField.text ?? "",
-                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty ? KeychainSwift.shared.get("userID")! : ".",
+                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty ? "." : KeychainSwift.shared.get("userID")!,
                                         city: pickedLocation.city ?? ".",
                                         country: pickedLocation.country ?? ".")
             navigationController?.popViewController(animated: true)

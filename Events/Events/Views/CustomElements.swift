@@ -41,19 +41,28 @@ import UIKit
     func commoninit() {
         self.layer.cornerRadius = self.cornerRadius
         self.clipsToBounds = true
-        self.backgroundColor = isPrimary ? color : .lightGray
-        self.setTitleColor(isPrimary ? .white : color, for: .normal)
-        self.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
+        self.backgroundColor = isPrimary ? color : .white
+        self.setTitleColor(isPrimary ? (lightTextColor ? .white : .black) : color, for: .normal)
+        self.titleLabel?.font = .systemFont(ofSize: fontSize, weight: .medium)
+    }
+    @IBInspectable var fontSize: CGFloat = 20 {
+        didSet { self.titleLabel?.font = .systemFont(ofSize: fontSize, weight: fontWeight) }
     }
     @IBInspectable var cornerRadius: CGFloat = 10
     @IBInspectable var isPrimary: Bool = true
-    @IBInspectable var color: UIColor? = .systemBlue { didSet { self.backgroundColor = isPrimary ? color : .lightGray;
-    self.setTitleColor(isPrimary ? .white : color, for: .normal)}}
+    @IBInspectable var fontWeight: UIFont.Weight = .medium {
+        didSet { self.titleLabel?.font = .systemFont(ofSize: fontSize, weight: fontWeight) }
+    }
+    @IBInspectable var lightTextColor: Bool = true
+    @IBInspectable var color: UIColor? = .systemBlue { didSet { self.backgroundColor = isPrimary ? color : .white;
+        self.setTitleColor(isPrimary ? (lightTextColor ? .white : .black) : color, for: .normal)}}
 }
 
 @IBDesignable class CustomSegmentedControl: UIView {
     private(set) var selectedIndex = 0
-    private let buttons = [SegmentButton(), SegmentButton(), SegmentButton()]
+    private let buttons = [SegmentButton(), SegmentButton()
+//        , SegmentButton()
+    ]
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         sharedInit()
@@ -75,7 +84,7 @@ import UIKit
         stack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         buttons[0].setTitle("Today", for: .normal)
         buttons[1].setTitle("Tomorrow", for: .normal)
-        buttons[2].setTitle("Pick Date", for: .normal)
+//        buttons[2].setTitle("Pick Date", for: .normal)
         for button in buttons {
             stack.addSubview(button)
             button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
