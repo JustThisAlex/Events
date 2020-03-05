@@ -92,7 +92,7 @@ class EventsTableViewController: UITableViewController {
     }
     
     private func loadEvents(index: Int) {
-        EventController.shared.fetchEvents { result in
+        EventController.shared.fetchAllEvents { result in
             switch result {
             case .failure:
                 print("Loading failed")
