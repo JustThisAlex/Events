@@ -61,18 +61,33 @@ class EventsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EventsTableViewCell
         let event = events[indexPath.row]
+        cell.event = event
         cell.eventTitle.text = event.eventTitle
         cell.eventAddress.text = event.eventAddress
         cell.eventImageView.image = nil
-        cell.button.accessibilityIdentifier = "\(indexPath.row)"
-        if let date = date(from: event.eventStart ?? "") {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .short
-            formatter.doesRelativeDateFormatting = true
-            cell.eventTime.text = formatter.string(from: date)
-        }
+        setExtendedState(for: cell)
+        cell.detailButton.accessibilityIdentifier = "\(indexPath.row)"
+        cell.eventTime.text = shortenDateString(event.eventStart)
+        cell.endTime.text = "until: \(shortenDateString(event.eventEnd))"
+        cell.eventDescription.text = event.eventDescription
+        cell.link.text = event.externalLink
+        if cell.link.text?.isEmpty ?? true { cell.link.isHidden = true }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! EventsTableViewCell
+        cell.isExpanded.toggle()
+        setExtendedState(for: cell)
+        tableView.reloadData()
+    }
+    
+    private func setExtendedState(for cell: EventsTableViewCell) {
+        let items = [cell.calButton, cell.rsvpButton, cell.participantsButton, cell.link, cell.eventDescription, cell.endTime]
+        for item in items {
+            item?.isHidden = cell.isExpanded ? false : true
+        }
     }
     
     private func loadEvents(index: Int) {
@@ -97,6 +112,19 @@ class EventsTableViewController: UITableViewController {
     private func date(from string: String) -> Date? {
         let formatter = ISO8601DateFormatter()
         return formatter.date(from: string)
+    }
+    
+    private func relativeDateString(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
+        return formatter.string(from: date)
+    }
+    
+    private func shortenDateString(_ string: String?) -> String {
+        guard let date = date(from: string ?? "") else { return "" }
+        return relativeDateString(from: date)
     }
     
     private func isContained(for date: Date, in interval: DateInterval) -> Bool {
@@ -132,11 +160,30 @@ class EventsTableViewController: UITableViewController {
 }
 
 class EventsTableViewCell: UITableViewCell {
+    
+    //Basic
     @IBOutlet weak var eventImageView: CustomImage!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventAddress: UILabel!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var detailButton: UIButton!
+    
+    //Extended
+    @IBOutlet weak var endTime: UILabel!
+    @IBOutlet weak var eventDescription: UILabel!
+    @IBOutlet weak var link: UILabel!
+    @IBOutlet weak var rsvpButton: CustomButton!
+    @IBOutlet weak var participantsButton: CustomButton!
+    @IBOutlet weak var calButton: CustomButton!
+    var isExpanded = false
+    var event: Event?
+    
+    @IBAction func rsvpTapped(_ sender: Any) {
+        
+    }
+    @IBAction func participantsTapped(_ sender: Any) {
+        
+    }
 }
 
 enum SortingMode: String {

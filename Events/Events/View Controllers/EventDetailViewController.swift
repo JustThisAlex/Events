@@ -34,17 +34,14 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     // MARK: - Properies
     var event: Event?
     var eventController = EventController.shared
+    let imagePC = UIImagePickerController()
+    
     var creating = true
     var currentlyEditing = false
-    let imagePC = UIImagePickerController()
     
     var pickedFromDate: String?
     var pickedToDate: String?
-    var pickedLocation: Location? {
-        didSet {
-            addressField.text = pickedLocation?.street ?? ""
-        }
-    }
+    var pickedLocation: Location? { didSet { addressField.text = pickedLocation?.street ?? "" } }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -65,12 +62,15 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
         if let event = event {
-            titleField.text = event.eventTitle ?? ""
-            addressField.text = event.eventAddress ?? ""
+            guard let startDate = ISO8601DateFormatter().date(from: event.eventStart ?? ""),
+                let endDate = ISO8601DateFormatter().date(from: event.eventEnd ?? "") else { return }
+            titleField.text = event.eventTitle
+            addressField.text = event.eventAddress
             descriptionField.text = event.eventDescription
-            //set dates
+            fromTime.text = formatDate(startDate)
+            toTime.text = formatDate(endDate)
             urlField.text = event.externalLink
-//            if let image = event.image { imageView.image = UIImage(data: image) }
+            //            if let image = event.image { imageView.image = UIImage(data: image) }
             creating = false
         }
         
@@ -105,6 +105,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     // MARK: - IBActions
     @IBAction func edit(_ sender: Any) {
+        guard event?.eventCreator == KeychainSwift.shared.get("userID") else { return }
         currentlyEditing = true
         editMode()
     }
@@ -147,26 +148,39 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     // MARK: - Helper Methods
     private func save() {
-        guard let title = titleField.text, let address = addressField.text, let desc = descriptionField.text else { return }
+        guard let title = titleField.text,
+            let address = addressField.text,
+            let description = descriptionField.text else { return }
         guard !title.isEmpty else { titleSeperator.backgroundColor = .systemRed; titleLabel.textColor = .systemRed; return }
         guard !address.isEmpty else { addressSeperator.backgroundColor = .systemRed; addressLabel.textColor = .systemRed; return }
-        guard !desc.isEmpty else { descriptionSeperator.backgroundColor = .systemRed; descriptionLabel.textColor = .systemRed; return }
+        guard !description.isEmpty else { descriptionSeperator.backgroundColor = .systemRed; descriptionLabel.textColor = .systemRed; return }
         currentlyEditing = false
         viewMode()
-        if creating{
+        if creating {
+            guard let pickedLocation = pickedLocation else { return }
             eventController.createEvent(title: title,
-                                        description: desc,
+                                        description: description,
                                         address: address,
-                                        location: pickedLocation?.latitude ?? ".",
+                                        location: pickedLocation.latitude ?? ".",
                                         eventStart: pickedFromDate ?? ".",
                                         eventEnd: pickedToDate ?? ".",
                                         externalLink: urlField.text ?? "",
-                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty ? KeychainSwift.shared.get("userID")! : ".",
-                                        city: pickedLocation?.city ?? ".",
-                                        country: pickedLocation?.country ?? ".")
+                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty ? "." : KeychainSwift.shared.get("userID")!,
+                                        city: pickedLocation.city ?? ".",
+                                        country: pickedLocation.country ?? ".")
             navigationController?.popViewController(animated: true)
-            } else {
-//            newPlantController.update(newPlant!, nickname: name, location: loc, wateredDate: newPlant?.wateredDate, image: imageView?.image?.pngData() ?? Data(), h2oFrequency: Double(freq) ?? 7)
+        } else {
+            guard let event = event else { return }
+            event.eventTitle = title
+            event.eventDescription = description
+            event.eventAddress = address
+            if let location = pickedLocation?.latitude { event.eventGeolocation = location }
+            if let fromDate = pickedFromDate { event.eventStart = fromDate }
+            if let toDate = pickedToDate { event.eventEnd = toDate }
+            if let url = urlField.text { event.externalLink = url }
+            if let city = pickedLocation?.city { event.eventCity = city }
+            if let country = pickedLocation?.country { event.eventCountry = country }
+            eventController.updateEvent(event: event)
         }
     }
     
@@ -176,7 +190,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             if self.view.frame.origin.y == 0 { self.view.frame.origin.y -= keyboardSize.height }
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 { self.view.frame.origin.y = 0 }
     }
@@ -184,11 +198,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     @objc func toPicked() { datePicked(false, in: toTime) }
     @objc func datePicked(_ from: Bool, in textfield: UITextField) {
         if let datePicker = textfield.inputView as? UIDatePicker {
-            let dateformatter = DateFormatter()
-            dateformatter.dateStyle = .short
-            dateformatter.timeStyle = .short
-            dateformatter.doesRelativeDateFormatting = true
-            textfield.text = dateformatter.string(from: datePicker.date)
+            textfield.text = formatDate(datePicker.date)
             if from {
                 pickedFromDate = ISO8601DateFormatter().string(from: datePicker.date)
             } else {
@@ -196,6 +206,14 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             }
         }
         textfield.resignFirstResponder()
+    }
+    
+    private func formatDate(_ date: Date) -> String {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .short
+        dateformatter.timeStyle = .short
+        dateformatter.doesRelativeDateFormatting = true
+        return dateformatter.string(from: date)
     }
     
     @objc func setLocation(_ notification: NSNotification) {

@@ -12,6 +12,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userImage: CustomImage!
     @IBOutlet weak var temp: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
+    
+    let auth = MainViewController.authenticated
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,16 @@ class SettingsViewController: UIViewController {
             userImage.image = UIImage(data: imageData)
         }
         temp.setTitle(KeychainSwift.shared.get("tempPref") ?? "°F", for: .normal)
+        
+        signInButton.isHidden = auth ? true : false
+        signInButton.isUserInteractionEnabled = auth ? false : true
+        usernameLabel.isHidden = auth ? false : true
+        emailLabel.isHidden = auth ? false : true
+        
+    }
+    
+    @IBAction func signIn(_ sender: Any) {
+        performSegue(withIdentifier: "LoginSegue", sender: nil)
     }
     
     @IBAction func changeTemp(_ sender: Any) {

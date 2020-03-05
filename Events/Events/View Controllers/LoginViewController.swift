@@ -34,7 +34,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     @IBAction func login(_ sender: Any) {
         guard let email = email.text, let password = password.text else { return }
-        chain.set(email, forKey: "email")
+        chain.set(password, forKey: "password")
         let street = chain.get("address")
         let city = chain.get("city")
         let zipcode = chain.get("zipcode")
@@ -51,21 +51,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self.isError(nil)
                     }
                 case .success:
-                    MainViewController.authenticated = true;
+                    self.chain.set(true, forKey: "authenticated")
                     self.performSegue(withIdentifier: "FinishSegue", sender: nil)
                 }
                 }
             }
         } else {
             guard let username = usernameField.text else { return }
-            chain.set(username, forKey: "username")
             controller.signUp(user: User(id: nil, email: email, username: username, password: password, streetAddress: street, city: city, zipcode: zipcode, businessName: nil, latitude: latitude, longitude: longitude, country: nil)) { (result) in
                 DispatchQueue.main.async {
                 switch result {
                 case .failure: return
-                case .success(let user):
-                    self.chain.set(user.id ?? "", forKey: "userID")
-                    MainViewController.authenticated = true
+                case .success:
+                    self.chain.set(true, forKey: "authenticated")
                     self.performSegue(withIdentifier: "FinishSegue", sender: nil)
                 }
             }
@@ -74,12 +72,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func ckLogin(_ sender: Any) {
+        Helper.logOut()
         self.performSegue(withIdentifier: "FinishSegue", sender: nil)
-        chain.set("", forKey: "userID")
-        chain.set("", forKey: "username")
-        chain.set("", forKey: "email")
-        chain.set("", forKey: "token")
-        MainViewController.authenticated = true
     }
     
     @IBAction func segmentChanged(_ sender: Any) {

@@ -32,6 +32,8 @@
 		FAAE07AC240E7449000B0BC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AB240E7449000B0BC1 /* MainViewController.swift */; };
 		FAAE07AE240EBD81000B0BC1 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */; };
 		FAAE07B0240EC609000B0BC1 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AF240EC609000B0BC1 /* EventDetailViewController.swift */; };
+		FACDBB8924114DE300FBD963 /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBB8824114DE300FBD963 /* UserDataViewController.swift */; };
+		FACDBB8B24114ED600FBD963 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBB8A24114ED600FBD963 /* Helper.swift */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
 		FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */; };
@@ -71,6 +73,8 @@
 		FAAE07AB240E7449000B0BC1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		FAAE07AF240EC609000B0BC1 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		FACDBB8824114DE300FBD963 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
+		FACDBB8A24114ED600FBD963 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 				FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */,
 				FA7DC66E240D320200B23F8C /* MapsViewController.swift */,
 				FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */,
+				FACDBB8824114DE300FBD963 /* UserDataViewController.swift */,
+				FACDBB8A24114ED600FBD963 /* Helper.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 				FA7C20EB240EDAA4007C61F0 /* Keys.swift in Sources */,
 				FA5A2DB1240DCF9A0037769D /* CoreDataStack.swift in Sources */,
 				FAAE07B0240EC609000B0BC1 /* EventDetailViewController.swift in Sources */,
+				FACDBB8924114DE300FBD963 /* UserDataViewController.swift in Sources */,
 				FA5A2DAE240DCF770037769D /* ApiController.swift in Sources */,
 				D229A17F240EBA150094E88A /* User.swift in Sources */,
 				FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */,
@@ -379,6 +386,7 @@
 				FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */,
 				FAAE07AE240EBD81000B0BC1 /* PrivacyViewController.swift in Sources */,
 				FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */,
+				FACDBB8B24114ED600FBD963 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
