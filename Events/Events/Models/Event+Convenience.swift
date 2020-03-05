@@ -23,10 +23,10 @@ extension Event {
             else {  return nil }
         
 
-        return EventRepresentation(identifier: self.identifier, eventAddress: eventAddress, eventTitle: eventTitle, eventGeolocation: self.eventGeolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink, eventCreator: creator, eventCity: city, eventCountry: country)
+        return EventRepresentation(identifier: self.identifier, eventAddress: eventAddress, eventTitle: eventTitle, eventGeolocation: self.eventGeolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink, eventCreator: creator, eventCity: city, eventCountry: country, rsvpd: nil)
     }
     
-    convenience init(title: String, address: String, location: String, description: String, start: String, end: String, externalLink: String?, identifier: String?, creator: String, city: String, country: String, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init(title: String, address: String, location: String, description: String, start: String, end: String, externalLink: String?, identifier: String?, creator: String, city: String, country: String, photo: Data? = nil, rspvd: [String]? = nil, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         
         self.init(context: context)
         
@@ -41,7 +41,8 @@ extension Event {
         self.eventCreator = creator
         self.eventCity = city
         self.eventCountry = country
-        
+        self.photo = photo
+        self.rsvpd = rspvd
         
     }
     
@@ -62,6 +63,8 @@ extension Event {
         self.eventCreator = eventRepresentation.eventCreator
         self.eventCity = eventRepresentation.eventCity
         self.eventCountry = eventRepresentation.eventCountry
+        self.rsvpd = eventRepresentation.rsvpd
+        
     }
     
 }

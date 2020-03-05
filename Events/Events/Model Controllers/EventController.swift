@@ -14,15 +14,16 @@ class EventController {
     let apiController = ApiController()
     static let shared = EventController()
     
-    func createEvent(title: String, description: String, address: String, location: String, eventStart: String, eventEnd: String, externalLink: String?, creator: String, city: String, country: String) {
+    func createEvent(title: String, description: String, address: String, location: String, eventStart: String, eventEnd: String, externalLink: String?, creator: String, city: String, country: String, photo: Data? = nil, rsvpd: [String]? = nil) {
         
-        let eventRepresentation = EventRepresentation(identifier: nil, eventAddress: address, eventTitle: title, eventGeolocation: nil, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: externalLink, eventCreator: creator, eventCity: city, eventCountry: country)
+        let eventRepresentation = EventRepresentation(identifier: nil, eventAddress: address, eventTitle: title, eventGeolocation: nil, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: externalLink, eventCreator: creator, eventCity: city, eventCountry: country, rsvpd: nil)
         
         apiController.post(event: eventRepresentation) { (result) in
             do {
                 let representation = try result.get()
                 DispatchQueue.main.async {
-                    let _ = Event(eventRepresentation: representation)
+                    let event = Event(eventRepresentation: representation)
+                    event?.photo = photo
                     do {
                         try CoreDataStack.shared.save()
                     } catch {
@@ -103,20 +104,35 @@ class EventController {
     
     func delete(event: Event) {
         if let eventRepresentation = event.eventRepresentation {
-            apiController.deleteEvent(event: eventRepresentation) { (error) in
-                if let error = error {
-                    NSLog("Error deleting event from server: \(error)")
-                    return
-                }
-                DispatchQueue.main.async {
-                    do {
-                        CoreDataStack.shared.mainContext.delete(event)
-                        try CoreDataStack.shared.save()
-                    } catch {
+            apiController.deleteEvent(event: eventRepresentation) { (result) in
+                do {
+                    let _ = try result.get()
+                    CoreDataStack.shared.mainContext.delete(event)
+                    try CoreDataStack.shared.save()
+                } catch {
+                    if let error = error as? NetworkError {
+                        switch error {
+                            case .badUrl:
+                                NSLog("Bad url: \(error)")
+                            case .noAuth:
+                                NSLog("No auth token: \(error)")
+                            case .badAuth:
+                                NSLog("Bad auth token: \(error)")
+                            case .otherError:
+                                NSLog("other network error: \(error)")
+                            case .badData:
+                                NSLog("Bad data: \(error)")
+                            case .noDecode:
+                                NSLog("couldnt decode event representation: \(error)")
+                            case .noEncode:
+                                NSLog("couldnt encode event representation: \(error)")
+                            case .userNotFound:
+                                NSLog("Couldn't find this user")
+                        }
+                    } else {
                         NSLog("Error deleting event from managed object context: \(error)")
                     }
                 }
-                
                 
             }
         }
@@ -126,7 +142,7 @@ class EventController {
     func fetchEvents(completion: @escaping (Result<[Event], NetworkError>) -> Void) {
         apiController.fetchEvents { (error) in
             if let error = error {
-//                NSLog("Error fetching events from server: \(error)")
+                NSLog("Error fetching events from server: \(error)")
             }
             
             DispatchQueue.main.async {

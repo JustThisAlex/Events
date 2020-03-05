@@ -20,6 +20,7 @@ struct EventRepresentation: Codable {
     let eventCreator: String
     let eventCity: String
     let eventCountry: String
+    let rsvpd: [String]?
     
     enum CodingKeys: String, CodingKey {
         case identifier = "_id"
@@ -33,6 +34,8 @@ struct EventRepresentation: Codable {
         case eventCreator = "eventCreator"
         case eventCity = "eventCity"
         case eventCountry = "eventCountry"
+        case rsvpd
+        
     }
     
 }
