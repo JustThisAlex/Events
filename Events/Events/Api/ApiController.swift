@@ -167,6 +167,56 @@ class ApiController {
         
     }
     
+    func update(user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        guard let id = user.id else {
+            completion(.failure(.userNotFound))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("api/rest/user").appendingPathComponent(id)
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.put.rawValue
+        request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
+        if let token = KeychainSwift.shared.get("token") {
+            request.addValue(token, forHTTPHeaderField: "Authorization")
+        } else {
+            NSLog("No token in keychain")
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        do {
+            let encoder = JSONEncoder()
+            let json = try encoder.encode(user)
+            request.httpBody = json
+        } catch {
+            NSLog("Error encoding user: \(error)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("error recieved from server while PUTting user: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                NSLog("Response code was not 200 when PUTting user, instead was: \(response.statusCode)")
+                completion(.failure(.badData))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                completion(.success(user))
+                return
+            }
+            
+        }.resume()
+        
+        
+    }
+    
     func post(event: EventRepresentation, completion: @escaping (Result<EventRepresentation, NetworkError>) -> Void) {
         let requestURL = baseURL.appendingPathComponent("api/rest/events")
         
