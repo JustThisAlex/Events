@@ -189,7 +189,7 @@ class EventsTableViewCell: UITableViewCell {
     }
     @IBAction func participantsTapped(_ sender: Any) {
         guard let vc = vc else { return }
-        let participants = event?.rsvpd ?? []
+        let participants = Array(Set(event?.rsvpd ?? []))
         let string = participants.joined(separator: ", ")
         Helper.alert(on: vc, "Participants", string)
     }
