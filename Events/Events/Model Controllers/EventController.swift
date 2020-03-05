@@ -160,7 +160,7 @@ class EventController {
     }
     
     func fetchAllEvents(completion: @escaping (Result<[Event], NetworkError>) -> Void) {
-        apiController.fetchEvents { (error) in
+        apiController.fetchAllEvents { (error) in
             if let error = error {
                 NSLog("Error fetching events from server: \(error)")
             }
