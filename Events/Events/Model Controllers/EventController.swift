@@ -159,6 +159,26 @@ class EventController {
         }
     }
     
+    func fetchAllEvents(completion: @escaping (Result<[Event], NetworkError>) -> Void) {
+        apiController.fetchEvents { (error) in
+            if let error = error {
+                NSLog("Error fetching events from server: \(error)")
+            }
+            
+            DispatchQueue.main.async {
+                let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+                do {
+                    let events = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+                    completion(.success(events))
+                } catch {
+                    NSLog("Error fetching events: \(error)")
+                    completion(.failure(.otherError))
+                }
+            }
+            
+        }
+    }
+    
     func rsvpToEvent(event: Event, completion: @escaping (Error?) -> Void = { _ in }) {
         guard let id = event.identifier else {
             NSLog("No id for event trying to rsvp to")

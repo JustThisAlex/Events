@@ -419,6 +419,42 @@ class ApiController {
  
     }
     
+    func fetchAllEvents(completion: @escaping CompletionHandler = { _ in }) {
+        let eventsURL = baseURL.appendingPathComponent("api/guest")
+        
+        var request = URLRequest(url: eventsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error fetching events from server: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from server")
+                completion(NSError(domain: "bad data", code: 1, userInfo: nil))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let eventRepresentations = try decoder.decode([EventRepresentation].self, from: data)
+                try self.updateEvents(with: eventRepresentations)
+                completion(nil)
+            } catch {
+                NSLog("Error decoding events from server: \(error)")
+                completion(error)
+                return
+            }
+            
+        }.resume()
+        
+    }
+    
     func rsvp(eventId: String, userId: String, completion: @escaping (Error?) -> Void) {
         
         let requestURL = baseURL.appendingPathComponent("api/rest/events/attend").appendingPathComponent(eventId)
