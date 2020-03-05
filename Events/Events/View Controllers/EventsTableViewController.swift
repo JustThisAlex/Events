@@ -26,8 +26,6 @@ class EventsTableViewController: UITableViewController {
             loadEvents(index: index)
         } else {
             
-            
-            
         }
     }
     
