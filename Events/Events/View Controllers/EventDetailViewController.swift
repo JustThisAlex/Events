@@ -7,8 +7,8 @@
 
 import UIKit
 
-class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+class EventDetailViewController: UIViewController, UITextFieldDelegate,
+UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: - IBOutlets
     // FORM
     @IBOutlet weak var eventImageView: CustomImage!
@@ -25,24 +25,19 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     @IBOutlet weak var fromTime: StylizedTextField!
     @IBOutlet weak var toTime: StylizedTextField!
     @IBOutlet weak var urlField: StylizedTextField!
-    
     // BUTTONS
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var deleteButton: CustomButton!
-    
     // MARK: - Properies
     var event: Event?
     var eventController = EventController.shared
     let imagePC = UIImagePickerController()
-    
     var creating = true
     var currentlyEditing = false
-    
     var pickedFromDate: String?
     var pickedToDate: String?
     var pickedLocation: Location? { didSet { addressField.text = pickedLocation?.street ?? "" } }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +46,8 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         urlField.delegate = self
         imagePC.delegate = self
         addressField.isEnabled = false
-        
         fromTime.setInputViewDatePicker(target: self, selector: #selector(fromPicked))
         toTime.setInputViewDatePicker(target: self, selector: #selector(toPicked))
-        
         NotificationCenter.default.addObserver(self, selector: #selector(setLocation),
                                                name: NSNotification.Name(rawValue: "location"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
@@ -73,19 +66,15 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             //            if let image = event.image { imageView.image = UIImage(data: image) }
             creating = false
         }
-        
         currentlyEditing = false
         eventImageButton.isHidden = true
-        if creating { createMode() }
-        else { viewMode() }
+        if creating { createMode() } else { viewMode() }
     }
-    
     // MARK: - Modes
     func createMode() {
         editMode()
         deleteButton.isHidden = true
     }
-    
     func editMode() {
         //check for rights before entering
         editButton.isEnabled = false
@@ -94,7 +83,6 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         eventImageButton.isHidden = false
         deleteButton.isHidden = false
     }
-    
     func viewMode() {
         editButton.isEnabled = true
         editButton.tintColor = .systemBlue
@@ -102,58 +90,55 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         eventImageButton.isHidden = true
         deleteButton.isHidden = true
     }
-    
     // MARK: - IBActions
     @IBAction func edit(_ sender: Any) {
         guard event?.eventCreator == KeychainSwift.shared.get("userID") else { return }
         currentlyEditing = true
         editMode()
     }
-    
-    
     @IBAction func deletePressed(_ sender: Any) {
         if let event = event {
             eventController.delete(event: event)
             navigationController?.popViewController(animated: true)
         }
     }
-    
     @IBAction func imageButton(_ sender: Any) {
         imagePC.allowsEditing = true
-        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default , handler: { (sction: UIAlertAction) in
+        let actionSheet = UIAlertController(title: "Photo Source",
+                                            message: "Choose a source", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_: UIAlertAction) in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 self.imagePC.sourceType = .camera
-                self.present(self.imagePC, animated: true, completion: nil) }
-            else { print("Camera not available") } }))
-        actionSheet.addAction(UIAlertAction(title: "Photo Libary", style: .default , handler: { (sction: UIAlertAction) in
+                self.present(self.imagePC, animated: true, completion: nil) } else {
+                print("Camera not available") } }))
+        actionSheet.addAction(UIAlertAction(title: "Photo Libary", style: .default, handler: { (_: UIAlertAction) in
             self.imagePC.sourceType = .photoLibrary
             self.present(self.imagePC, animated: true, completion: nil) }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true)
     }
-    
     @IBAction func saveButton(_ sender: Any) {
         save()
     }
-    
     // MARK: - ImagePickerController
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         eventImageView.image = image
         dismiss(animated: true, completion: nil)
         eventImageButton.isHidden = true
     }
-    
     // MARK: - Helper Methods
     private func save() {
         guard let title = titleField.text,
             let address = addressField.text,
             let description = descriptionField.text else { return }
-        guard !title.isEmpty else { titleSeperator.backgroundColor = .systemRed; titleLabel.textColor = .systemRed; return }
-        guard !address.isEmpty else { addressSeperator.backgroundColor = .systemRed; addressLabel.textColor = .systemRed; return }
-        guard !description.isEmpty else { descriptionSeperator.backgroundColor = .systemRed; descriptionLabel.textColor = .systemRed; return }
+        guard !title.isEmpty else { titleSeperator.backgroundColor =
+            .systemRed; titleLabel.textColor = .systemRed; return }
+        guard !address.isEmpty else { addressSeperator.backgroundColor =
+            .systemRed; addressLabel.textColor = .systemRed; return }
+        guard !description.isEmpty else { descriptionSeperator.backgroundColor =
+            .systemRed; descriptionLabel.textColor = .systemRed; return }
         currentlyEditing = false
         viewMode()
         if creating {
@@ -165,7 +150,8 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
                                         eventStart: pickedFromDate ?? ".",
                                         eventEnd: pickedToDate ?? ".",
                                         externalLink: urlField.text ?? "",
-                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty ? "." : KeychainSwift.shared.get("userID")!,
+                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty
+                                            ? "." : KeychainSwift.shared.get("userID")!,
                                         city: pickedLocation.city ?? ".",
                                         country: pickedLocation.country ?? ".")
             navigationController?.popViewController(animated: true)
@@ -183,14 +169,13 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             eventController.updateEvent(event: event)
         }
     }
-    
     @objc func keyboardWillShow(notification: NSNotification) {
         if titleField.isFirstResponder || descriptionField.isFirstResponder { return }
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey]
+            as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 { self.view.frame.origin.y -= keyboardSize.height }
         }
     }
-    
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 { self.view.frame.origin.y = 0 }
     }
@@ -207,7 +192,6 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         }
         textfield.resignFirstResponder()
     }
-    
     private func formatDate(_ date: Date) -> String {
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = .short
@@ -215,29 +199,24 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         dateformatter.doesRelativeDateFormatting = true
         return dateformatter.string(from: date)
     }
-    
     @objc func setLocation(_ notification: NSNotification) {
         pickedLocation = notification.userInfo?["loc"] as? Location
     }
-    
     // MARK: - TextFieldDelegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if currentlyEditing || creating {
             return true
         } else { return false }
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? MapsViewController {
             destination.isSelecting = true
         }
     }
-    
 }
 
 extension UITextField {
@@ -246,7 +225,6 @@ extension UITextField {
         let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))
         datePicker.datePickerMode = .dateAndTime
         self.inputView = datePicker
-        
         let toolbar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: screenWidth, height: 44.0))
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: #selector(tapCancel))
@@ -254,9 +232,7 @@ extension UITextField {
         toolbar.setItems([cancel, flexible, barButton], animated: false)
         self.inputAccessoryView = toolbar
     }
-    
     @objc func tapCancel() {
         self.resignFirstResponder()
     }
-    
 }

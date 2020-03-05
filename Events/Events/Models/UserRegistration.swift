@@ -9,10 +9,8 @@
 import Foundation
 
 struct UserRegistration: Codable {
-    let id: String
-    
+    let identifier: String
     enum CodingKeys: String, CodingKey {
-        case id = "_id"
+        case identifier = "_id"
     }
-    
 }

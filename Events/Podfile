@@ -7,4 +7,5 @@ target 'Events' do
 
   # Pods for Events
   pod 'GoogleMaps'
+  pod 'SwiftLint'
 end

@@ -15,25 +15,25 @@ class EventsTableViewController: UITableViewController {
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.segmentChanged(_:)), name: NSNotification.Name("SegmentChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.segmentChanged(_:)),
+                                               name: NSNotification.Name("SegmentChanged"), object: nil)
         loadEvents(index: 0)
     }
-    
     @objc func segmentChanged(_ notification: Notification) {
         guard let index = notification.userInfo?[1] as? Int else { return }
         self.index = index
         if index < 2 {
             loadEvents(index: index)
         } else {
-            
+
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadEvents(index: 0)
     }
-    
+
     @IBAction func filterAction(_ sender: Any) {
         let alert = UIAlertController(title: "Sort mode", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
@@ -51,18 +51,18 @@ class EventsTableViewController: UITableViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
+
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EventsTableViewCell
+        let cellTemp = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = cellTemp as? EventsTableViewCell else { return cellTemp }
         let event = events[indexPath.row]
         cell.event = event
-        cell.vc = self
+        cell.viewController = self
         cell.eventTitle.text = event.eventTitle
         cell.eventAddress.text = event.eventAddress
         cell.eventImageView.image = nil
@@ -75,22 +75,23 @@ class EventsTableViewController: UITableViewController {
         if cell.link.text?.isEmpty ?? true { cell.link.isHidden = true }
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cell = tableView.cellForRow(at: indexPath) as! EventsTableViewCell
+        guard let cell = tableView.cellForRow(at: indexPath) as? EventsTableViewCell else { return }
         cell.isExpanded.toggle()
         setExtendedState(for: cell)
         tableView.reloadData()
     }
-    
+
     private func setExtendedState(for cell: EventsTableViewCell) {
-        let items = [cell.calButton, cell.rsvpButton, cell.participantsButton, cell.link, cell.eventDescription, cell.endTime]
+        let items = [cell.calButton, cell.rsvpButton, cell.participantsButton,
+                     cell.link, cell.eventDescription, cell.endTime]
         for item in items {
             item?.isHidden = cell.isExpanded ? false : true
         }
     }
-    
+
     private func loadEvents(index: Int) {
         EventController.shared.fetchEvents { result in
             switch result {
@@ -102,19 +103,20 @@ class EventsTableViewController: UITableViewController {
                     if self.sortingMode == .alphabetical {
                         return first.eventTitle ?? "" < second.eventTitle ?? ""
                     } else {
-                        return self.date(from: first.eventStart ?? "") ?? Date() < self.date(from: second.eventStart ?? "") ?? Date()
+                        return self.date(from: first.eventStart ?? "") ?? Date() <
+                            self.date(from: second.eventStart ?? "") ?? Date()
                     }
                 })
                 self.tableView.reloadData()
             }
         }
     }
-    
+
     private func date(from string: String) -> Date? {
         let formatter = ISO8601DateFormatter()
         return formatter.date(from: string)
     }
-    
+
     private func relativeDateString(from date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -122,20 +124,20 @@ class EventsTableViewController: UITableViewController {
         formatter.doesRelativeDateFormatting = true
         return formatter.string(from: date)
     }
-    
+
     private func shortenDateString(_ string: String?) -> String {
         guard let date = date(from: string ?? "") else { return "" }
         return relativeDateString(from: date)
     }
-    
+
     private func isContained(for date: Date, in interval: DateInterval) -> Bool {
         interval.contains(date)
     }
-    
+
     private func stripTime(for date: Date) -> Date {
         Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Date()))!
     }
-    
+
     private func checkforDate(event: Event, index: Int) -> Event? {
         guard let date = date(from: event.eventStart ?? "") else { return nil }
         switch index {
@@ -150,10 +152,10 @@ class EventsTableViewController: UITableViewController {
             return nil
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSegue", let destination = segue.destination as? EventDetailViewController {
-            let sender = sender as! UIButton
+            guard let sender = sender as? UIButton else { return }
             let indexPath = Int(sender.accessibilityIdentifier ?? "")
             destination.event = events[indexPath ?? 0]
         }
@@ -161,14 +163,14 @@ class EventsTableViewController: UITableViewController {
 }
 
 class EventsTableViewCell: UITableViewCell {
-    
+
     //Basic
     @IBOutlet weak var eventImageView: CustomImage!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventAddress: UILabel!
     @IBOutlet weak var detailButton: UIButton!
-    
+
     //Extended
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
@@ -178,20 +180,20 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var calButton: CustomButton!
     var isExpanded = false
     var event: Event?
-    var vc: EventsTableViewController?
-    
+    var viewController: EventsTableViewController?
+
     @IBAction func rsvpTapped(_ sender: Any) {
-        guard let vc = vc, let event = event else { return }
+        guard let viewController = viewController, let event = event else { return }
         EventController().rsvpToEvent(event: event) { (_) in
-            vc.tableView.reloadData()
-            Helper.alert(on: vc, "We'll see you at: \(self.eventTitle.text ?? "")", "")
+            viewController.tableView.reloadData()
+            Helper.alert(on: viewController, "We'll see you at: \(self.eventTitle.text ?? "")", "")
         }
     }
     @IBAction func participantsTapped(_ sender: Any) {
-        guard let vc = vc else { return }
+        guard let viewController = viewController else { return }
         let participants = Array(Set(event?.rsvpd ?? []))
         let string = participants.joined(separator: ", ")
-        Helper.alert(on: vc, "Participants", string)
+        Helper.alert(on: viewController, "Participants", string)
     }
 }
 

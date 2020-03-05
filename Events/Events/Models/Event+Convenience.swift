@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 extension Event {
-    
     var eventRepresentation: EventRepresentation? {
         guard let eventStart = self.eventStart,
             let eventTitle = self.eventTitle,
@@ -21,15 +20,21 @@ extension Event {
             let city = self.eventCity,
             let country = self.eventCountry
             else {  return nil }
-        
-
-        return EventRepresentation(identifier: self.identifier, eventAddress: eventAddress, eventTitle: eventTitle, eventGeolocation: self.eventGeolocation, eventDescription: description, eventStart: eventStart, eventEnd: eventEnd, externalLink: self.externalLink, eventCreator: creator, eventCity: city, eventCountry: country, rsvpd: nil)
+        return EventRepresentation(identifier: self.identifier,
+                                   eventAddress: eventAddress,
+                                   eventTitle: eventTitle,
+                                   eventGeolocation: self.eventGeolocation,
+                                   eventDescription: description, eventStart: eventStart,
+                                   eventEnd: eventEnd, externalLink: self.externalLink,
+                                   eventCreator: creator, eventCity: city,
+                                   eventCountry: country, rsvpd: nil)
     }
-    
-    convenience init(title: String, address: String, location: String, description: String, start: String, end: String, externalLink: String?, identifier: String?, creator: String, city: String, country: String, photo: Data? = nil, rspvd: [String]? = nil, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-        
+    convenience init(title: String, address: String, location: String,
+                     description: String, start: String, end: String, externalLink: String?,
+                     identifier: String?, creator: String, city: String, country: String,
+                     photo: Data? = nil, rspvd: [String]? = nil,
+                     context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
-        
         self.identifier = identifier
         self.eventTitle = title
         self.eventAddress = address
@@ -43,16 +48,14 @@ extension Event {
         self.eventCountry = country
         self.photo = photo
         self.rsvpd = rspvd
-        
     }
-    
-    @discardableResult convenience init?(eventRepresentation: EventRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    @discardableResult convenience init?(eventRepresentation: EventRepresentation,
+                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
-        
-        guard let id = eventRepresentation.identifier else {
+        guard let identifier = eventRepresentation.identifier else {
            return nil
         }
-        self.identifier = id
+        self.identifier = identifier
         self.eventTitle = eventRepresentation.eventTitle
         self.eventAddress = eventRepresentation.eventAddress
         self.eventDescription = eventRepresentation.eventDescription
@@ -64,7 +67,5 @@ extension Event {
         self.eventCity = eventRepresentation.eventCity
         self.eventCountry = eventRepresentation.eventCountry
         self.rsvpd = eventRepresentation.rsvpd
-        
     }
-    
 }

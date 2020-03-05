@@ -50,11 +50,11 @@ import UIKit
     }
     @IBInspectable var cornerRadius: CGFloat = 10
     @IBInspectable var isPrimary: Bool = true
-    @IBInspectable var fontWeight: UIFont.Weight = .medium {
+    var fontWeight: UIFont.Weight = .medium {
         didSet { self.titleLabel?.font = .systemFont(ofSize: fontSize, weight: fontWeight) }
     }
     @IBInspectable var lightTextColor: Bool = true
-    @IBInspectable var color: UIColor? = .systemBlue { didSet { self.backgroundColor = isPrimary ? color : .white;
+    @IBInspectable var color: UIColor? = .systemBlue { didSet { self.backgroundColor = isPrimary ? color : .white
         self.setTitleColor(isPrimary ? (lightTextColor ? .white : .black) : color, for: .normal)}}
 }
 
@@ -91,25 +91,25 @@ import UIKit
         }
         selectButton(0)
     }
-    
     func selectButton(_ index: Int) {
-        for i in 0..<buttons.count {
-            if i == index {
-                selectedIndex = i
-                buttons[i].backgroundColor = .label
-                buttons[i].setTitleColor(.white, for: .normal)
+        for item in 0..<buttons.count {
+            if item == index {
+                selectedIndex = item
+                buttons[item].backgroundColor = .label
+                buttons[item].setTitleColor(.white, for: .normal)
             } else {
-                buttons[i].backgroundColor = .systemBackground
-                buttons[i].setTitleColor(.black, for: .normal)
+                buttons[item].backgroundColor = .systemBackground
+                buttons[item].setTitleColor(.black, for: .normal)
             }
         }
     }
-    
     @objc func buttonTapped(sender: UIButton) {
-        for (i, button) in buttons.enumerated() {
+        for (item, button) in buttons.enumerated() {
+            _ = ""
             if button == sender {
-                selectButton(i)
-                NotificationCenter.default.post(name: NSNotification.Name("SegmentChanged"), object: nil, userInfo: [1:i])
+                selectButton(item)
+                NotificationCenter.default.post(name: NSNotification.Name("SegmentChanged"),
+                                                object: nil, userInfo: [1: item])
             }
         }
     }

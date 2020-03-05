@@ -9,7 +9,7 @@
 import Foundation
 
 struct User: Codable {
-    let id: String?
+    let identifier: String?
     let email: String
     let username: String?
     let password: String
@@ -20,9 +20,11 @@ struct User: Codable {
     let businessName: String?
     let latitude: String?
     let longitude: String?
-    
-    init(id: String?, email: String, username: String?, password: String, streetAddress: String?, city: String?, zipcode: String?, businessName: String?, latitude: String?, longitude: String?, country: String?) {
-        self.id = id
+    init(identifier: String?, email: String, username: String?,
+         password: String, streetAddress: String?, city: String?,
+         zipcode: String?, businessName: String?, latitude: String?,
+         longitude: String?, country: String?) {
+        self.identifier = identifier
         self.email = email
         self.username = username
         self.password = password
@@ -34,9 +36,8 @@ struct User: Codable {
         self.longitude = longitude
         self.country = country
     }
-    
-    init(id: String, user: User) {
-        self.id = id
+    init(identifier: String, user: User) {
+        self.identifier = identifier
         self.email = user.email
         self.username = user.username
         self.password = user.password
@@ -48,9 +49,8 @@ struct User: Codable {
         self.longitude = user.longitude
         self.country = user.country
     }
-    
     enum CodingKeys: String, CodingKey {
-        case id = "_id"
+        case identifier = "_id"
         case email
         case username
         case password
@@ -62,5 +62,4 @@ struct User: Codable {
         case longitude
         case country
     }
-    
 }

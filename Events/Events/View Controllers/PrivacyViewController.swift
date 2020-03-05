@@ -11,7 +11,7 @@ import WebKit
 
 class PrivacyViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.load(URLRequest(url: URL(string: "https://eventsapp.carrd.co")!))

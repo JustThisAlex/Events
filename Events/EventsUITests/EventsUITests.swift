@@ -9,12 +9,10 @@
 import XCTest
 
 class EventsUITests: XCTestCase {
-    
     func testRegister() {
         let app = XCUIApplication()
         app.launch()
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-          (alert) -> Bool in
+        addUIInterruptionMonitor(withDescription: "System Dialog") {alert -> Bool in
           alert.buttons["Allow"].tap()
           return true
         }
@@ -35,17 +33,15 @@ class EventsUITests: XCTestCase {
         app.secureTextFields["password"].tap()
         app.secureTextFields["password"].typeText("test")
         app.buttons["Return"].tap()
-        app.buttons.containing(.staticText, identifier:"Sign Up").element.tap()
+        app.buttons.containing(.staticText, identifier: "Sign Up").element.tap()
         app.buttons["Start"].tap()
         app.tabBars.buttons["Settings"].tap()
         XCTAssert(app.staticTexts[randomMail].exists)
     }
-    
     func testLogin() {
         let app = XCUIApplication()
         app.launch()
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-          (alert) -> Bool in
+        addUIInterruptionMonitor(withDescription: "System Dialog") { alert -> Bool in
           alert.buttons["Allow"].tap()
           return true
         }
@@ -61,12 +57,12 @@ class EventsUITests: XCTestCase {
         app.buttons["Return"].tap()
         app.secureTextFields["password"].tap()
         app.secureTextFields["password"].typeText("test")
-        app.buttons.containing(.staticText, identifier:"Login").element.tap()
+        app.buttons.containing(.staticText, identifier: "Login").element.tap()
         app.buttons["Start"].tap()
         app.tabBars.buttons["Settings"].tap()
         XCTAssert(app.staticTexts["test"].exists)
     }
-    
+
     func testTempChange() {
         let app = XCUIApplication()
         app.launch()
@@ -77,7 +73,7 @@ class EventsUITests: XCTestCase {
         tabBarsQuery.buttons["End"].tap()
         XCTAssertFalse(app.staticTexts.element(boundBy: 1) == temp)
     }
-    
+
     func testTabbar() {
         let app = XCUIApplication()
         app.launch()
@@ -85,7 +81,7 @@ class EventsUITests: XCTestCase {
         XCUIApplication().tabBars.buttons["Events"].tap()
         XCTAssertFalse(app.staticTexts.element(boundBy: 0) == first)
     }
-    
+
     func testLogout() {
         let app = XCUIApplication()
         app.launch()
@@ -94,7 +90,7 @@ class EventsUITests: XCTestCase {
         app.buttons["Log out"].tap()
         sleep(1)
         XCTAssert(app.buttons["Sign In"].exists)
-        
+
     }
 
 }
