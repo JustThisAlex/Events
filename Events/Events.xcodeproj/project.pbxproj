@@ -34,6 +34,9 @@
 		FAAE07B0240EC609000B0BC1 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE07AF240EC609000B0BC1 /* EventDetailViewController.swift */; };
 		FACDBB8924114DE300FBD963 /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBB8824114DE300FBD963 /* UserDataViewController.swift */; };
 		FACDBB8B24114ED600FBD963 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBB8A24114ED600FBD963 /* Helper.swift */; };
+		FACDBB962411826E00FBD963 /* EventsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBB952411826E00FBD963 /* EventsUITests.swift */; };
+		FACDBBA42411827C00FBD963 /* EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBBA32411827C00FBD963 /* EventsTests.swift */; };
+		FACDBBAC24118C7500FBD963 /* HelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBBAB24118C7500FBD963 /* HelperTest.swift */; };
 		FADA3BB32409E3F100E0DB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */; };
 		FADA3BB52409E3F100E0DB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */; };
 		FADA3BB72409E3F100E0DB2D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA3BB62409E3F100E0DB2D /* SettingsViewController.swift */; };
@@ -41,6 +44,23 @@
 		FADA3BBC2409E3F300E0DB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */; };
 		FADA3BBF2409E3F300E0DB2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBD2409E3F300E0DB2D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FACDBB982411826E00FBD963 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FADA3BA72409E3F100E0DB2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FADA3BAE2409E3F100E0DB2D;
+			remoteInfo = Events;
+		};
+		FACDBBA62411827C00FBD963 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FADA3BA72409E3F100E0DB2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FADA3BAE2409E3F100E0DB2D;
+			remoteInfo = Events;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1C604D5A7CF843EF745745F4 /* Pods-Events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.debug.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.debug.xcconfig"; sourceTree = "<group>"; };
@@ -75,6 +95,13 @@
 		FAAE07AF240EC609000B0BC1 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		FACDBB8824114DE300FBD963 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 		FACDBB8A24114ED600FBD963 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		FACDBB932411826E00FBD963 /* EventsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FACDBB952411826E00FBD963 /* EventsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsUITests.swift; sourceTree = "<group>"; };
+		FACDBB972411826E00FBD963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FACDBBA12411827C00FBD963 /* EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FACDBBA32411827C00FBD963 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
+		FACDBBA52411827C00FBD963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FACDBBAB24118C7500FBD963 /* HelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTest.swift; sourceTree = "<group>"; };
 		FADA3BAF2409E3F100E0DB2D /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +113,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FACDBB902411826E00FBD963 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FACDBB9E2411827C00FBD963 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FADA3BAC2409E3F100E0DB2D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,10 +173,31 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		FACDBB942411826E00FBD963 /* EventsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FACDBB952411826E00FBD963 /* EventsUITests.swift */,
+				FACDBB972411826E00FBD963 /* Info.plist */,
+			);
+			path = EventsUITests;
+			sourceTree = "<group>";
+		};
+		FACDBBA22411827C00FBD963 /* EventsTests */ = {
+			isa = PBXGroup;
+			children = (
+				FACDBBA32411827C00FBD963 /* EventsTests.swift */,
+				FACDBBAB24118C7500FBD963 /* HelperTest.swift */,
+				FACDBBA52411827C00FBD963 /* Info.plist */,
+			);
+			path = EventsTests;
+			sourceTree = "<group>";
+		};
 		FADA3BA62409E3F100E0DB2D = {
 			isa = PBXGroup;
 			children = (
 				FADA3BB12409E3F100E0DB2D /* Events */,
+				FACDBB942411826E00FBD963 /* EventsUITests */,
+				FACDBBA22411827C00FBD963 /* EventsTests */,
 				FADA3BB02409E3F100E0DB2D /* Products */,
 				E0923ACFF81D51CFE168C905 /* Pods */,
 				CF3DDED483C34C26A587E205 /* Frameworks */,
@@ -147,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				FADA3BAF2409E3F100E0DB2D /* Events.app */,
+				FACDBB932411826E00FBD963 /* EventsUITests.xctest */,
+				FACDBBA12411827C00FBD963 /* EventsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,6 +304,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FACDBB922411826E00FBD963 /* EventsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FACDBB9A2411826E00FBD963 /* Build configuration list for PBXNativeTarget "EventsUITests" */;
+			buildPhases = (
+				FACDBB8F2411826E00FBD963 /* Sources */,
+				FACDBB902411826E00FBD963 /* Frameworks */,
+				FACDBB912411826E00FBD963 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FACDBB992411826E00FBD963 /* PBXTargetDependency */,
+			);
+			name = EventsUITests;
+			productName = EventsUITests;
+			productReference = FACDBB932411826E00FBD963 /* EventsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		FACDBBA02411827C00FBD963 /* EventsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FACDBBA82411827C00FBD963 /* Build configuration list for PBXNativeTarget "EventsTests" */;
+			buildPhases = (
+				FACDBB9D2411827C00FBD963 /* Sources */,
+				FACDBB9E2411827C00FBD963 /* Frameworks */,
+				FACDBB9F2411827C00FBD963 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FACDBBA72411827C00FBD963 /* PBXTargetDependency */,
+			);
+			name = EventsTests;
+			productName = EventsTests;
+			productReference = FACDBBA12411827C00FBD963 /* EventsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FADA3BAE2409E3F100E0DB2D /* Events */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADA3BC32409E3F300E0DB2D /* Build configuration list for PBXNativeTarget "Events" */;
@@ -273,6 +373,14 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Alexander Supe";
 				TargetAttributes = {
+					FACDBB922411826E00FBD963 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = FADA3BAE2409E3F100E0DB2D;
+					};
+					FACDBBA02411827C00FBD963 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = FADA3BAE2409E3F100E0DB2D;
+					};
 					FADA3BAE2409E3F100E0DB2D = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -296,11 +404,27 @@
 			projectRoot = "";
 			targets = (
 				FADA3BAE2409E3F100E0DB2D /* Events */,
+				FACDBB922411826E00FBD963 /* EventsUITests */,
+				FACDBBA02411827C00FBD963 /* EventsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FACDBB912411826E00FBD963 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FACDBB9F2411827C00FBD963 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FADA3BAD2409E3F100E0DB2D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -358,6 +482,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FACDBB8F2411826E00FBD963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FACDBB962411826E00FBD963 /* EventsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FACDBB9D2411827C00FBD963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FACDBBA42411827C00FBD963 /* EventsTests.swift in Sources */,
+				FACDBBAC24118C7500FBD963 /* HelperTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FADA3BAB2409E3F100E0DB2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,6 +533,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FACDBB992411826E00FBD963 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FADA3BAE2409E3F100E0DB2D /* Events */;
+			targetProxy = FACDBB982411826E00FBD963 /* PBXContainerItemProxy */;
+		};
+		FACDBBA72411827C00FBD963 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FADA3BAE2409E3F100E0DB2D /* Events */;
+			targetProxy = FACDBBA62411827C00FBD963 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		FADA3BB82409E3F100E0DB2D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -412,6 +566,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FACDBB9B2411826E00FBD963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3345P6L7S;
+				INFOPLIST_FILE = EventsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alex.EventsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Events;
+			};
+			name = Debug;
+		};
+		FACDBB9C2411826E00FBD963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3345P6L7S;
+				INFOPLIST_FILE = EventsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alex.EventsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Events;
+			};
+			name = Release;
+		};
+		FACDBBA92411827C00FBD963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3345P6L7S;
+				INFOPLIST_FILE = EventsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alex.EventsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Events.app/Events";
+			};
+			name = Debug;
+		};
+		FACDBBAA2411827C00FBD963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3345P6L7S;
+				INFOPLIST_FILE = EventsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alex.EventsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Events.app/Events";
+			};
+			name = Release;
+		};
 		FADA3BC12409E3F300E0DB2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -532,13 +768,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W3345P6L7S;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = Events/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alex.Events;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.events;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -551,13 +787,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W3345P6L7S;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = Events/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alex.Events;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.events;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -567,6 +803,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FACDBB9A2411826E00FBD963 /* Build configuration list for PBXNativeTarget "EventsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FACDBB9B2411826E00FBD963 /* Debug */,
+				FACDBB9C2411826E00FBD963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FACDBBA82411827C00FBD963 /* Build configuration list for PBXNativeTarget "EventsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FACDBBA92411827C00FBD963 /* Debug */,
+				FACDBBAA2411827C00FBD963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FADA3BAA2409E3F100E0DB2D /* Build configuration list for PBXProject "Events" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
