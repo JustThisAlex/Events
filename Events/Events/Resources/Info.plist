@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UIUserInterfaceStyle</key>
-	<string>light</string>
+	<string>Light</string>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera to add a photo to the event</string>
 	<key>CFBundleDevelopmentRegion</key>

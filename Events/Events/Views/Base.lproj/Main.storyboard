@@ -435,6 +435,7 @@ Title</string>
                         <outlet property="userImage" destination="Kgt-u3-c5U" id="j7p-U1-oaS"/>
                         <outlet property="usernameLabel" destination="E8C-7j-rxX" id="Sgb-GB-3Ep"/>
                         <segue destination="i6E-HM-2Nw" kind="presentation" identifier="LoginSegue" animates="NO" modalPresentationStyle="fullScreen" id="uKT-QK-PuV"/>
+                        <segue destination="J0C-Xd-PAy" kind="show" identifier="ManageUser" id="Irb-hH-6cJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obZ-QI-NIM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -455,7 +456,7 @@ Title</string>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="Uhf-Nb-xe9">
                     <connections>
-                        <segue destination="J0C-Xd-PAy" kind="show" id="VMH-vG-bIS"/>
+                        <action selector="manageUser:" destination="yyu-yS-2ih" id="EYp-vj-2rD"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -538,7 +539,7 @@ Title</string>
                                     <action selector="saveChanges:" destination="J0C-Xd-PAy" eventType="touchUpInside" id="lps-zP-N6V"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7j-Nq-TNo" customClass="CustomButton" customModule="Events" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7j-Nq-TNo" customClass="CustomButton" customModule="Events" customModuleProvider="target">
                                 <rect key="frame" x="40" y="581" width="295" height="50"/>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

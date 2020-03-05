@@ -21,12 +21,13 @@ class UserDataViewController: UIViewController {
     }
     
     @IBAction func logOut(_ sender: Any) {
-        Helper.logOut()
+        Helper.logout()
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func saveChanges(_ sender: Any) {
-        //TODO: UpdateUsers
-        navigationController?.popViewController(animated: true)
+        Helper.updateUser(newUsername: usernameField.text, newEmail: emailField.text, newPassword: passwordField.text) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }

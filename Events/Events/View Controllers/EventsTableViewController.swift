@@ -62,6 +62,7 @@ class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EventsTableViewCell
         let event = events[indexPath.row]
         cell.event = event
+        cell.vc = self
         cell.eventTitle.text = event.eventTitle
         cell.eventAddress.text = event.eventAddress
         cell.eventImageView.image = nil
@@ -177,12 +178,19 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var calButton: CustomButton!
     var isExpanded = false
     var event: Event?
+    var vc: EventsTableViewController?
     
     @IBAction func rsvpTapped(_ sender: Any) {
-        
+        guard let vc = vc else { return }
+        //call rsvp
+        vc.tableView.reloadData()
+        Helper.alert(on: vc, "We'll see you at: \(eventTitle.text ?? "")", "")
     }
     @IBAction func participantsTapped(_ sender: Any) {
-        
+        guard let vc = vc else { return }
+        let participants = ["Mike", "Joe"] //get participants
+        let string = participants.joined(separator: ", ")
+        Helper.alert(on: vc, "Participants", string)
     }
 }
 
