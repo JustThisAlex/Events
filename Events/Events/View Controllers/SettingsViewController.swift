@@ -5,6 +5,7 @@
 //  Created by Alexander Supe on 29.02.20.
 //  Copyright © 2020 Alexander Supe. All rights reserved.
 //
+
 import UIKit
 
 class SettingsViewController: UIViewController {
@@ -14,10 +15,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var temp: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     
-    let auth = MainViewController.authenticated
+    var auth: Bool { Helper.authenticated }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         usernameLabel.text = KeychainSwift.shared.get("username") ?? ""
         emailLabel.text = KeychainSwift.shared.get("email") ?? ""
         if let imageData = KeychainSwift.shared.getData("userImage") {
@@ -29,7 +30,10 @@ class SettingsViewController: UIViewController {
         signInButton.isUserInteractionEnabled = auth ? false : true
         usernameLabel.isHidden = auth ? false : true
         emailLabel.isHidden = auth ? false : true
-        
+    }
+    
+    @IBAction func manageUser(_ sender: Any) {
+        if auth { performSegue(withIdentifier: "ManageUser", sender: nil) }
     }
     
     @IBAction func signIn(_ sender: Any) {

@@ -203,7 +203,7 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="ckLogin:" destination="pfJ-r3-DWd" eventType="touchUpInside" id="EmT-du-NRw"/>
+                                <action selector="withoutLogin:" destination="pfJ-r3-DWd" eventType="touchUpInside" id="EmT-du-NRw"/>
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qph-o8-JpT">

@@ -52,16 +52,17 @@ class EventsTableViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EventsTableViewCell
         let event = events[indexPath.row]
         cell.event = event
+        cell.vc = self
         cell.eventTitle.text = event.eventTitle
         cell.eventAddress.text = event.eventAddress
         cell.eventImageView.image = nil
@@ -177,12 +178,20 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var calButton: CustomButton!
     var isExpanded = false
     var event: Event?
+    var vc: EventsTableViewController?
     
     @IBAction func rsvpTapped(_ sender: Any) {
-        
+        guard let vc = vc, let event = event else { return }
+        EventController().rsvpToEvent(event: event) { (_) in
+            vc.tableView.reloadData()
+            Helper.alert(on: vc, "We'll see you at: \(self.eventTitle.text ?? "")", "")
+        }
     }
     @IBAction func participantsTapped(_ sender: Any) {
-        
+        guard let vc = vc else { return }
+        let participants = event?.rsvpd ?? []
+        let string = participants.joined(separator: ", ")
+        Helper.alert(on: vc, "Participants", string)
     }
 }
 
