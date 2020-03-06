@@ -11,17 +11,21 @@ import UIKit
 class EventsTableViewController: UITableViewController {
     var sortingMode: SortingMode = .alphabetical
     var events = [Event]()
-    var index = 0
+    var index: Int {
+        segment.selectedIndex
+    }
+    @IBOutlet weak var segment: CustomSegmentedControl!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var addEventButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.segmentChanged(_:)), name: NSNotification.Name("SegmentChanged"), object: nil)
-        loadEvents(index: 0)
+        loadEvents(index: index)
     }
     
     @objc func segmentChanged(_ notification: Notification) {
-        guard let index = notification.userInfo?[1] as? Int else { return }
-        self.index = index
+//        guard let index = notification.userInfo?[1] as? Int else { return }
+//        self.index = index
         if index < 2 {
             loadEvents(index: index)
         } else {
@@ -31,7 +35,14 @@ class EventsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadEvents(index: 0)
+        if Helper.authenticated {
+            addEventButton.tintColor = .black
+            addEventButton.isEnabled = true
+        } else {
+            addEventButton.tintColor = .clear
+            addEventButton.isEnabled = false
+        }
+        loadEvents(index: index)
     }
     
     @IBAction func filterAction(_ sender: Any) {
@@ -65,7 +76,19 @@ class EventsTableViewController: UITableViewController {
         cell.vc = self
         cell.eventTitle.text = event.eventTitle
         cell.eventAddress.text = event.eventAddress
-        cell.eventImageView.image = nil
+        if let image = event.photo {
+            cell.eventImageView.image = UIImage(data: image)
+            cell.imageWidthConstraint.constant = 80
+        } else {
+            cell.imageWidthConstraint.constant = 0
+        }
+        if Helper.authenticated {
+            cell.rsvpButton.isEnabled = true
+        } else {
+            cell.rsvpButton.isEnabled = false
+            cell.rsvpButton.backgroundColor = .clear
+            cell.rsvpButton.setTitleColor(.clear, for: .normal)
+        }
         setExtendedState(for: cell)
         cell.detailButton.accessibilityIdentifier = "\(indexPath.row)"
         cell.eventTime.text = shortenDateString(event.eventStart)
@@ -143,7 +166,7 @@ class EventsTableViewController: UITableViewController {
             let interval = DateInterval(start: stripTime(for: Date()), duration: 86_400)
             return isContained(for: date, in: interval) ? event : nil
         case 1:
-            let interval = DateInterval(start: Date().advanced(by: 86_400), duration: 86_400)
+            let interval = DateInterval(start: stripTime(for: Date()).advanced(by: 86_400), duration: 86_400)
             return isContained(for: date, in: interval) ? event : nil
         default:
             print("custom range must be implemented")
@@ -168,6 +191,7 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventAddress: UILabel!
     @IBOutlet weak var detailButton: UIButton!
+    @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
     
     //Extended
     @IBOutlet weak var endTime: UILabel!
@@ -176,6 +200,7 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var rsvpButton: CustomButton!
     @IBOutlet weak var participantsButton: CustomButton!
     @IBOutlet weak var calButton: CustomButton!
+    
     var isExpanded = false
     var event: Event?
     var vc: EventsTableViewController?
@@ -190,7 +215,7 @@ class EventsTableViewCell: UITableViewCell {
     @IBAction func participantsTapped(_ sender: Any) {
         guard let vc = vc else { return }
         let participants = event?.rsvpd ?? []
-        let string = participants.joined(separator: ", ")
+        let string = Array(Set(participants)).joined(separator: ", ")
         Helper.alert(on: vc, "Participants", string)
     }
 }

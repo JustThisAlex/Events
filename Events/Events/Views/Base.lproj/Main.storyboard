@@ -73,7 +73,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MgX-gE-1go">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MgX-gE-1go">
                                                     <rect key="frame" x="112" y="26" width="169" height="35"/>
                                                     <string key="text">Title
 Title</string>
@@ -180,8 +180,10 @@ Title</string>
                                                 <constraint firstAttribute="trailing" secondItem="Lkz-UE-hkI" secondAttribute="trailing" constant="16" id="6Mz-1D-NGy"/>
                                                 <constraint firstItem="Lkz-UE-hkI" firstAttribute="leading" secondItem="ztz-Tp-bQc" secondAttribute="leading" constant="16" id="8iH-xl-nh7"/>
                                                 <constraint firstItem="2Rd-dL-Wih" firstAttribute="top" secondItem="MgX-gE-1go" secondAttribute="bottom" constant="8" id="GaD-aa-9pc"/>
+                                                <constraint firstItem="2Rd-dL-Wih" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ztz-Tp-bQc" secondAttribute="leading" constant="16" id="H2J-xq-vIq"/>
                                                 <constraint firstItem="bdc-5K-aWp" firstAttribute="top" secondItem="2Rd-dL-Wih" secondAttribute="bottom" constant="4" id="KMk-q3-awM"/>
                                                 <constraint firstItem="rql-8C-zYI" firstAttribute="top" secondItem="Lkz-UE-hkI" secondAttribute="bottom" constant="12" id="Oen-es-e2r"/>
+                                                <constraint firstItem="MgX-gE-1go" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ztz-Tp-bQc" secondAttribute="leading" constant="16" id="Pfs-b9-pNF"/>
                                                 <constraint firstItem="Lkz-UE-hkI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2Rd-dL-Wih" secondAttribute="bottom" constant="16" id="Uxu-jP-1Jy"/>
                                                 <constraint firstAttribute="trailing" secondItem="2Rd-dL-Wih" secondAttribute="trailing" constant="16" id="V9K-hG-s7d"/>
                                                 <constraint firstItem="2Rd-dL-Wih" firstAttribute="leading" secondItem="VQx-2g-gOe" secondAttribute="trailing" constant="16" id="VQ3-Te-1am"/>
@@ -212,9 +214,10 @@ Title</string>
                                     <outlet property="eventImageView" destination="VQx-2g-gOe" id="yHv-7Q-xkT"/>
                                     <outlet property="eventTime" destination="2Rd-dL-Wih" id="jJr-Jn-b5p"/>
                                     <outlet property="eventTitle" destination="MgX-gE-1go" id="WBd-jM-NDt"/>
+                                    <outlet property="imageWidthConstraint" destination="mPx-MY-10n" id="fQM-vu-EfY"/>
                                     <outlet property="link" destination="ZRP-3V-xQI" id="lUd-wb-4gL"/>
                                     <outlet property="participantsButton" destination="xxt-Nq-odN" id="mhN-E4-Kb5"/>
-                                    <outlet property="rsvpButton" destination="JoK-6q-xDK" id="5cJ-9G-GCY"/>
+                                    <outlet property="rsvpButton" destination="JoK-6q-xDK" id="99G-3e-bjZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -225,27 +228,22 @@ Title</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" largeTitleDisplayMode="always" id="eK6-2a-iOn">
-                        <barButtonItem key="leftBarButtonItem" title="Test Login" id="z3a-1g-jfy">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.horizontal.3.decrease.circle" catalog="system" id="Bi5-KE-y1K">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
-                                <segue destination="i6E-HM-2Nw" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="etG-f9-3dl"/>
+                                <action selector="filterAction:" destination="74r-ht-6Cj" id="So4-UF-ZjD"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="XIC-mT-UuI">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="7qh-tF-lsd" kind="show" identifier="AddSegue" id="760-yV-lZ5"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="line.horizontal.3.decrease.circle" catalog="system" id="Bi5-KE-y1K">
-                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <connections>
-                                    <action selector="filterAction:" destination="74r-ht-6Cj" id="So4-UF-ZjD"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="XIC-mT-UuI">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="7qh-tF-lsd" kind="show" identifier="AddSegue" id="760-yV-lZ5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addEventButton" destination="XIC-mT-UuI" id="yQK-WY-GUu"/>
+                        <outlet property="segment" destination="hBV-Ot-lCP" id="7YB-fg-rcv"/>
                         <outlet property="textField" destination="dCJ-j3-DlE" id="JMy-Q2-shd"/>
                     </connections>
                 </tableViewController>
@@ -651,7 +649,7 @@ Title</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvD-4i-Yqj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2252" y="129"/>
+            <point key="canvasLocation" x="2258" y="137"/>
         </scene>
         <!--Maps View Controller-->
         <scene sceneID="r8Z-j8-1n5">
@@ -944,6 +942,7 @@ Title</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="SLk-35-Nem">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -10121,6 +10120,9 @@ Licensed under the zlib license.
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="saveButton:" destination="7qh-tF-lsd" eventType="touchUpInside" id="hy1-Kz-8ad"/>
@@ -10453,6 +10455,7 @@ Licensed under the zlib license.
                                     <constraint firstItem="cJZ-A4-bb2" firstAttribute="top" secondItem="P4q-Xi-Cbv" secondAttribute="top" constant="10" id="CtF-2W-qaF"/>
                                     <constraint firstItem="P4q-Xi-Cbv" firstAttribute="leading" secondItem="yRk-PN-iyR" secondAttribute="leading" constant="16" id="GS4-Jz-EeU"/>
                                     <constraint firstItem="Hy7-pv-2gF" firstAttribute="leading" secondItem="yRk-PN-iyR" secondAttribute="leading" constant="16" id="HjP-e4-DYu"/>
+                                    <constraint firstItem="Kvs-YV-phK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yRk-PN-iyR" secondAttribute="leading" constant="16" id="Ld3-pQ-HHI"/>
                                     <constraint firstItem="cJZ-A4-bb2" firstAttribute="leading" secondItem="P4q-Xi-Cbv" secondAttribute="leading" constant="5" id="R5J-e9-jsP"/>
                                     <constraint firstItem="Kvs-YV-phK" firstAttribute="top" secondItem="yRk-PN-iyR" secondAttribute="top" constant="16" id="SVe-ei-zDM"/>
                                     <constraint firstAttribute="trailing" secondItem="Kvs-YV-phK" secondAttribute="trailing" constant="16" id="ZBa-YE-HMh"/>
@@ -10501,12 +10504,13 @@ Licensed under the zlib license.
                         <outlet property="titleSeperator" destination="GsZ-k4-ssJ" id="hfm-76-U7D"/>
                         <outlet property="toTime" destination="TOF-Ay-7Ni" id="RAe-fk-QUb"/>
                         <outlet property="urlField" destination="Pfs-wS-ukZ" id="s21-9M-bOM"/>
+                        <segue destination="5im-Cf-zev" kind="presentation" identifier="OpenMap" id="fw1-R9-reR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YTH-4a-lqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="stl-Xu-iYx">
                     <connections>
-                        <segue destination="5im-Cf-zev" kind="presentation" id="Gcf-Qk-5TV"/>
+                        <action selector="openMap:" destination="7qh-tF-lsd" id="85W-cY-EvF"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

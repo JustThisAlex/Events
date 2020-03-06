@@ -38,6 +38,9 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     var creating = true
     var currentlyEditing = false
+    var editingPermission: Bool {
+        (event?.eventCreator == KeychainSwift.shared.get("userID")) || creating
+    }
     
     var pickedFromDate: String?
     var pickedToDate: String?
@@ -51,9 +54,6 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         urlField.delegate = self
         imagePC.delegate = self
         addressField.isEnabled = false
-        
-        fromTime.setInputViewDatePicker(target: self, selector: #selector(fromPicked))
-        toTime.setInputViewDatePicker(target: self, selector: #selector(toPicked))
         
         NotificationCenter.default.addObserver(self, selector: #selector(setLocation),
                                                name: NSNotification.Name(rawValue: "location"), object: nil)
@@ -70,7 +70,9 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             fromTime.text = formatDate(startDate)
             toTime.text = formatDate(endDate)
             urlField.text = event.externalLink
-            //            if let image = event.image { imageView.image = UIImage(data: image) }
+            if let image = event.photo { eventImageView.image = UIImage(data: image) } else {
+                eventImageView.isHidden = true
+            }
             creating = false
         }
         
@@ -87,7 +89,10 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     func editMode() {
-        //check for rights before entering
+        fromTime.setInputViewDatePicker(target: self, selector: #selector(fromPicked))
+        toTime.setInputViewDatePicker(target: self, selector: #selector(toPicked))
+        fromTime.isUserInteractionEnabled = true
+        toTime.isUserInteractionEnabled = true
         editButton.isEnabled = false
         editButton.tintColor = .clear
         saveButton.isHidden = false
@@ -96,8 +101,15 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     func viewMode() {
-        editButton.isEnabled = true
-        editButton.tintColor = .systemBlue
+        if editingPermission {
+            editButton.isEnabled = true
+            editButton.tintColor = .black
+        } else {
+            editButton.isEnabled = false
+            editButton.tintColor = .clear
+        }
+        fromTime.isUserInteractionEnabled = false
+        toTime.isUserInteractionEnabled = false
         saveButton.isHidden = true
         eventImageButton.isHidden = true
         deleteButton.isHidden = true
@@ -105,7 +117,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     // MARK: - IBActions
     @IBAction func edit(_ sender: Any) {
-        guard event?.eventCreator == KeychainSwift.shared.get("userID") else { return }
+        guard editingPermission else { return }
         currentlyEditing = true
         editMode()
     }
@@ -115,6 +127,12 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         if let event = event {
             eventController.delete(event: event)
             navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @IBAction func openMap(_ sender: Any) {
+        if (editingPermission  && currentlyEditing) || creating {
+            performSegue(withIdentifier: "OpenMap", sender: nil)
         }
     }
     
