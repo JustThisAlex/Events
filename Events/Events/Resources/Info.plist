@@ -28,9 +28,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera to add a photo to the event</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We need your permission to use your current location to show you relevant information</string>
+	<string>We need your permission to use your current location to show you events near you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your permission to use your current location to show you relevant information</string>
+	<string>We need your permission to use your current location to show you events near you</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
