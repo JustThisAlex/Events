@@ -13,18 +13,17 @@ import SwiftyJSON
 class MainViewController: UIViewController {
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
-    var firstStart: Bool { KeychainSwift.shared.getBool("firstStart") ?? true }
-    let chain = KeychainSwift.shared
+    var firstStart: Bool { Helper.chain.getBool("firstStart") ?? true }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
         NotificationCenter.default.addObserver(self, selector: #selector(self.tempDidChange), name: NSNotification.Name("TempUpdated"), object: nil)
         if firstStart {
-            KeychainSwift.shared.set(false, forKey: "firstStart")
+            Helper.chain.set(false, forKey: "firstStart")
             performSegue(withIdentifier: "LoginSegue", sender: nil)
         } else {
             getWeather()
-            guard let email = chain.get("email"), let password = chain.get("password"), !email.isEmpty, !password.isEmpty else { return }
+            guard let email = Helper.chain.get("email"), let password = Helper.chain.get("password"), !email.isEmpty, !password.isEmpty else { return }
             Helper.login(email: email, password: password, vc: self, segue: false)
         }
     }
@@ -35,12 +34,12 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        title = KeychainSwift.shared.get("city")
+        title = Helper.chain.get("city")
     }
     
     func getWeather() {
-        var temp: String { if (KeychainSwift.shared.get("tempPref") ?? "") == "°C" { return "si" } else { return "us"} }
-        AF.request("https://api.darksky.net/forecast/\(Keys.weatherKey)/\(KeychainSwift.shared.get("latitude") ?? ""),\(KeychainSwift.shared.get("longitude") ?? "")?units=\(temp)").validate().responseJSON { response in
+        var temp: String { if (Helper.chain.get("tempPref") ?? "") == "°C" { return "si" } else { return "us"} }
+        AF.request("https://api.darksky.net/forecast/\(Keys.weatherKey)/\(Helper.chain.get("latitude") ?? ""),\(Helper.chain.get("longitude") ?? "")?units=\(temp)").validate().responseJSON { response in
             switch response.result {
             case .failure:
                 self.weatherLabel.text = ""

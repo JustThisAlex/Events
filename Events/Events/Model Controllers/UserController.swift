@@ -40,9 +40,9 @@ class UserController {
                     completion(error)
                     break
                 case .success(let user):
-                    KeychainSwift.shared.set(user.username ?? "", forKey: "username")
-                    KeychainSwift.shared.set(user.email, forKey: "email")
-                    KeychainSwift.shared.set(user.id ?? "", forKey: "userID")
+                    Helper.chain.set(user.username ?? "", forKey: "username")
+                    Helper.chain.set(user.email, forKey: "email")
+                    Helper.chain.set(user.id ?? "", forKey: "userID")
                     completion(nil)
                     break
             }

@@ -186,7 +186,7 @@ class EventController {
             return
         }
         
-        guard let userID = KeychainSwift.shared.get("userID") else {
+        guard let userID = Helper.chain.get("userID") else {
             NSLog("No id for user in keychain")
             completion(NSError(domain: "no id for user in keychain", code: 1, userInfo: nil))
             return
@@ -198,7 +198,7 @@ class EventController {
             }
             
             DispatchQueue.main.async {
-                let username = KeychainSwift.shared.get("username") ?? userID
+                let username = Helper.chain.get("username") ?? userID
                 event.rsvpd?.append(username)
                 do {
                     try CoreDataStack.shared.save()

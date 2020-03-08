@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 @IBDesignable class StylizedTextField: UITextField {
     required init?(coder: NSCoder) {
@@ -91,7 +92,7 @@ import UIKit
         }
         selectButton(0)
     }
-    
+
     func selectButton(_ index: Int) {
         for i in 0..<buttons.count {
             if i == index {
@@ -104,7 +105,7 @@ import UIKit
             }
         }
     }
-    
+
     @objc func buttonTapped(sender: UIButton) {
         for (i, button) in buttons.enumerated() {
             if button == sender {
@@ -146,6 +147,3 @@ import UIKit
     @IBInspectable var cornerRadius: CGFloat = 10 { didSet { self.layer.cornerRadius = self.cornerRadius } }
 }
 
-extension KeychainSwift {
-    static let shared = KeychainSwift()
-}

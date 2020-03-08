@@ -39,7 +39,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     var creating = true
     var currentlyEditing = false
     var editingPermission: Bool {
-        (event?.eventCreator == KeychainSwift.shared.get("userID")) || creating
+        (event?.eventCreator == Helper.chain.get("userID")) || creating
     }
     
     var pickedFromDate: String?
@@ -70,12 +70,12 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             fromTime.text = formatDate(startDate)
             toTime.text = formatDate(endDate)
             urlField.text = event.externalLink
+            Helper.setImage(for: event.externalLink, in: eventImageView)
             if let image = event.photo { eventImageView.image = UIImage(data: image) } else {
                 eventImageView.isHidden = true
             }
             creating = false
         }
-        
         currentlyEditing = false
         eventImageButton.isHidden = true
         if creating { createMode() }
@@ -159,9 +159,11 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     // MARK: - ImagePickerController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
-        eventImageView.image = image
         dismiss(animated: true, completion: nil)
         eventImageButton.isHidden = true
+        urlField.text = UUID().uuidString
+        Helper.saveImage(with: image.pngData(), for: urlField.text)
+        eventImageView.image = image
     }
     
     // MARK: - Helper Methods
@@ -183,7 +185,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
                                         eventStart: pickedFromDate ?? ".",
                                         eventEnd: pickedToDate ?? ".",
                                         externalLink: urlField.text ?? "",
-                                        creator: (KeychainSwift.shared.get("userID") ?? "").isEmpty ? "." : KeychainSwift.shared.get("userID")!,
+                                        creator: (Helper.chain.get("userID") ?? "").isEmpty ? "." : Helper.chain.get("userID")!,
                                         city: pickedLocation.city ?? ".",
                                         country: pickedLocation.country ?? ".")
             navigationController?.popViewController(animated: true)

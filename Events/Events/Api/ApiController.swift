@@ -149,10 +149,10 @@ class ApiController {
                 let decoder = JSONDecoder()
                 do {
                     let userLogin = try decoder.decode(AuthToken.self, from: data)
-                    KeychainSwift.shared.set(userLogin.token, forKey: "token")
-                    KeychainSwift.shared.set(userLogin.user.username ?? "", forKey: "username")
-                    KeychainSwift.shared.set(userLogin.user.email, forKey: "email")
-                    KeychainSwift.shared.set(userLogin.user.id ?? "", forKey: "userID")
+                    Helper.chain.set(userLogin.token, forKey: "token")
+                    Helper.chain.set(userLogin.user.username ?? "", forKey: "username")
+                    Helper.chain.set(userLogin.user.email, forKey: "email")
+                    Helper.chain.set(userLogin.user.id ?? "", forKey: "userID")
                     completion(.success(userLogin.token))
                     return
 
@@ -177,7 +177,7 @@ class ApiController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.put.rawValue
         request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
-        if let token = KeychainSwift.shared.get("token") {
+        if let token = Helper.chain.get("token") {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")
@@ -223,7 +223,7 @@ class ApiController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
-        if let token = KeychainSwift.shared.get("token") {
+        if let token = Helper.chain.get("token") {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")
@@ -289,7 +289,7 @@ class ApiController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.put.rawValue
         request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
-        if let token = KeychainSwift.shared.get("token") {
+        if let token = Helper.chain.get("token") {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")
@@ -345,7 +345,7 @@ class ApiController {
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
-        if let token = KeychainSwift.shared.get("token") {
+        if let token = Helper.chain.get("token") {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")
@@ -381,7 +381,7 @@ class ApiController {
         
         var request = URLRequest(url: eventsURL)
         request.httpMethod = HTTPMethod.get.rawValue
-        if let token = KeychainSwift.shared.get("token") {
+        if let token = Helper.chain.get("token") {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")
@@ -462,7 +462,7 @@ class ApiController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue(HTTPHeaderValue.json.rawValue, forHTTPHeaderField: HTTPHeaderKey.contentType.rawValue)
-        if let token = KeychainSwift.shared.get("token") {
+        if let token = Helper.chain.get("token") {
             request.addValue(token, forHTTPHeaderField: "Authorization")
         } else {
             NSLog("No token in keychain")

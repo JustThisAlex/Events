@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import KeychainSwift
+import Alamofire
+import SwiftyJSON
 
 struct Helper {
     
     // MARK: Properties
-    static let chain = KeychainSwift.shared
+    static let chain = KeychainSwift()
     
     static var username: String? { chain.get("username") }
     static var email: String? { chain.get("email") }
@@ -23,7 +26,7 @@ struct Helper {
     static var longitude: String? { chain.get("longitude") }
     static var zipcode: String? { chain.get("zipcode") }
     
-    static var authenticated: Bool { KeychainSwift.shared.getBool("authenticated") ?? false }
+    static var authenticated: Bool { Helper.chain.getBool("authenticated") ?? false }
     
     // MARK: General
     static func alert(on view: UIViewController, _ title: String, _ message: String) {
@@ -96,7 +99,25 @@ struct Helper {
                                 latitude: latitude,
                                 longitude: longitude) { _ in completion() }
     }
-    
-    // MARK: Event
-    
+    static func saveImage(with image: Data?, for identifier: String?) {
+        guard let image = image, let identifier = identifier else { return }
+        let baseURL = URL(string: Keys.imagesBaseURL)!.appendingPathComponent("images").appendingPathExtension("json")
+        let parameter = [identifier : image.base64EncodedString()]
+        AF.request(baseURL, method: .put, parameters: parameter, encoding: JSONEncoding.default).resume()
+    }
+    static func setImage(for identifier: String?, in view: CustomImage, tableView: UITableView? = nil) {
+        guard let identifier = identifier, !identifier.isEmpty else { return }
+        let baseURL = URL(string: Keys.imagesBaseURL)!.appendingPathComponent("images").appendingPathExtension("json")
+        URLSession.shared.dataTask(with: baseURL) { newData, _, error in
+            print(error.debugDescription)
+            guard let data = Data(base64Encoded: JSON(newData ?? Data())[identifier].stringValue) else { return }
+            DispatchQueue.main.async {
+                view.image = UIImage(data: data)
+                if let tableView = tableView {
+                tableView.reloadData()
+                }
+            }
+        }.resume()
+    }
 }
+

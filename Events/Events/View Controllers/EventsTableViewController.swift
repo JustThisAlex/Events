@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import Nuke
 
 class EventsTableViewController: UITableViewController {
     var sortingMode: SortingMode = .alphabetical
     var events = [Event]()
-    var index: Int {
-        segment.selectedIndex
-    }
+    var index: Int { segment.selectedIndex }
     @IBOutlet weak var segment: CustomSegmentedControl!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var addEventButton: UIBarButtonItem!
@@ -24,8 +23,8 @@ class EventsTableViewController: UITableViewController {
     }
     
     @objc func segmentChanged(_ notification: Notification) {
-//        guard let index = notification.userInfo?[1] as? Int else { return }
-//        self.index = index
+        //        guard let index = notification.userInfo?[1] as? Int else { return }
+        //        self.index = index
         if index < 2 {
             loadEvents(index: index)
         } else {
@@ -75,13 +74,20 @@ class EventsTableViewController: UITableViewController {
         cell.event = event
         cell.vc = self
         cell.eventTitle.text = event.eventTitle
-        cell.eventAddress.text = event.eventAddress
-        if let image = event.photo {
-            cell.eventImageView.image = UIImage(data: image)
-            cell.imageWidthConstraint.constant = 80
+        cell.eventAddress.text = "\(event.eventAddress ?? "") in \(event.eventCity ?? "")"
+        cell.selectionStyle = .none
+        Helper.setImage(for: event.externalLink, in: cell.eventImageView, tableView: tableView)
+        if cell.eventImageView.image != nil {
+            cell.imageWidthConstraint.constant = 60
         } else {
             cell.imageWidthConstraint.constant = 0
         }
+//        if let image = event.photo {
+//            cell.eventImageView.image = UIImage(data: image)
+//            cell.imageWidthConstraint.constant = 80
+//        } else {
+//            cell.imageWidthConstraint.constant = 0
+//        }
         if Helper.authenticated {
             cell.rsvpButton.isEnabled = true
         } else {

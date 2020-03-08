@@ -103,12 +103,12 @@ class MapsViewController: UIViewController, CLLocationManagerDelegate {
             }))
             for addr in address {
                 alert.addAction(UIAlertAction(title: "\(addr.name ?? ""), \(addr.locality ?? "")", style: .default, handler: { _ in
-                    KeychainSwift.shared.set(addr.name ?? "", forKey: "address")
-                    KeychainSwift.shared.set(addr.locality ?? "", forKey: "city")
-                    KeychainSwift.shared.set(addr.country ?? "", forKey: "country")
-                    KeychainSwift.shared.set(addr.location?.coordinate.latitude.binade.description ?? "", forKey: "latitude")
-                    KeychainSwift.shared.set(addr.location?.coordinate.longitude.binade.description ?? "", forKey: "longitude")
-                    KeychainSwift.shared.set(addr.postalCode ?? "", forKey: "zipcode")
+                    Helper.chain.set(addr.name ?? "", forKey: "address")
+                    Helper.chain.set(addr.locality ?? "", forKey: "city")
+                    Helper.chain.set(addr.country ?? "", forKey: "country")
+                    Helper.chain.set(addr.location?.coordinate.latitude.binade.description ?? "", forKey: "latitude")
+                    Helper.chain.set(addr.location?.coordinate.longitude.binade.description ?? "", forKey: "longitude")
+                    Helper.chain.set(addr.postalCode ?? "", forKey: "zipcode")
                     if self.isSelecting ?? false {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "location"), object: nil, userInfo: ["loc" : Location(street: addr.name, city: addr.locality, country: addr.country, latitude: addr.location?.coordinate.latitude.description, longitude: addr.location?.coordinate.longitude.description, zipcode: addr.postalCode)])
                         self.isSelecting = false

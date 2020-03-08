@@ -12,7 +12,7 @@
 		D229A17F240EBA150094E88A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A17E240EBA150094E88A /* User.swift */; };
 		D229A181240EBED30094E88A /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229A180240EBED30094E88A /* UserRegistration.swift */; };
 		D2FB2D1824107D32003C1C75 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FB2D1724107D32003C1C75 /* UserController.swift */; };
-		FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */; };
+		FA45210E2414125F005E72F5 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA45210D2414125F005E72F5 /* KeychainSwift */; };
 		FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */; };
 		FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50CDD4240BF802005DFA5C /* CustomElements.swift */; };
 		FA50CDD7240BF803005DFA5C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA50CDD5240BF803005DFA5C /* Login.storyboard */; };
@@ -40,6 +40,7 @@
 		FADA3BBA2409E3F100E0DB2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BB82409E3F100E0DB2D /* Main.storyboard */; };
 		FADA3BBC2409E3F300E0DB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */; };
 		FADA3BBF2409E3F300E0DB2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADA3BBD2409E3F300E0DB2D /* LaunchScreen.storyboard */; };
+		FAE4FE892414228000489C69 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = FAE4FE882414228000489C69 /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +54,6 @@
 		D23270CD240F0C900032B50A /* Events 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 4.xcdatamodel"; sourceTree = "<group>"; };
 		D2FB2D1724107D32003C1C75 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		D2FB2D1924108B12003C1C75 /* Events 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Events 5.xcdatamodel"; sourceTree = "<group>"; };
-		FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		FA50CDD2240BF7F5005DFA5C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA50CDD4240BF802005DFA5C /* CustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
 		FA50CDD5240BF803005DFA5C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -68,7 +68,6 @@
 		FA5A2DB6240DCFA80037769D /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
 		FA7C20EA240EDAA4007C61F0 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		FA7DC66E240D320200B23F8C /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
-		FA7DC670240D335A00B23F8C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		FA7DC672240D415300B23F8C /* MapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MapStyle.json; sourceTree = "<group>"; };
 		FAAE07AB240E7449000B0BC1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FAAE07AD240EBD81000B0BC1 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +91,9 @@
 			files = (
 				FA51D8DB240FE82E00AECE5D /* SwiftyJSON in Frameworks */,
 				AC524A50A377FB4B5F9ADDF2 /* Pods_Events.framework in Frameworks */,
+				FA45210E2414125F005E72F5 /* KeychainSwift in Frameworks */,
 				FA51D8D8240FE4B600AECE5D /* Alamofire in Frameworks */,
+				FAE4FE892414228000489C69 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,14 +125,6 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
-		FAAE07B2240ED835000B0BC1 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				FA7DC670240D335A00B23F8C /* Keys.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		FADA3BA62409E3F100E0DB2D = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +132,6 @@
 				FADA3BB02409E3F100E0DB2D /* Products */,
 				E0923ACFF81D51CFE168C905 /* Pods */,
 				CF3DDED483C34C26A587E205 /* Frameworks */,
-				FAAE07B2240ED835000B0BC1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				FA7C20EA240EDAA4007C61F0 /* Keys.swift */,
-				FA50CDD0240BF7E7005DFA5C /* KeychainSwiftDistrib.swift */,
 				FADA3BB22409E3F100E0DB2D /* AppDelegate.swift */,
 				FADA3BB42409E3F100E0DB2D /* SceneDelegate.swift */,
 				FADA3BBB2409E3F300E0DB2D /* Assets.xcassets */,
@@ -258,6 +249,8 @@
 			packageProductDependencies = (
 				FA51D8D7240FE4B600AECE5D /* Alamofire */,
 				FA51D8DA240FE82E00AECE5D /* SwiftyJSON */,
+				FA45210D2414125F005E72F5 /* KeychainSwift */,
+				FAE4FE882414228000489C69 /* Nuke */,
 			);
 			productName = Events;
 			productReference = FADA3BAF2409E3F100E0DB2D /* Events.app */;
@@ -290,6 +283,8 @@
 			packageReferences = (
 				FA51D8D6240FE4B600AECE5D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FA51D8D9240FE82E00AECE5D /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				FA45210C2414125F005E72F5 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				FAE4FE872414228000489C69 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = FADA3BB02409E3F100E0DB2D /* Products */;
 			projectDirPath = "";
@@ -383,7 +378,6 @@
 				FA50CDD3240BF7F5005DFA5C /* LoginViewController.swift in Sources */,
 				FA5A2DB7240DCFA80037769D /* Event+Convenience.swift in Sources */,
 				D229A181240EBED30094E88A /* UserRegistration.swift in Sources */,
-				FA50CDD1240BF7E7005DFA5C /* KeychainSwiftDistrib.swift in Sources */,
 				FAAE07AE240EBD81000B0BC1 /* PrivacyViewController.swift in Sources */,
 				FA50CDD6240BF803005DFA5C /* CustomElements.swift in Sources */,
 				FACDBB8B24114ED600FBD963 /* Helper.swift in Sources */,
@@ -592,6 +586,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FA45210C2414125F005E72F5 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 19.0.0;
+			};
+		};
 		FA51D8D6240FE4B600AECE5D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -608,9 +610,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		FAE4FE872414228000489C69 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = exactVersion;
+				version = 8.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FA45210D2414125F005E72F5 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA45210C2414125F005E72F5 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		FA51D8D7240FE4B600AECE5D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FA51D8D6240FE4B600AECE5D /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -620,6 +635,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FA51D8D9240FE82E00AECE5D /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		FAE4FE882414228000489C69 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAE4FE872414228000489C69 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 

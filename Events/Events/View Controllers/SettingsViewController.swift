@@ -19,12 +19,12 @@ class SettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        usernameLabel.text = KeychainSwift.shared.get("username") ?? ""
-        emailLabel.text = KeychainSwift.shared.get("email") ?? ""
-        if let imageData = KeychainSwift.shared.getData("userImage") {
+        usernameLabel.text = Helper.chain.get("username") ?? ""
+        emailLabel.text = Helper.chain.get("email") ?? ""
+        if let imageData = Helper.chain.getData("userImage") {
             userImage.image = UIImage(data: imageData)
         }
-        temp.setTitle(KeychainSwift.shared.get("tempPref") ?? "°F", for: .normal)
+        temp.setTitle(Helper.chain.get("tempPref") ?? "°F", for: .normal)
         
         signInButton.isHidden = auth ? true : false
         signInButton.isUserInteractionEnabled = auth ? false : true
@@ -43,10 +43,10 @@ class SettingsViewController: UIViewController {
     @IBAction func changeTemp(_ sender: Any) {
         if temp.title(for: .normal) == "°F" {
             temp.setTitle("°C", for: .normal)
-            KeychainSwift.shared.set("°C", forKey: "tempPref")
+            Helper.chain.set("°C", forKey: "tempPref")
         } else {
             temp.setTitle("°F", for: .normal)
-            KeychainSwift.shared.set("°F", forKey: "tempPref")
+            Helper.chain.set("°F", forKey: "tempPref")
         }
         NotificationCenter.default.post(name: NSNotification.Name("TempUpdated"), object: nil)
     }
